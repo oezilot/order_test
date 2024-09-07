@@ -33,7 +33,7 @@ def get_db_connection():
 def index():
     if 'user_id' in session:
         conn = get_db_connection()
-        posts = conn.execute('SELECT * FROM posts').fetchall()
+        posts = conn.execute('SELECT posts.content, users.username FROM posts JOIN users ON posts.user_id = users.id').fetchall()
         conn.close()
         return render_template('index.html', posts=posts)
     return redirect(url_for('login'))
