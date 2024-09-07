@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Create/Edit Post</h2>
+<form method="post">
+  <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
+  <input type="submit" value="Submit">
+</form>
+{% endblock %}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Flask App</title>
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      {% if 'username' in session %}
+        <a href="{{ url_for('post') }}">Create/Edit Post</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      {% else %}
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+      {% endif %}
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+  </body>
+</html>
