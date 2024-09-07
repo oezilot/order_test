@@ -9,17 +9,31 @@ app.secret_key = 'secret_key'  # For session management
 def init_db():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
+
+    # Create users table if it doesn't exist
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT UNIQUE,
                     password TEXT)''')
+
+    # Create posts table if it doesn't exist
     c.execute('''CREATE TABLE IF NOT EXISTS posts (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER,
                     content TEXT,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     FOREIGN KEY(user_id) REFERENCES users(id))''')
+
+    # Try to add the 'created_at' column if it doesn't exist
+    try:
+        c.execute('ALTER TABLE posts ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP')
+    except sqlite3.OperationalError:
+        # This error occurs if the column already exists, so we ignore it
+        pass
+
     conn.commit()
     conn.close()
+
 
 init_db()
 
@@ -33,7 +47,7 @@ def get_db_connection():
 def index():
     if 'user_id' in session:
         conn = get_db_connection()
-        posts = conn.execute('SELECT posts.content, users.username FROM posts JOIN users ON posts.user_id = users.id').fetchall()
+        posts = conn.execute('SELECT posts.content, posts.created_at, users.username FROM posts JOIN users ON posts.user_id = users.id').fetchall()
         conn.close()
         return render_template('index.html', posts=posts)
     return redirect(url_for('login'))
