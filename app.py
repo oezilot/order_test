@@ -143,5 +143,18 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
+# die route wenn amn einen post löscht
+@app.route('/delete_post', methods=['POST'])
+def delete_post():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
+    conn.commit()
+    conn.close()
+    
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
