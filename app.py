@@ -5,7 +5,7 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = 'secret_key'  # For session management
 
-# Database setup
+# Database setup, sodass tabelle entsteht und informationnnach restart nicht verloren geht. wenn man nachträglich eine kolonne oder so einfügt wird diese einfach dazugefügt (in diesem fall werden aber die daten glaubs gelöscht!)
 def init_db():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
@@ -47,6 +47,7 @@ def get_db_connection():
 def index():
     if 'user_id' in session:
         conn = get_db_connection()
+        # die join function macht dass die id mit dem username verknüpft ist 
         posts = conn.execute('SELECT posts.content, posts.created_at, users.username FROM posts JOIN users ON posts.user_id = users.id').fetchall()
         conn.close()
         return render_template('index.html', posts=posts)
