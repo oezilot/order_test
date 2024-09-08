@@ -48,7 +48,13 @@ def index():
     if 'user_id' in session:
         conn = get_db_connection()
         # die join function macht dass die id mit dem username verknüpft ist 
-        posts = conn.execute('SELECT posts.content, posts.created_at, users.username FROM posts JOIN users ON posts.user_id = users.id ORDER BY users.username ASC').fetchall()
+        # der order-by befehl sorgt dafür dass sie posts alphabetisch nach dem username sortiert werden
+        posts = conn.execute('''SELECT 
+            posts.content, posts.created_at, users.username 
+            FROM posts 
+            JOIN users ON posts.user_id = users.id 
+            ORDER BY users.username ASC
+            ''').fetchall()
         conn.close()
         return render_template('index.html', posts=posts)
     return redirect(url_for('login'))
