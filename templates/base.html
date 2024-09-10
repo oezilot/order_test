@@ -10,7 +10,7 @@
       {% if 'username' in session %}
       
       <!-- Dynamically display 'Edit Post' or 'Create Post' based on has_post (this is a logic operation that shows edit post with the has_post or create post)-->
-      <a href="{{ url_for('post') }}">
+      <a href="{{ has_post and url_for('edit_post') or url_for('post') }}">
         {{ has_post and 'Edit Post' or 'Create Post' }}
       </a>
       

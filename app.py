@@ -142,10 +142,7 @@ def edit_post():
 
     # chacks if the form was submitted with the post method
     if request.method == 'POST':
-        print("form submitted")
-        print("Request form data:", request.form)
         if 'update' in request.form:
-            print("update button clicked")
             # update the post content
             content = request.form['content']
             conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
@@ -154,7 +151,6 @@ def edit_post():
             return redirect(url_for('index'))
         # if delete-button is clicked the following happens
         elif 'delete' in request.form:
-            print("delete button clicked")
             # Delete the post
             conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
             conn.commit()
