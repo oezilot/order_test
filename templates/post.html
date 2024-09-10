@@ -5,6 +5,6 @@
 <form action="{{url_for('post')}}" method="post">
   <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
   <input type="submit" value="Submit">
-  <button type="submit" >Abbrechen</button>
+  <button type="submit" name="abbrechen" value="Abbrechen" >Abbrechen</button>
 </form>
 {% endblock %}

@@ -113,24 +113,35 @@ def post():
     user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
     
     if request.method == 'POST':
-        content = request.form['content']
-        if user_post:
-            # Edit existing post (information gets added to the database)
-            conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
-        else:
-            # Create new post (add inormation to the database)
-            conn.execute('INSERT INTO posts (user_id, content) VALUES (?, ?)', (session['user_id'], content))
-        conn.commit()
-        conn.close()
-        return redirect(url_for('index'))
+        # Handle post creation or editing
+        if 'content' in request.form and not 'abbrechen' in request.form:
+            content = request.form['content']
+            if user_post:
+                # Edit existing post
+                conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
+            else:
+                # Create new post
+                conn.execute('INSERT INTO posts (user_id, content) VALUES (?, ?)', (session['user_id'], content))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+
+        # Handle the "Abbrechen" button to delete the post
+        elif 'abbrechen' in request.form:
+            if user_post:
+                conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
+                conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
 
     conn.close()
 
-    # Render different templates based on whether the post exists
+    # Render the appropriate template based on whether the user has a post
     if user_post:
         return render_template('edit_post.html', post=user_post)
     else:
         return render_template('post.html')
+
 
 @app.route('/edit_post', methods=['GET', 'POST'])
 def edit_post():
