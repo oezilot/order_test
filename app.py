@@ -47,17 +47,24 @@ def get_db_connection():
 def index():
     if 'user_id' in session:
         conn = get_db_connection()
-        # die join function macht dass die id mit dem username verknüpft ist 
-        # der order-by befehl sorgt dafür dass sie posts alphabetisch nach dem username sortiert werden
+        
+        # Query all posts to display on the home page
         posts = conn.execute('''SELECT 
             posts.content, posts.created_at, users.username 
             FROM posts 
             JOIN users ON posts.user_id = users.id 
             ORDER BY users.username ASC
             ''').fetchall()
+
+        # Check if the logged-in user has a post
+        user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
         conn.close()
-        return render_template('index.html', posts=posts)
+
+        # Pass 'posts' and 'has_post' to the template
+        return render_template('index.html', posts=posts, has_post=(user_post is not None))
+
     return redirect(url_for('login'))
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
