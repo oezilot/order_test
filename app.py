@@ -108,17 +108,22 @@ def post():
     if request.method == 'POST':
         content = request.form['content']
         if user_post:
-            # Edit existing post
+            # Edit existing post (information gets added to the database)
             conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
         else:
-            # Create new post
+            # Create new post (add inormation to the database)
             conn.execute('INSERT INTO posts (user_id, content) VALUES (?, ?)', (session['user_id'], content))
         conn.commit()
         conn.close()
         return redirect(url_for('index'))
 
     conn.close()
-    return render_template('post.html', post=user_post)
+
+    # Render different templates based on whether the post exists
+    if user_post:
+        return render_template('edit_post.html', post=user_post)
+    else:
+        return render_template('post.html')
 
 @app.route('/edit_post', methods=['GET', 'POST'])
 def edit_post():
@@ -128,12 +133,26 @@ def edit_post():
     conn = get_db_connection()
     post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
 
+    # chacks if the form was submitted with the post method
     if request.method == 'POST':
-        content = request.form['content']
-        conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
-        conn.commit()
-        conn.close()
-        return redirect(url_for('index'))
+        print("form submitted")
+        print("Request form data:", request.form)
+        if 'update' in request.form:
+            print("update button clicked")
+            # update the post content
+            content = request.form['content']
+            conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+        # if delete-button is clicked the following happens
+        elif 'delete' in request.form:
+            print("delete button clicked")
+            # Delete the post
+            conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
 
     conn.close()
     return render_template('edit_post.html', post=post)
@@ -143,18 +162,7 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-# die route wenn amn einen post löscht
-@app.route('/delete_post', methods=['POST'])
-def delete_post():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
 
-    conn = get_db_connection()
-    conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
-    conn.commit()
-    conn.close()
-    
-    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)

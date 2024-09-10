@@ -8,8 +8,10 @@
     <nav>
       <a href="{{ url_for('index') }}">Home</a>
       {% if 'username' in session %}
-        <a href="{{ url_for('post') }}">Create/Edit Post</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
+      <a href="{{ url_for('post') }}">
+        {{ post and 'Edit Post' or 'Create Post' }}
+      </a>        
+      <a href="{{ url_for('logout') }}">Logout</a>
         <!--hiermit wirde der username angezeigt der eingeloggten person-->
         <span>Logged in as: {{ session['username'] }}</span>
       {% else %}
