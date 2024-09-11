@@ -43,7 +43,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-@app.route('/')
+@app.route('/buchseiten/inhaltsverzeichnis')
 def index():
     if 'user_id' in session:
         conn = get_db_connection()
