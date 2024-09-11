@@ -190,7 +190,6 @@ def show_post(username):
         return redirect(url_for('login'))
     
     conn = get_db_connection()
-
     # Get user by username
     user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
     
@@ -200,8 +199,6 @@ def show_post(username):
     # Get the user's post
     post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (user['id'],)).fetchone()
 
-    if not post:
-        return "No post for this user", 404
 
     # Get all usernames to determine navigation
     users = conn.execute('SELECT username FROM users ORDER BY username').fetchall()

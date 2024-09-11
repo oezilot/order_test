@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- If a single post is provided, show that post -->
+<!-- das ist der code wenn der einzelne post angezeigt wird auf der route /buchseite/username -->
 {% if post %}
   <h2>{{ username }}'s Post</h2>
   <div>
     <p>{{ post['content'] }}</p>
   </div>
 
-  <!-- Navigation for single post view -->
+  <!-- forward und backward button -->
   <div>
     {% if prev_username %}
       <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
@@ -19,7 +19,7 @@
     {% endif %}
   </div>
 
-<!-- If a list of posts is provided, show the list of posts -->
+<!-- inhaltsverzeichnis mit allen posts und ihren links -->
 {% elif posts %}
   <h2>Posts</h2>
   <ul>
