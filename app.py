@@ -151,16 +151,18 @@ def edit_post():
     conn = get_db_connection()
     post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
 
-    # chacks if the form was submitted with the post method
+    # Calculate whether the user has a post (used for the "Edit Post"/"Create Post" button)
+    has_post = post is not None
+
     if request.method == 'POST':
         if 'update' in request.form:
-            # update the post content
+            # Update the post content
             content = request.form['content']
             conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
-        # if delete-button is clicked the following happens
+
         elif 'delete' in request.form:
             # Delete the post
             conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
@@ -169,7 +171,9 @@ def edit_post():
             return redirect(url_for('index'))
 
     conn.close()
-    return render_template('edit_post.html', post=post)
+    
+    # Pass `has_post` along with the post to the template
+    return render_template('edit_post.html', post=post, has_post=has_post)
 
 @app.route('/logout')
 def logout():
