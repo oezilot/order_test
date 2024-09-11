@@ -1,14 +1,40 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Posts</h2>
-{% if posts %}
+<!-- If a single post is provided, show that post -->
+{% if post %}
+  <h2>{{ username }}'s Post</h2>
+  <div>
+    <p>{{ post['content'] }}</p>
+  </div>
+
+  <!-- Navigation for single post view -->
+  <div>
+    {% if prev_username %}
+      <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
+    {% endif %}
+
+    {% if next_username %}
+      <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
+    {% endif %}
+  </div>
+
+<!-- If a list of posts is provided, show the list of posts -->
+{% elif posts %}
+  <h2>Posts</h2>
   <ul>
     {% for post in posts %}
-      <li>{{ post['content'] }} (posted by: {{ post['username'] }} - {{ post['created_at'] }})</li>
+      <li>
+        <a href="{{ url_for('show_post', username=post['username']) }}">
+          {{ post['username'] }}'s Post
+        </a> (posted on: {{ post['created_at'] }})
+      </li>
     {% endfor %}
   </ul>
+
+<!-- If no posts are available, show a message -->
 {% else %}
   <p>No posts available</p>
 {% endif %}
+
 {% endblock %}

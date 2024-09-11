@@ -182,5 +182,45 @@ def logout():
 
 
 
+
+# NEW FUNCTION: Display a single post with forward/backward navigation
+@app.route('/buchseiten/<username>', methods=['GET'])
+def show_post(username):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    conn = get_db_connection()
+
+    # Get user by username
+    user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+    
+    if not user:
+        return "User not found", 404
+
+    # Get the user's post
+    post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (user['id'],)).fetchone()
+
+    if not post:
+        return "No post for this user", 404
+
+    # Get all usernames to determine navigation
+    users = conn.execute('SELECT username FROM users ORDER BY username').fetchall()
+    conn.close()
+
+    # Find the current index of the username
+    usernames = [u['username'] for u in users]
+    current_index = usernames.index(username)
+
+    # Calculate previous and next usernames for navigation
+    next_username = usernames[current_index + 1] if current_index < len(usernames) - 1 else None
+    prev_username = usernames[current_index - 1] if current_index > 0 else None
+
+    return render_template('index.html', post=post, username=username, prev_username=prev_username, next_username=next_username)
+
+
+
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
