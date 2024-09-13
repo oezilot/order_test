@@ -2,66 +2,22 @@
 
 {% block content %}
 
-
-
-<!-- indivueller post -->
-{% if post %} <!--sees if posts exist, post is a variable-->
-  <h2>{{ username }}'s Post</h2>
-  <div>
-    <p>{{ post['content'] }}</p>
-  </div>
-  
-
-<!-- forward und backward button -->
-<div>
-  <!-- Falls es eine Seite vorher einen Post gibt -->
-  {% if prev_username %}
-    <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
-  {% endif %}
-  
-  <!-- Falls es eine Seite weiter einen Post gibt -->
-  {% if next_username %}
-    <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
-  {% endif %}
-</div>
-
-
-
-
-
 <!-- inhaltsverzeichnis mit allen posts und ihren links -->
-{% elif posts %}
+{% if posts %}
   <h2>Posts</h2>
   <ul>
-    <!--loop: for each post it excutes the post hyperlink and date-->
+    <!--loop: for each post it executes the post hyperlink and date-->
     {% for post in posts %}
       <li>
-        <!--hyperlink for the posr-->
+        <!--hyperlink for the post-->
         <a href="{{ url_for('show_post', username=post['username']) }}">
           {{ post['username'] }}'s Post
         </a> (posted on: {{ post['created_at'] }}) <!--date after the hyperlink of the post-->
       </li>
     {% endfor %}
   </ul>
-
-
-
-
-
-<!-- If no posts are available, show a message -->
 {% else %}
   <p>No posts available</p>
-  <div>
-    <!-- Falls es eine Seite vorher einen Post gibt -->
-    {% if prev_username %}
-      <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
-    {% endif %}
-    
-    <!-- Falls es eine Seite weiter einen Post gibt -->
-    {% if next_username %}
-      <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
-    {% endif %}
-  </div>
 {% endif %}
 
 {% endblock %}

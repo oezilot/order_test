@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!-- indivueller post mit username und post-content -->
+{% if post %} <!--sees if posts exist, post is a variable-->
+  <h2>{{ username }}'s Post</h2>
+  <div>
+    <p>{{ post['content'] }}</p>
+  </div>
+  
+
+<!-- forward und backward button -->
+<div>
+  <!-- Falls es eine Seite vorher einen Post gibt -->
+  {% if prev_username %}
+    <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
+  {% endif %}
+  
+  <!-- Falls es eine Seite weiter einen Post gibt -->
+  {% if next_username %}
+    <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
+  {% endif %}
+</div>
+
+
+<!-- If no posts are available, show a message -->
+{% else %}
+  <p>No posts available</p>
+  <div>
+    <!-- Falls es eine Seite vorher einen Post gibt -->
+    {% if prev_username %}
+      <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
+    {% endif %}
+    
+    <!-- Falls es eine Seite weiter einen Post gibt -->
+    {% if next_username %}
+      <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% endblock %}
