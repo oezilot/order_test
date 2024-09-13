@@ -46,25 +46,35 @@ def get_db_connection():
 # das ist die haupt-page auf der die posts als zusammenfassung alle engezeigt werden
 @app.route('/buchseiten/inhaltsverzeichnis')
 def index():
-    if 'user_id' in session:
-        conn = get_db_connection()
-        
-        # Query all posts to display on the home page
-        posts = conn.execute('''SELECT 
-            posts.content, posts.created_at, users.username 
-            FROM posts 
-            JOIN users ON posts.user_id = users.id 
-            ORDER BY users.username ASC
-            ''').fetchall()
+    conn = get_db_connection()
 
-        # Check if the logged-in user has a post
-        user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
-        conn.close()
+    # Query to get all users
+    users = conn.execute('SELECT username FROM users ORDER BY username ASC').fetchall()
 
-        # Pass 'posts' and 'has_post' to the template
-        return render_template('index.html', posts=posts, has_post=(user_post is not None))
+    # Query each user's post
+    user_posts = []
+    for user in users:
+        post = conn.execute('SELECT content, created_at FROM posts WHERE user_id = (SELECT id FROM users WHERE username = ?)', (user['username'],)).fetchone()
 
-    return redirect(url_for('login'))
+        # If the user has a post, include it, otherwise add None for content and created_at
+        if post:
+            user_posts.append({
+                'username': user['username'],
+                'content': post['content'],
+                'created_at': post['created_at']
+            })
+        else:
+            user_posts.append({
+                'username': user['username'],
+                'content': None,
+                'created_at': None
+            })
+
+    conn.close()
+
+    # Pass the users and their posts (or no post message) to the template
+    return render_template('index.html', user_posts=user_posts)
+
 
 
 @app.route('/login', methods=['GET', 'POST'])

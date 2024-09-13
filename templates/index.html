@@ -2,22 +2,26 @@
 
 {% block content %}
 
-<!-- inhaltsverzeichnis mit allen posts und ihren links -->
-{% if posts %}
-  <h2>Posts</h2>
-  <ul>
-    <!--loop: for each post it executes the post hyperlink and date-->
-    {% for post in posts %}
-      <li>
-        <!--hyperlink for the post-->
-        <a href="{{ url_for('show_post', username=post['username']) }}">
-          {{ post['username'] }}'s Post
-        </a> (posted on: {{ post['created_at'] }}) <!--date after the hyperlink of the post-->
-      </li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No posts available</p>
-{% endif %}
+<h2>Posts</h2>
+
+<ul>
+  <!-- Loop through all users and their posts -->
+  {% for user_post in user_posts %}
+    <li>
+      <!-- Always show the username and link to the user's post page -->
+      <!--when the user is not logged in and clicks on one of the links it gets redirected to the login page-->
+      <a href="{{ url_for('show_post', username=user_post['username']) }}">
+        {{ user_post['username'] }}'s Post
+      </a>
+      
+      <!-- Check if the user has content in the post -->
+      {% if user_post['content'] %}
+        (posted on: {{ user_post['created_at'] }})
+      {% else %}
+        - No post yet
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}
