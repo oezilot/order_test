@@ -10,18 +10,20 @@
   <div>
     <p>{{ post['content'] }}</p>
   </div>
+  
 
 <!-- forward und backward button -->
-  <div>
-    <!--falls es eine seite vorher einen post gibt-->
-    {% if prev_username %}
-      <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
-    {% endif %}
-    <!--falls es eine seite weiter einen post gibt-->
-    {% if next_username %}
-      <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
-    {% endif %}
-  </div>
+<div>
+  <!-- Falls es eine Seite vorher einen Post gibt -->
+  {% if prev_username %}
+    <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
+  {% endif %}
+  
+  <!-- Falls es eine Seite weiter einen Post gibt -->
+  {% if next_username %}
+    <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
+  {% endif %}
+</div>
 
 
 
@@ -49,6 +51,17 @@
 <!-- If no posts are available, show a message -->
 {% else %}
   <p>No posts available</p>
+  <div>
+    <!-- Falls es eine Seite vorher einen Post gibt -->
+    {% if prev_username %}
+      <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
+    {% endif %}
+    
+    <!-- Falls es eine Seite weiter einen Post gibt -->
+    {% if next_username %}
+      <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
+    {% endif %}
+  </div>
 {% endif %}
 
 {% endblock %}
