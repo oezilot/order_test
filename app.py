@@ -43,6 +43,7 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+# das ist die haupt-page auf der die posts als zusammenfassung alle engezeigt werden
 @app.route('/buchseiten/inhaltsverzeichnis')
 def index():
     if 'user_id' in session:
@@ -104,6 +105,7 @@ def register():
 
     return render_template('register.html')
 
+# das template wo man einen post creiiert
 @app.route('/post', methods=['GET', 'POST'])
 def post():
     if 'user_id' not in session:
@@ -142,7 +144,7 @@ def post():
     else:
         return render_template('post.html')
 
-
+# das template wo man einen post bearbeitet wenn man bereits einen hat
 @app.route('/edit_post', methods=['GET', 'POST'])
 def edit_post():
     if 'user_id' not in session:
@@ -175,14 +177,13 @@ def edit_post():
     # Pass `has_post` along with the post to the template
     return render_template('edit_post.html', post=post, has_post=has_post)
 
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
 
-
-
-
+# einzelne posts zum durchklicken
 # NEW FUNCTION: Display a single post with forward/backward navigation
 @app.route('/buchseiten/<username>', methods=['GET'])
 def show_post(username):
@@ -213,9 +214,6 @@ def show_post(username):
     prev_username = usernames[current_index - 1] if current_index > 0 else None
 
     return render_template('index.html', post=post, username=username, prev_username=prev_username, next_username=next_username)
-
-
-
 
 
 
