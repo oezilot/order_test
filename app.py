@@ -48,6 +48,10 @@ def get_db_connection():
 def index():
     conn = get_db_connection()
 
+    # Check if the logged-in user has a post
+    user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
+    has_post = user_post is not None
+
     # Query to get all users
     users = conn.execute('SELECT username FROM users ORDER BY username ASC').fetchall()
 
@@ -72,8 +76,8 @@ def index():
 
     conn.close()
 
-    # Pass the users and their posts (or no post message) to the template
-    return render_template('index.html', user_posts=user_posts)
+    # everything in the brackets is passed to the html-file which is getting rendered!
+    return render_template('index.html', user_posts=user_posts, has_post=has_post)
 
 
 
@@ -225,6 +229,21 @@ def show_post(username):
 
     return render_template('userpage.html', post=post, username=username, prev_username=prev_username, next_username=next_username)
 
+
+
+# ensures that the has_post-variable is used globally and for all the templates and views
+@app.context_processor
+def inject_has_post():
+    if 'user_id' in session:
+        conn = get_db_connection()
+        user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
+        conn.close()
+        # if there is something in the users table that means that the corresponding user already has a post
+        has_post = user_post is not None
+    else:
+        has_post = False
+
+    return dict(has_post=has_post)
 
 
 if __name__ == '__main__':
