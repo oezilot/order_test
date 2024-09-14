@@ -217,7 +217,7 @@ def edit_post():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('login'))
+    return redirect(url_for('landing'))
 
 # einzelne posts zum durchklicken
 # NEW FUNCTION: Display a single post with forward/backward navigation
