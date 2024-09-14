@@ -2,6 +2,12 @@
 
 {% block content %}
 <h2>Register</h2>
+
+<!-- Display the error message if it's set -->
+{% if error_message %}
+  <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
 <form method="post">
   <label for="username">Username:</label>
   <input type="text" id="username" name="username" required><br><br>

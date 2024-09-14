@@ -123,24 +123,39 @@ def login():
     
     return render_template('login.html', error_message=error_message)
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    error_message = None  # Initialize a variable to store the error message
+
     if request.method == 'POST':
         username = request.form['username']
-        password = generate_password_hash(request.form['password'])
+        password = request.form['password']
 
         conn = get_db_connection()
-        try:
-            conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password))
-            conn.commit()
-        except sqlite3.IntegrityError:
-            conn.close()
-            return "Username already exists"
-        
-        conn.close()
-        return redirect(url_for('login'))
 
-    return render_template('register.html')
+        # Check if the username already exists
+        user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+
+        if user:
+            # Set an error message if the username already exists
+            error_message = "Username already exists. Please choose a different one."
+        else:
+            # If the username is unique, proceed with registration
+            password_hash = generate_password_hash(password)
+
+            conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password_hash))
+            conn.commit()
+            conn.close()
+
+            # Redirect to the login page after successful registration
+            return redirect(url_for('login'))
+
+        conn.close()
+
+    # Pass the error_message to the template (if any)
+    return render_template('register.html', error_message=error_message)
+
 
 # das template wo man einen post creiiert
 @app.route('/post', methods=['GET', 'POST'])
