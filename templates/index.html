@@ -4,8 +4,16 @@
 
 <h2>Inhaltsverzeichnis</h2>
 
+<!-- Check if there are any user posts, and link to the first one -->
+{% if user_posts %}
+  <!-- Link to the first user's post -->
+  <a href="{{ url_for('show_post', username=user_posts[0]['username']) }}">View Book</a>
+{% else %}
+  <p>No posts available to view.</p>
+{% endif %}
+
+
 <ul>
-  
   <!-- Loop through all users and their posts -->
   {% for user_post in user_posts %}
     <li>
