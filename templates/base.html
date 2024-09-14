@@ -24,6 +24,10 @@
         <!-- Display the logged-in user's username -->
         <span>Logged in as: {{ session['username'] }}</span>
 
+        <form action="{{ url_for('delete_account') }}" method="POST" style="display:inline;">
+          <button type="submit" class="float-right" style="background:none;border:none;color:red;cursor:pointer;">Delete Account</button>
+        </form>
+        
       <!--user is not logged in-->
       {% else %}
         <a href="{{ url_for('landing') }}">Go Back</a>

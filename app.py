@@ -268,5 +268,29 @@ def inject_has_post():
     return dict(has_post=has_post)
 
 
+@app.route('/delete_account', methods=['POST', 'GET'])
+def delete_account():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))  # Redirect to login if not logged in
+
+    conn = get_db_connection()
+
+    # Delete the user's posts
+    conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
+    
+    # Delete the user's account
+    conn.execute('DELETE FROM users WHERE id = ?', (session['user_id'],))
+
+    conn.commit()
+    conn.close()
+
+    # Clear the session since the user is deleted
+    session.clear()
+
+    # Redirect to the landing page after deletion
+    return redirect(url_for('landing'))
+
+    
+
 if __name__ == '__main__':
     app.run(debug=True)
