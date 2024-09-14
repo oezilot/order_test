@@ -1,18 +1,11 @@
-<!-- Navigation bar with all links: Home, Create/Edit, Logout, and displays the logged-in username -->
-<!-- this is the skeleton of each template! -->
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Flask App</title>
-  </head>
-  <body>
-    <h1>About</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>About</h1>
     <p>This 'friendship-book' is a collection of posts which my friends made to introduce themselves. <br> Each friend is able to produce one post and edit this one whenever they want<br> One post contains: <br><br>
         <ul>
             <li>selfdrawn portait of themselves</li>
             <li>basic info and facts such as age, gender and favourite color</li>
             <li>statements to some interesting questions</li>
         </ul>
-  </body>
-</html>
+{% endblock %}
