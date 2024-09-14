@@ -48,9 +48,14 @@ def get_db_connection():
 def index():
     conn = get_db_connection()
 
-    # Check if the logged-in user has a post
-    user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
-    has_post = user_post is not None
+    if 'user_id' not in session:
+        # No user logged in, set has_post and user_post to None or False
+        user_post = None
+        has_post = False
+    else:
+        # Check if the logged-in user has a post
+        user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
+        has_post = user_post is not None
 
     # Query to get all users
     users = conn.execute('SELECT username FROM users ORDER BY username ASC').fetchall()
