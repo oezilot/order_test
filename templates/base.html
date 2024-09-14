@@ -27,8 +27,12 @@
       <!--user is not logged in-->
       {% else %}
         <a href="{{ url_for('landing') }}">Go Back</a>
-        <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('register') }}">Register</a>
+        {% if request.endpoint == 'login' %}
+          <a href="{{ url_for('register') }}">Register</a>
+        {% elif request.endpoint == 'register'%}
+          <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+
       {% endif %}
     </nav>
     
