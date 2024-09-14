@@ -43,6 +43,23 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+# landing.html
+@app.route('/')
+def landing():
+    # If the user is logged in, redirect them to the main index page
+    if 'user_id' in session:
+        return redirect(url_for('index'))        
+    
+    # If the user is not logged in, show the landing page
+    return render_template('landing.html')
+
+# about.html
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+
+
 # das ist die haupt-page auf der die posts als zusammenfassung alle engezeigt werden
 @app.route('/buchseiten/inhaltsverzeichnis')
 def index():
