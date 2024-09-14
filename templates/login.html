@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<!-- Display the error message if it's set -->
+{% if error_message %}
+  <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
 <h2>Login</h2>
 <form method="post">
   <label for="username">Username:</label>

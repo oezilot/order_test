@@ -102,9 +102,10 @@ def index():
     return render_template('index.html', user_posts=user_posts, has_post=has_post)
 
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    error_message = None # initializes a variable to store the error message
+
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -118,9 +119,9 @@ def login():
             session['username'] = user['username']
             return redirect(url_for('index'))
         else:
-            return "Invalid credentials"
+            error_message = "Invalid credentials, please try again."
     
-    return render_template('login.html')
+    return render_template('login.html', error_message=error_message)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
