@@ -7,7 +7,7 @@
   <p style="color: red;">{{ error_message }}</p>
 {% endif %}
 
-<h2>Login</h2>
+<h2>Reactivate</h2>
 <form method="post">
   <label for="username">Username:</label>
   <input type="text" id="username" name="username" required><br><br>
@@ -15,8 +15,5 @@
   <input type="password" id="password" name="password" required><br><br>
   <input type="submit" value="Login">
 </form>
-
-<!--link to reactivate a previousily deleted account-->
-<p>Deleted your account? <a href="{{ url_for('reactivate_account') }}">Reactivate your account here</a></p>
 
 {% endblock %}

@@ -15,4 +15,7 @@
   <input type="password" id="password" name="password" required><br><br>
   <input type="submit" value="Register">
 </form>
+
+<p>Deleted your account? <a href="{{ url_for('reactivate_account') }}">Reactivate your account here</a></p>
+
 {% endblock %}

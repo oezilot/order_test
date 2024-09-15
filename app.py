@@ -309,6 +309,41 @@ def delete_account():
     return redirect(url_for('landing'))
 
 
+@app.route('/reactivate_account', methods=['POST', 'GET'])
+def reactivate_account():
+    error_message = None  # Initialize the error message
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        conn = get_db_connection()
+
+        # Check if the user exists in the users table but is inactive
+        inactive_user = conn.execute('SELECT * FROM users WHERE username = ? AND is_active = 0', (username,)).fetchone()
+
+        if inactive_user and check_password_hash(inactive_user['password'], password):
+            # Reactivate the user by setting is_active to 1
+            conn.execute('UPDATE users SET is_active = 1 WHERE username = ?', (username,))
+
+            # Reactivate all their posts by setting is_active to 1
+            conn.execute('UPDATE posts SET is_active = 1 WHERE user_id = ?', (inactive_user['id'],))
+
+            conn.commit()
+            conn.close()
+
+            # Log the user in by creating a session
+            session['user_id'] = inactive_user['id']
+            session['username'] = inactive_user['username']
+
+            return redirect(url_for('index'))
+        else:
+            # Account not found or invalid credentials
+            error_message = "Account not found or invalid credentials"
+            conn.close()
+
+    # Render the template with or without the error message
+    return render_template('reactivate.html', error_message=error_message)
 
 
     
