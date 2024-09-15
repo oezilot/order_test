@@ -71,29 +71,23 @@ def index():
         has_post = False
     else:
         # Check if the logged-in user has a post
-        user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
+        user_post = conn.execute('SELECT * FROM posts WHERE user_id = ? AND is_active = 1', (session['user_id'],)).fetchone()
         has_post = user_post is not None
 
-    # Query to get all users
-    users = conn.execute('SELECT username FROM users ORDER BY username ASC').fetchall()
+    # Query to get all active users and their active posts
+    users = conn.execute('SELECT username FROM users WHERE is_active = 1 ORDER BY username ASC').fetchall()
 
-    # Query each user's post
+    # Query each user's active posts
     user_posts = []
     for user in users:
-        post = conn.execute('SELECT content, created_at FROM posts WHERE user_id = (SELECT id FROM users WHERE username = ?)', (user['username'],)).fetchone()
+        post = conn.execute('SELECT content, created_at FROM posts WHERE user_id = (SELECT id FROM users WHERE username = ? AND is_active = 1) AND is_active = 1', (user['username'],)).fetchone()
 
-        # If the user has a post, include it, otherwise add None for content and created_at
+        # If the user has an active post, include it
         if post:
             user_posts.append({
                 'username': user['username'],
                 'content': post['content'],
                 'created_at': post['created_at']
-            })
-        else:
-            user_posts.append({
-                'username': user['username'],
-                'content': None,
-                'created_at': None
             })
 
     conn.close()
