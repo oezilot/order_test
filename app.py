@@ -98,23 +98,29 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    error_message = None # initializes a variable to store the error message
+    error_message = None  # Initialize the error message
 
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         
         conn = get_db_connection()
-        user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        # Check if the user exists and is active
+        user = conn.execute('SELECT * FROM users WHERE username = ? AND is_active = 1', (username,)).fetchone()
         conn.close()
 
-        if user and check_password_hash(user['password'], password):
-            session['user_id'] = user['id']
-            session['username'] = user['username']
-            return redirect(url_for('index'))
+        if user:
+            # Check if the password is correct
+            if check_password_hash(user['password'], password):
+                session['user_id'] = user['id']
+                session['username'] = user['username']
+                return redirect(url_for('index'))
+            else:
+                error_message = "Invalid credentials."
         else:
-            error_message = "Invalid credentials, please try again."
-    
+            # If the user is inactive or doesn't exist
+            error_message = "Account is inactive or doesn't exist."
+
     return render_template('login.html', error_message=error_message)
 
 
