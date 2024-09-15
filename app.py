@@ -10,32 +10,32 @@ def init_db():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
 
-    # Create users table if it doesn't exist
+    # Drop the old tables (be careful with this step if you have important data)
+    c.execute('DROP TABLE IF EXISTS users')
+    c.execute('DROP TABLE IF EXISTS posts')
+
+    # Create users table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT UNIQUE,
-                    password TEXT)''')
+                    password TEXT,
+                    is_active BOOLEAN DEFAULT 1)''')  # Default is_active = 1 (active)
 
-    # Create posts table if it doesn't exist
+    # Create posts table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS posts (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER,
                     content TEXT,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    is_active BOOLEAN DEFAULT 1,
                     FOREIGN KEY(user_id) REFERENCES users(id))''')
-
-    # Try to add the 'created_at' column if it doesn't exist
-    try:
-        c.execute('ALTER TABLE posts ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP')
-    except sqlite3.OperationalError:
-        # This error occurs if the column already exists, so we ignore it
-        pass
 
     conn.commit()
     conn.close()
 
-
+# Call the function to initialize the database
 init_db()
+
 
 # Helper function to get DB connection
 def get_db_connection():
@@ -235,6 +235,7 @@ def logout():
     session.clear()
     return redirect(url_for('landing'))
 
+
 # einzelne posts zum durchklicken
 # NEW FUNCTION: Display a single post with forward/backward navigation
 @app.route('/buchseiten/<username>', methods=['GET'])
@@ -284,6 +285,7 @@ def inject_has_post():
     return dict(has_post=has_post)
 
 
+
 @app.route('/delete_account', methods=['POST', 'GET'])
 def delete_account():
     if 'user_id' not in session:
@@ -291,20 +293,23 @@ def delete_account():
 
     conn = get_db_connection()
 
-    # Delete the user's posts
-    conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
-    
-    # Delete the user's account
-    conn.execute('DELETE FROM users WHERE id = ?', (session['user_id'],))
+    # Step 1: Soft delete the user's posts by setting is_active to 0
+    conn.execute('UPDATE posts SET is_active = 0 WHERE user_id = ?', (session['user_id'],))
+
+    # Step 2: Soft delete the user's account by setting is_active to 0
+    conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (session['user_id'],))
 
     conn.commit()
     conn.close()
 
-    # Clear the session since the user is deleted
+    # Step 3: Clear the session since the user is "deleted"
     session.clear()
 
-    # Redirect to the landing page after deletion
+    # Step 4: Redirect to the landing page after deletion
     return redirect(url_for('landing'))
+
+
+
 
     
 
