@@ -2,8 +2,13 @@
 
 {% block content %}
 <h2>Create Post</h2>
-<form action="{{url_for('post')}}" method="post">
+<form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
   <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
+
+  <!-- Add file input for image upload -->
+  <label for="image">Upload an Image (PNG only):</label>
+  <input type="file" id="image" name="image" accept="image/png"><br><br>
+  
   <input type="submit" value="Submit">
   <button type="submit" name="abbrechen" value="Abbrechen" >Abbrechen</button>
 </form>

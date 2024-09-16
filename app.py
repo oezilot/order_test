@@ -2,8 +2,23 @@ from flask import Flask, render_template, request, redirect, session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
+# for the png submission
+import os
+from werkzeug.utils import secure_filename
+
+
 app = Flask(__name__)
 app.secret_key = 'secret_key'  # For session management
+
+
+# Define the folder where uploaded images will be stored
+UPLOAD_FOLDER = 'static/uploads/'
+ALLOWED_EXTENSIONS = {'png'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Database setup, sodass tabelle entsteht und informationnnach restart nicht verloren geht. wenn man nachträglich eine kolonne oder so einfügt wird diese einfach dazugefügt (in diesem fall werden aber die daten glaubs gelöscht!)
 def init_db():
@@ -26,6 +41,7 @@ def init_db():
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER,
                     content TEXT,
+                    image_path TEXT,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     is_active BOOLEAN DEFAULT 1,
                     FOREIGN KEY(user_id) REFERENCES users(id))''')
@@ -170,12 +186,25 @@ def post():
         # Handle post creation or editing
         if 'content' in request.form and not 'abbrechen' in request.form:
             content = request.form['content']
-            if user_post:
-                # Edit existing post
-                conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
+            
+            # Handle the file upload
+            if 'image' in request.files:
+                file = request.files['image']
+                if file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    file.save(file_path)
+                else:
+                    file_path = None
             else:
-                # Create new post
-                conn.execute('INSERT INTO posts (user_id, content) VALUES (?, ?)', (session['user_id'], content))
+                file_path = None  # No image uploaded
+
+            if user_post:
+                # Edit existing post and update the image path if provided
+                conn.execute('UPDATE posts SET content = ?, image_path = ? WHERE user_id = ?', (content, file_path, session['user_id']))
+            else:
+                # Create new post with image path
+                conn.execute('INSERT INTO posts (user_id, content, image_path) VALUES (?, ?, ?)', (session['user_id'], content, file_path))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
