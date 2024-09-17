@@ -6,6 +6,13 @@
 <form action="{{url_for('edit_post')}}" method="post" enctype="multipart/form-data">
     <textarea name="content">{{ post['content'] }}</textarea><br><br>
   
+    <!-- Display the currently uploaded image if it exists -->
+    {% if post['image_path'] %}
+    <p>Current Image:</p>
+    <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
+    <p>You can upload a new image if you want to replace the current one.</p>
+    {% endif %}
+
     <!-- Add file input for image upload -->
     <label for="image">Upload an Image (PNG only):</label>
     <input type="file" id="image" name="image" accept="image/png"><br><br>
