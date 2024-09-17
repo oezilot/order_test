@@ -225,38 +225,83 @@ def post():
     else:
         return render_template('post.html')
 
+
 # das template wo man einen post bearbeitet wenn man bereits einen hat
 @app.route('/edit_post', methods=['GET', 'POST'])
 def edit_post():
+    # wenn der user nicht eingeloggt ist dann wird man zur login-page gelinkt
     if 'user_id' not in session:
         return redirect(url_for('login'))
 
     conn = get_db_connection()
+    # der post des eingeloggten users werden "geholt" (wenn nichts drin ist dann ist post = None)
     post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
 
     # Calculate whether the user has a post (used for the "Edit Post"/"Create Post" button)
+    # nur die user die bereits einen post haben können ihn editet (onst wird die create-function aufgerufen!)
     has_post = post is not None
 
+    # if something was posted
     if request.method == 'POST':
+        # if the update-button gets clicked
         if 'update' in request.form:
-            # Update the post content
+            # the updated content is stored in the content variable
             content = request.form['content']
-            conn.execute('UPDATE posts SET content = ? WHERE user_id = ?', (content, session['user_id']))
+
+            # Initialize image path as None
+            file_path = None
+
+            # if an image is uploaded
+            if 'image' in request.files:
+                file = request.files['image']
+                
+                # Check if the file is allowed and has a filename
+                if file and allowed_file(file.filename):
+                    # Secure the filename and save the new image
+                    filename = secure_filename(file.filename)
+                    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    file.save(file_path)
+                    print(f"New image uploaded: {file_path}")  # Debugging print
+
+                    # Optional: Remove old image if a new one is uploaded
+                    if post and post['image_path']:
+                        old_image_path = post['image_path']
+                        if os.path.exists(old_image_path):
+                            os.remove(old_image_path)
+                            print(f"Old image removed: {old_image_path}")  # Debugging print
+
+                else:
+                    file_path = post['image_path']  # Keep old image if no new image uploaded
+                    print("No new image uploaded, keeping the old image.")
+
+            else:
+                file_path = post['image_path']  # Keep old image if no new image uploaded
+                print("No image uploaded at all, retaining current image.")
+
+            # Update the post with the new content and the (new or old) image path
+            conn.execute('UPDATE posts SET content = ?, image_path = ? WHERE user_id = ?', 
+                         (content, file_path, session['user_id']))
             conn.commit()
             conn.close()
+            print("Post updated in the database.")  # Debugging print
             return redirect(url_for('index'))
 
+        # if the delete-button gets clicked
         elif 'delete' in request.form:
+            print("Delete button clicked")  # Debugging print
             # Delete the post
             conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
             conn.commit()
             conn.close()
+            print("Post deleted.")  # Debugging print
             return redirect(url_for('index'))
+
 
     conn.close()
     
     # Pass `has_post` along with the post to the template
     return render_template('edit_post.html', post=post, has_post=has_post)
+
 
 
 @app.route('/logout')

@@ -3,9 +3,14 @@
 {% block content %}
 <h2>Edit Post</h2>
 <!-- the action attribute is the place where the table is sent to, if you leave it like this action="" the form will be sent to the current page! -->
-<form action="{{url_for('edit_post')}}" method="post">
+<form action="{{url_for('edit_post')}}" method="post" enctype="multipart/form-data">
     <textarea name="content">{{ post['content'] }}</textarea><br><br>
   
+    <!-- Add file input for image upload -->
+    <label for="image">Upload an Image (PNG only):</label>
+    <input type="file" id="image" name="image" accept="image/png"><br><br>
+
+
     <!-- Update button -->
     <input type="submit" name="update" value="Update">
   
