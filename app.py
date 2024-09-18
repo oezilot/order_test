@@ -41,6 +41,11 @@ def init_db():
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     user_id INTEGER,
                     content TEXT,
+                    birthday TEXT, 
+                    color TEXT, 
+                    food TEXT, 
+                    greeFlags TEXT, 
+                    redFlags TEXT,
                     image_path TEXT,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     is_active BOOLEAN DEFAULT 1,
@@ -73,7 +78,6 @@ def landing():
 @app.route('/about')
 def about():
     return render_template('about.html')
-
 
 
 # das ist die haupt-page auf der die posts als zusammenfassung alle engezeigt werden
@@ -173,49 +177,50 @@ def register():
     return render_template('register.html', error_message=error_message)
 
 
-# das template wo man einen post creiiert
+# CREATE A POST
 @app.route('/post', methods=['GET', 'POST'])
 def post():
     if 'user_id' not in session:
         return redirect(url_for('login'))
     
     conn = get_db_connection()
+    # in dieser variable werden alle daten des posts der eingeloggten person gespeichert!
     user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
     
     if request.method == 'POST':
-        # Handle post creation or editing
-        if 'content' in request.form and not 'abbrechen' in request.form:
-            content = request.form['content']
-            
-            # Handle the file upload
-            if 'image' in request.files:
-                file = request.files['image']
-                if file and allowed_file(file.filename):
-                    filename = secure_filename(file.filename)
-                    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    file.save(file_path)
-                else:
-                    file_path = None
+        # save the input-information submitted into the form in a variable: 'content' is the name of the textfield of the form
+        content = request.form['content']
+        bday = request.form['bday']  # Corrected to retrieve 'bday' from the form
+          
+        # Handle the file upload
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(file_path)
             else:
-                file_path = None  # No image uploaded
+                file_path = None
+        else:
+            file_path = None  # No image uploaded
 
-            if user_post:
-                # Edit existing post and update the image path if provided
-                conn.execute('UPDATE posts SET content = ?, image_path = ? WHERE user_id = ?', (content, file_path, session['user_id']))
-            else:
-                # Create new post with image path
-                conn.execute('INSERT INTO posts (user_id, content, image_path) VALUES (?, ?, ?)', (session['user_id'], content, file_path))
+        if user_post:
+            # Edit existing post and update the image path if provided
+            conn.execute('UPDATE posts SET content = ?, birthday = ?, image_path = ? WHERE user_id = ?', (content, bday, file_path, session['user_id']))
+        else:
+            # Create new post with image path
+            conn.execute('INSERT INTO posts (user_id, content, birthday, image_path) VALUES (?, ?, ?, ?)', (session['user_id'], content, bday, file_path)) # birthday is the name of the column while bday the name of the content-variable of this column is!
             conn.commit()
-            conn.close()
-            return redirect(url_for('index'))
+        conn.close()
+        return redirect(url_for('index'))
 
-        # Handle the "Abbrechen" button to delete the post
-        elif 'abbrechen' in request.form:
-            if user_post:
-                conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
-                conn.commit()
-            conn.close()
-            return redirect(url_for('index'))
+    # Handle the "Abbrechen" button to delete the post
+    elif 'abbrechen' in request.form:
+        if user_post:
+            conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
+            conn.commit()
+        conn.close()
+        return redirect(url_for('index'))
 
     conn.close()
 
@@ -245,8 +250,9 @@ def edit_post():
     if request.method == 'POST':
         # if the update-button gets clicked
         if 'update' in request.form:
-            # the updated content is stored in the content variable
+            # the updated content is stored in a variable
             content = request.form['content']
+            bday = request.form['bday'] # in the brackets 'bday' is the name of the form field
 
             # Initialize image path as None
             file_path = None
@@ -279,8 +285,8 @@ def edit_post():
                 print("No image uploaded at all, retaining current image.")
 
             # Update the post with the new content and the (new or old) image path
-            conn.execute('UPDATE posts SET content = ?, image_path = ? WHERE user_id = ?', 
-                         (content, file_path, session['user_id']))
+            conn.execute('UPDATE posts SET content = ?, birthday = ?, image_path = ? WHERE user_id = ?', 
+                         (content, bday, file_path, session['user_id']))
             conn.commit()
             conn.close()
             print("Post updated in the database.")  # Debugging print
@@ -341,7 +347,6 @@ def show_post(username):
     prev_username = usernames[current_index - 1] if current_index > 0 else None
 
     return render_template('userpage.html', post=post, username=username, prev_username=prev_username, next_username=next_username)
-
 
 
 # ensures that the has_post-variable is used globally and for all the templates and views

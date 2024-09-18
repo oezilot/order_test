@@ -1,26 +1,56 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Edit Post</h2>
+<h1>Create Post</h1>
 <!-- the action attribute is the place where the table is sent to, if you leave it like this action="" the form will be sent to the current page! -->
 <form action="{{url_for('edit_post')}}" method="post" enctype="multipart/form-data">
+    
+    <!--Statement-->
+    <h3>A statement about me: </h3>
     <textarea name="content">{{ post['content'] }}</textarea><br><br>
-  
+
+    <h3>Basic Questions (Still important though!):</h3>
+    <!--BDAY-->
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" name="bday">
+    <br>
+    <br>
+    <!--COLOR-->
+    <label for="favcolor">Select your favorite color:</label>
+    <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+    <br>
+    <br>
+    <!--FOOD-->
+    <label for="food">Favourite Food:</label><br>
+    <input type="text" id="food" name="food">
+    <br>
+    <br>
+
+    <h3>Going Deeper</h3>
+    <!--FOOD-->
+    <label for="food">My Red Flags:</label><br>
+    <input type="text" id="food" name="food">
+    <br>
+    <label for="food">My Green Flags:</label><br>
+    <input type="text" id="food" name="food">
+    <br>
+    <br>
+
+    <h3>Image Upload (= I am talking about a self-drawn picture of yourself!):</h3>  
     <!-- Display the currently uploaded image if it exists -->
     {% if post['image_path'] %}
     <p>Current Image:</p>
     <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
     <p>You can upload a new image if you want to replace the current one.</p>
     {% endif %}
-
     <!-- Add file input for image upload -->
     <label for="image">Upload an Image (PNG only):</label>
     <input type="file" id="image" name="image" accept="image/png"><br><br>
-
+    <br>
+    <br>
 
     <!-- Update button -->
     <input type="submit" name="update" value="Update">
-  
     <!-- Delete button -->
     <button type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>
 </form>  

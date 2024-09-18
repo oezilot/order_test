@@ -8,12 +8,13 @@
 {% if post %} <!--sees if posts exist, post is a variable-->
   <h2>{{ username }}'s Post</h2>
   <div>
-    <p>{{ post['content'] }}</p>
+    <p>My Statement: {{ post['content'] }}</p>
     <!-- Display the currently uploaded image if it exists -->
     {% if post['image_path'] %}
     <p>This is me:</p>
     <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
     {% endif %}
+    <p>I was born in: {{ post['birthday'] }}</p> <!--use the column name and not the variable-->
   </div>
   
 
