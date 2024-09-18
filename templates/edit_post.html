@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Create Post</h1>
+<h1>Edit Post</h1>
 <!-- the action attribute is the place where the table is sent to, if you leave it like this action="" the form will be sent to the current page! -->
 <form action="{{url_for('edit_post')}}" method="post" enctype="multipart/form-data">
     
@@ -21,18 +21,18 @@
     <br>
     <br>
     <!--FOOD-->
-    <label for="food">Favourite Food:</label><br>
-    <input type="text" id="food" name="food">
+    <label for="Food">Favourite Food:</label><br>
+    <input type="text" id="food" name="Food" value="{{ post['food']}}">
     <br>
     <br>
 
     <h3>Going Deeper</h3>
     <!--FOOD-->
     <label for="food">My Red Flags:</label><br>
-    <input type="text" id="food" name="food">
+    <input type="text" id="food" name="rFlag" value="{{ post['redFlags']}}">
     <br>
     <label for="food">My Green Flags:</label><br>
-    <input type="text" id="food" name="food">
+    <input type="text" id="food" name="gFlag" value="{{ post['greeFlags']}}">
     <br>
     <br>
 

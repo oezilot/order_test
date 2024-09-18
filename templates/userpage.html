@@ -8,14 +8,24 @@
 {% if post %} <!--sees if posts exist, post is a variable-->
   <h2>{{ username }}'s Post</h2>
   <div style="background-color: {{ post['color'] }};">
+
     <p>My Statement: {{ post['content'] }}</p>
     <!-- Display the currently uploaded image if it exists -->
+
     {% if post['image_path'] %}
     <p>This is me:</p>
     <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
     {% endif %}
+
     <p>I was born in: {{ post['birthday'] }}</p> <!--use the column name and not the variable-->
+    
     <p>Chosen Color: {{ post['color'] }}</p>
+    
+    <p>Henkersmahlzeit: {{ post['food'] }}</p>
+   
+    <p>Meine RED Flags: {{ post['redFlags'] }}</p> <!--the post refers to the function and the redFlags refers to the name of the column in the database-->
+    <p>Meine GREEN Flags: {{ post['greeFlags'] }}</p>
+
   </div>
   
 
