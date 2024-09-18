@@ -1,14 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Create Post</h2>
+<h1>Create Post</h1>
 <form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
-  <textarea name="content">A statement about me: {{ post['content'] if post else '' }}</textarea><br><br>
+  <h3>A statement about me: </h3>
+  <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
 
+<h3>Basic Questions (Still important though!):</h3>
+  <!--BDAY-->
+  <label for="birthday">Birthday:</label>
+  <input type="date" id="birthday" name="birthday">
+  <br>
+  <br>
+  <!--COLOR-->
+  <label for="favcolor">Select your favorite color:</label>
+  <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+  <br>
+  <br>
+  <!--FOOD-->
+  <label for="food">Favourite Food:</label><br>
+  <input type="text" id="food" name="food">
+  <br>
+  <br>
+
+<h3>Going Deeper</h3>
+  <!--FOOD-->
+  <label for="food">My Red Flags:</label><br>
+  <input type="text" id="food" name="food">
+  <br>
+  <label for="food">My Green Flags:</label><br>
+  <input type="text" id="food" name="food">
+
+
+
+
+
+<h3>Image Upload (= I am talking about a self-drawn picture of yourself!):</h3>
   <!-- Add file input for image upload -->
   <label for="image">Upload an Image (PNG only):</label>
   <input type="file" id="image" name="image" accept="image/png"><br><br>
-  
+  <br>
+  <br>
   <input type="submit" value="Submit">
   <button type="submit" name="abbrechen" value="Abbrechen" >Abbrechen</button>
 </form>
