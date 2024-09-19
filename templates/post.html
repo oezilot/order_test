@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <h1>Create Post</h1>
 <form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
   <h3>A statement about me: </h3>
   <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
 
-<h3>Basic Questions (Still important though!):</h3>
+<h3>Basic Questions:</h3>
   <!--BDAY-->
   <label for="birthday">Birthday:</label>
   <input type="date" id="birthday" name="bday">
@@ -24,24 +25,32 @@
   <br>
 
 <h3>Going Deeper</h3>
-  <!--FOOD-->
+  <!--flags-->
   <label for="food">My Red Flags:</label><br>
   <input type="text" id="food" name="rFlag">
   <br>
   <label for="food">My Green Flags:</label><br>
   <input type="text" id="food" name="gFlag">
-
-
-
-
-
-<h3>Image Upload (= I am talking about a self-drawn picture of yourself!):</h3>
+  <br>
+  <br>
+  
+<h3>Image and Pinterest-Upload:</h3>
   <!-- Add file input for image upload -->
   <label for="image">Upload an Image (PNG only):</label>
-  <input type="file" id="image" name="image" accept="image/png"><br><br>
+  <input type="file" id="image" name="image" accept="image/png">
   <br>
   <br>
+
+  <!--pinteres-link-->
+  <label>My Pinterest-board (link): </label>
+  <input type="url" name="Pinterest">
+  <br>
+  <br>
+  <br>
+  <br>
+
   <input type="submit" value="Submit">
   <button type="submit" name="abbrechen" value="Abbrechen" >Abbrechen</button>
 </form>
+
 {% endblock %}

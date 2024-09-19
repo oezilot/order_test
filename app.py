@@ -26,8 +26,8 @@ def init_db():
     c = conn.cursor()
 
     # Drop the old tables (be careful with this step if you have important data)
-    # c.execute('DROP TABLE IF EXISTS users')
-    # c.execute('DROP TABLE IF EXISTS posts')
+    #c.execute('DROP TABLE IF EXISTS users')
+    #c.execute('DROP TABLE IF EXISTS posts')
 
     # Create users table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS users (
@@ -46,6 +46,7 @@ def init_db():
                     food TEXT, 
                     greeFlags TEXT, 
                     redFlags TEXT,
+                    pinterest TEXT,
                     image_path TEXT,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     is_active BOOLEAN DEFAULT 1,
@@ -195,6 +196,7 @@ def post():
         food = request.form['Food']
         redFlag = request.form['rFlag']
         greenFlag = request.form['gFlag']
+        pinterest = request.form['Pinterest']
           
         # Handle the file upload
         if 'image' in request.files:
@@ -209,15 +211,17 @@ def post():
             file_path = None  # No image uploaded
 
         if user_post:
-            # Edit existing post and update the image path if provided
-            # UPDATE: das bezieht sich auf den namen der spalte in der datenbank! 
-            # WHERE: bezieht sich auf die variable die mit request.orm definiert ist
-            conn.execute('UPDATE posts SET content = ?, birthday = ?, color = ?, food = ?, redFlags = ?, greeFlags = ?, image_path = ? WHERE user_id = ?', (content, bday, color, food, redFlag, greenFlag, file_path, session['user_id']))
+            # falls bereits ein post exiatiert...
+            # die infomrationen die in den variablen gespeichert sind werden mit den alten infomrationen umgetausch wenn der update button gedrückt wird
+            # UPDATE: Spaltenname in der Datenbank! 
+            # WHERE: Variable die mit request.orm definiert ist
+            conn.execute('UPDATE posts SET content = ?, birthday = ?, color = ?, food = ?, redFlags = ?, greeFlags = ?, pinterest, image_path = ? WHERE user_id = ?', (content, bday, color, food, redFlag, greenFlag, pinterest, file_path, session['user_id']))
         else:
+            # falls noch kein post existiert...
             # Create new post with image path
-            # INSERT: column-name
-            # VALUES: variablen
-            conn.execute('INSERT INTO posts (user_id, content, birthday, color, food, redFlags, greeFlags, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', (session['user_id'], content, bday, color, food, redFlag, greenFlag, file_path)) # birthday is the name of the column while bday the name of the content-variable of this column is!
+            # INSERT: Spaltenname in der Datenbank
+            # VALUES: Variablen
+            conn.execute('INSERT INTO posts (user_id, content, birthday, color, food, redFlags, greeFlags, pinterest, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (session['user_id'], content, bday, color, food, redFlag, greenFlag, pinterest, file_path)) # birthday is the name of the column while bday the name of the content-variable of this column is!
             conn.commit()
         conn.close()
         return redirect(url_for('index'))
@@ -265,6 +269,7 @@ def edit_post():
             food = request.form['Food']
             redFlag = request.form['rFlag']
             greenFlag = request.form['gFlag']
+            pinterest = request.form['Pinterest']
 
 
             # Initialize image path as None
@@ -298,8 +303,8 @@ def edit_post():
                 print("No image uploaded at all, retaining current image.")
 
             # Update the post with the new content and the (new or old) image path
-            conn.execute('UPDATE posts SET content = ?, birthday = ?, color = ?, food = ?, image_path = ? WHERE user_id = ?', 
-                         (content, bday, color, food, file_path, session['user_id']))
+            conn.execute('UPDATE posts SET content = ?, birthday = ?, color = ?, redFlags = ?, greeFlags = ?, food = ?, pinterest = ?, image_path = ? WHERE user_id = ?', 
+                         (content, bday, color, food, redFlag, greenFlag, pinterest, file_path, session['user_id']))
             conn.commit()
             conn.close()
             print("Post updated in the database.")  # Debugging print
