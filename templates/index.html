@@ -4,7 +4,7 @@
 
 <h2>Inhaltsverzeichnis</h2>
 
-<!-- Check if there are any user posts, and link to the first one -->
+<!-- link um das buch anzuschauen (beginnt mit dem ersten eintrag) -->
 {% if user_posts %}
   <!-- Link to the first user's post -->
   <a href="{{ url_for('show_post', username=user_posts[0]['username']) }}">View Book</a>
@@ -13,8 +13,9 @@
 {% endif %}
 
 
+<!--inhaltsverzeichnis mit allen usern (auch diejenigen die keinen post besitzen!)-->
 <ul>
-  <!-- Loop through all users and their posts -->
+  <!-- Loop through all users and their posts; user_post stands for a single post of a user and user_posts stands for the lists of all posts -->
   {% for user_post in user_posts %}
     <li>
       <!-- Always show the username and link to the user's post page -->
