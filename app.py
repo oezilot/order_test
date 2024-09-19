@@ -88,8 +88,8 @@ def index():
 
     if 'user_id' not in session:
         # No user logged in, set has_post and user_post to None or False
-        user_post = None
-        has_post = False
+        user_post = None # variable which tells if the user logged in or not (this variable holds the information of the logged in user)
+        has_post = False # variable which tells if the user has a post or not
     else:
         # Check if the logged-in user has a post
         user_post = conn.execute('SELECT * FROM posts WHERE user_id = ? AND is_active = 1', (session['user_id'],)).fetchone()
