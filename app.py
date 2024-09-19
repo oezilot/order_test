@@ -189,6 +189,14 @@ def post():
     user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
     
     if request.method == 'POST':
+        # Handle the "Abbrechen" button first
+        if 'abbrechen' in request.form:
+            if user_post:
+                conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
+                conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+
         # save the input-information submitted into the form in a variable: 'content' is the name of the textfield of the form
         content = request.form['content']
         bday = request.form['bday']  # Corrected to retrieve 'bday' from the form
@@ -226,13 +234,6 @@ def post():
         conn.close()
         return redirect(url_for('index'))
 
-    # Handle the "Abbrechen" button to delete the post
-    elif 'abbrechen' in request.form:
-        if user_post:
-            conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
-            conn.commit()
-        conn.close()
-        return redirect(url_for('index'))
 
     conn.close()
 
