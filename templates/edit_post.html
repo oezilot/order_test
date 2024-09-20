@@ -11,6 +11,11 @@
     <textarea name="content">{{ post['content'] }}</textarea><br><br>
 
     <h3>Basic Questions (Still important though!):</h3>
+    <!--NAME-->
+    <label for="Name">Favourite Food:</label><br>
+    <input type="text" name="Name" value="{{ post['name']}}">
+    <br>
+    <br>
     <!--BDAY-->
     <label for="birthday">Birthday:</label>
     <input type="date" id="birthday" name="bday" value="{{ post['birthday'] }}">

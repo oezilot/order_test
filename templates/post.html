@@ -4,10 +4,14 @@
 
 <h1>Create Post</h1>
 <form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
-  <h3>A statement about me: </h3>
-  <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
 
-<h3>Basic Questions:</h3>
+<fieldset>
+<legend><h3>Basic Questions:</h3></legend>
+  <!--NAME-->
+  <label for="Name">My Name or Nickname:</label><br>
+  <input type="text" name="Name" value="">
+  <br>
+  <br>
   <!--BDAY-->
   <label for="birthday">Birthday:</label>
   <input type="date" id="birthday" name="bday">
@@ -18,39 +22,150 @@
   <input type="color" id="favcolor" name="favcolor" value="#ff0000">
   <br>
   <br>
+  <!--Personnality Type (16 Personnalities)-->
+  <label for="Personnality">My Personnality Type:</label><br>
+  <select name="Personnality">
+    <option value="introvert">introvert</option>
+    <option value="extrovert">extrovert</option>
+    <option value="ISTJ">ISTJ</option>
+    <option value="ISTP">ISTP</option>
+    <option value="ISTP">ISFP</option>
+    <option value="ISTP">ISFJ</option>
+    <option value="ISTP">INFP</option>
+    <option value="ISTP">INFJ</option>
+    <option value="ISTP">INTP</option>
+    <option value="ISTP">INTJ</option>
+    <option value="ISTP">ESTJ</option>
+    <option value="ISTP">ESTP</option>
+    <option value="ISTP">ESFP</option>
+    <option value="ISTP">ESFJ</option>
+    <option value="ISTP">ENFJ</option>
+    <option value="ISTP">ENFP</option>
+    <option value="ISTP">ENTP</option>
+    <option value="ISTP">ENTJ</option>
+  </select>  <br>
+  <br>
+
+  <label>Fun Fact über mich (das wissen nur wenige!): </label><br>
+  <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
+  
+  <label>Woher kenn ich Zoé und was verbindet uns?: </label><br>
+  <textarea name="content"></textarea><br><br>
+</fieldset>
+
+<fieldset>
+<legend><h3>Going Deeper</h3></legend>
   <!--FOOD-->
-  <label for="food">Favourite Food:</label><br>
+  <label for="food">Das esse ich am liebsten:</label><br>
   <input type="text" id="food" name="Food">
   <br>
   <br>
+  <!--INTERESSEN und HOBBIES-->
+  <label >My interests:</label><br>
+  <input type="text" name="interest" placeholder="das kann ich gut/gerne">
+  <input type="text" name="desinterest" placeholder="das mache ich weniger gerne/gut">
+  <br>
+  <br>
+  <!--LERNEN-->
+  <label >Das möchte ich lernen:</label><br>
+  <input type="text" name="lernen">
+  <br>
+  <br>
+  <!--IDOL-->
+  <label >Idol oder Charskter als Vorbild:</label><br>
+  <input type="text" name="idol">
+  <br>
+  <br>
+  <!--SERIE-->
+  <label >Lieblingsgeschichten:</label><br>
+  <input type="text" name="serie" placeholder="serien, bücher, filme etc.">
+  <br>
+  <br>
+  <!--MUSIK-->
+  <label >Lieblingsmusik:</label><br>
+  <input type="text" name="musik">
+  <br>
+  <br>
+  <!--fashion Do's-->
+  <label >Beste Fashion trends:</label><br>
+  <input type="text" name="fashion">
+  <br>
+  <br>
+  <!--zukunft-->
+  <label >Zukunftstraum:</label><br>
+  <input type="text" name="zukunft" placeholder="haus, job, haustiere, familie, etc.">
+  <br>
+  <br>
+  <!--flags in others-->
+  <label >My Flags:</label><br>
+  <input type="text" id="food" name="rFlag" placeholder="meine red flags">
+  <input type="text" id="food" name="gFlag" placeholder="meine green flags">
+  <br>
+  <br>
+  <!--love language-->
+  <label >Love language:</label><br>
+  <input type="text" name="love" placeholder="presents, attention">
+  <br>
+  <br>
+  <label >Perfect Date:</label><br>
+  <textarea type="text" name="date"></textarea>
+  <br>
+  <br>
+  <label >Guilty Pleasure:</label><br>
+  <input type="text" name="pleasure">
+  <br>
+  <br>
+  <label >Biggest Regret!:</label><br>
+  <textarea type="text" name="regret"></textarea>
+</fieldset>
 
-<h3>Going Deeper</h3>
-  <!--flags-->
-  <label for="food">My Red Flags:</label><br>
-  <input type="text" id="food" name="rFlag">
-  <br>
-  <label for="food">My Green Flags:</label><br>
-  <input type="text" id="food" name="gFlag">
-  <br>
-  <br>
+<fieldset style="margin-bottom: 20px;">
+  <legend><h3>Entweder Oder</h3></legend>
+    <tr>
+        <td><label><input type="radio" name="party_movie" value="party"> Party</label></td>
+        <td style="text-align: right;"><label><input type="radio" name="party_movie" value="movienight"> Movie Night</label></td>
+    </tr>
+    <tr>
+        <td><label><input type="radio" name="ski_snowboard" value="ski"> Ski</label></td>
+        <td style="text-align: right;"><label><input type="radio" name="ski_snowboard" value="snowboard"> Snowboard</label></td>
+    </tr>
+    <tr>
+        <td><label><input type="radio" name="wg_alleine" value="wg"> WG</label></td>
+        <td style="text-align: right;"><label><input type="radio" name="wg_alleine" value="alleine"> Alleine leben</label></td>
+    </tr>
+    <tr>
+        <td><label><input type="radio" name="hund_katze" value="hund"> Hund</label></td>
+        <td style="text-align: right;"><label><input type="radio" name="hund_katze" value="katze"> Katze</label></td>
+    </tr>
+    <tr>
+        <td><label><input type="radio" name="regen_sonne_schnee" value="regen"> Regen</label></td>
+        <td style="text-align: right;"><label><input type="radio" name="regen_sonne_schnee" value="sonne"> Sonne</label></td>
+    </tr>
+</fieldset>
+
   
-<h3>Image and Pinterest-Upload:</h3>
-  <!-- Add file input for image upload -->
-  <label for="image">Upload an Image (PNG only):</label>
-  <input type="file" id="image" name="image" accept="image/png">
-  <br>
-  <br>
+<fieldset style="margin-bottom: 20px;">
+    <legend><h3>Uploads</h3></legend>
+    <!-- Add file input for image upload -->
+    <label for="image">Upload an Image (PNG only):</label>
+    <input type="file" id="image" name="image" accept="image/png">
+    <br>
+    <br>
+    <!--spotify-playlist-->
+    <label>My Spotify-playlist (link): </label>
+    <input type="url" name="spotify">
+    <br>
+    <br>
+    <!--pinteres-link-->
+    <label>My Pinterest-board (link): </label>
+    <input type="url" name="Pinterest">
+</fieldset>
 
-  <!--pinteres-link-->
-  <label>My Pinterest-board (link): </label>
-  <input type="url" name="Pinterest">
-  <br>
-  <br>
-  <br>
-  <br>
-
+<fieldset>
   <input type="submit" value="Submit">
   <button type="submit" name="abbrechen" value="Abbrechen" >Abbrechen</button>
+</fieldset>
+
 </form>
 
 {% endblock %}
