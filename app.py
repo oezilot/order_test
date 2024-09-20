@@ -97,13 +97,13 @@ def index():
 
     # Query to get all active users
     users = conn.execute('SELECT username FROM users WHERE is_active = 1 ORDER BY username ASC').fetchall()
-    
+
     # Create a list with all users and their posts (if they have one)
     user_posts = []
     for user in users:
         # Try to find the user's post
         post = conn.execute('SELECT content, created_at FROM posts WHERE user_id = (SELECT id FROM users WHERE username = ?) AND is_active = 1', (user['username'],)).fetchone()
-    
+
         # Always add the user, even if they don't have a post
         user_posts.append({
             'username': user['username'],
@@ -218,19 +218,13 @@ def post():
         else:
             file_path = None  # No image uploaded
 
-        if user_post:
-            # falls bereits ein post exiatiert...
-            # die infomrationen die in den variablen gespeichert sind werden mit den alten infomrationen umgetausch wenn der update button gedrückt wird
-            # UPDATE: Spaltenname in der Datenbank! 
-            # WHERE: Variable die mit request.orm definiert ist
-            conn.execute('UPDATE posts SET content = ?, birthday = ?, color = ?, food = ?, redFlags = ?, greeFlags = ?, pinterest, image_path = ? WHERE user_id = ?', (content, bday, color, food, redFlag, greenFlag, pinterest, file_path, session['user_id']))
-        else:
-            # falls noch kein post existiert...
-            # Create new post with image path
-            # INSERT: Spaltenname in der Datenbank
-            # VALUES: Variablen
-            conn.execute('INSERT INTO posts (user_id, content, birthday, color, food, redFlags, greeFlags, pinterest, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (session['user_id'], content, bday, color, food, redFlag, greenFlag, pinterest, file_path)) # birthday is the name of the column while bday the name of the content-variable of this column is!
-            conn.commit()
+        
+        # falls noch kein post existiert...
+        # Create new post with image path
+        # INSERT: Spaltenname in der Datenbank
+        # VALUES: Variablen
+        conn.execute('INSERT INTO posts (user_id, content, birthday, color, food, redFlags, greeFlags, pinterest, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (session['user_id'], content, bday, color, food, redFlag, greenFlag, pinterest, file_path)) # birthday is the name of the column while bday the name of the content-variable of this column is!
+        conn.commit()
         conn.close()
         return redirect(url_for('index'))
 
