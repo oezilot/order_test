@@ -9,7 +9,7 @@
 <legend><h3>Basic Questions:</h3></legend>
   <!--NAME-->
   <label for="Name">My Name or Nickname:</label><br>
-  <input type="text" name="Name" value="">
+  <input type="text" name="name" value="">
   <br>
   <br>
   <!--BDAY-->
@@ -24,7 +24,7 @@
   <br>
   <!--Personnality Type (16 Personnalities)-->
   <label for="Personnality">My Personnality Type:</label><br>
-  <select name="Personnality">
+  <select name="personnality">
     <option value="introvert">introvert</option>
     <option value="extrovert">extrovert</option>
     <option value="ISTJ">ISTJ</option>
@@ -50,7 +50,7 @@
   <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
   
   <label>Woher kenn ich Zoé und was verbindet uns?: </label><br>
-  <textarea name="content"></textarea><br><br>
+  <textarea name="zoe"></textarea><br><br>
 </fieldset>
 
 <fieldset>
@@ -98,8 +98,8 @@
   <br>
   <!--flags in others-->
   <label >My Flags:</label><br>
-  <input type="text" id="food" name="rFlag" placeholder="meine red flags">
-  <input type="text" id="food" name="gFlag" placeholder="meine green flags">
+  <input type="text" name="rFlag" placeholder="meine red flags">
+  <input type="text" name="gFlag" placeholder="meine green flags">
   <br>
   <br>
   <!--love language-->

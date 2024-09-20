@@ -26,8 +26,8 @@ def init_db():
     c = conn.cursor()
 
     # Drop the old tables (be careful with this step if you have important data)
-    #c.execute('DROP TABLE IF EXISTS users')
-    #c.execute('DROP TABLE IF EXISTS posts')
+    # c.execute('DROP TABLE IF EXISTS users')
+    # c.execute('DROP TABLE IF EXISTS posts')
 
     # Create users table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS users (
@@ -44,9 +44,30 @@ def init_db():
                     birthday TEXT, 
                     color TEXT, 
                     food TEXT, 
-                    greeFlags TEXT, 
+                    greenFlags TEXT, 
                     redFlags TEXT,
                     pinterest TEXT,
+                    Name TEXT,
+                    Personnality TEXT, 
+                    Zoe TEXT, 
+                    Interest TEXT, 
+                    Desinterest TEXT, 
+                    Lernen TEXT, 
+                    Idol TEXT, 
+                    Serie TEXT, 
+                    Musik TEXT, 
+                    Fashion TEXT, 
+                    Zukunft TEXT, 
+                    Love TEXT, 
+                    Date TEXT, 
+                    Pleasure TEXT,
+                    Regret TEXT, 
+                    Party_Movie TEXT,
+                    Ski_Snowboard TEXT,
+                    Wg_Alleine TEXT,
+                    Hund_Katze TEXT,
+                    Regen_Sonne TEXT,
+                    Spotify TEXT,
                     image_path TEXT,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     is_active BOOLEAN DEFAULT 1,
@@ -198,14 +219,37 @@ def post():
             return redirect(url_for('index'))
 
         # save the input-information submitted into the form in a variable: 'content' is the name of the textfield of the form
+        # es existiert eine variable für jedes inputfeld des forms (ausser für das image nicht!)
         content = request.form['content']
-        bday = request.form['bday']  # Corrected to retrieve 'bday' from the form
+        bday = request.form['bday'] 
         color = request.form['favcolor']
         food = request.form['Food']
         redFlag = request.form['rFlag']
         greenFlag = request.form['gFlag']
         pinterest = request.form['Pinterest']
-          
+        name = request.form['name']
+        personnality = request.form['personnality']
+        zoe = request.form['zoe']
+        interest = request.form['interest']
+        desinterest = request.form['desinterest']
+        lernen = request.form['lernen']
+        idol = request.form['idol']
+        serie = request.form['serie']
+        musik = request.form['musik']
+        fashion = request.form['fashion']
+        zukunft = request.form['zukunft']
+        love = request.form['love']
+        date = request.form['date']
+        pleasure = request.form['pleasure']
+        regret = request.form['regret']
+        party_movie = request.form.get('party_movie')
+        ski_snowboard = request.form.get('ski_snowboard')
+        wg_alleine = request.form.get('wg_alleine')
+        hund_katze = request.form.get('hund_katze')
+        regen_sonne = request.form.get('regen_sonne')
+        spotify = request.form.get('spotify')
+
+
         # Handle the file upload
         if 'image' in request.files:
             file = request.files['image']
@@ -223,7 +267,20 @@ def post():
         # Create new post with image path
         # INSERT: Spaltenname in der Datenbank
         # VALUES: Variablen
-        conn.execute('INSERT INTO posts (user_id, content, birthday, color, food, redFlags, greeFlags, pinterest, image_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', (session['user_id'], content, bday, color, food, redFlag, greenFlag, pinterest, file_path)) # birthday is the name of the column while bday the name of the content-variable of this column is!
+        # Adjust the form field variable names and column names
+        conn.execute('''
+            INSERT INTO posts (
+                user_id, content, birthday, color, food, redFlags, greenFlags, pinterest, name, personnality, zoe, interest, 
+                desinterest, lernen, idol, serie, musik, fashion, zukunft, love, date, pleasure, regret, party_movie, 
+                ski_snowboard, wg_alleine, hund_katze, regen_sonne, spotify, image_path
+            ) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            session['user_id'], content, bday, color, food, redFlag, greenFlag, pinterest, name, personnality, zoe, 
+            interest, desinterest, lernen, idol, serie, musik, fashion, zukunft, love, date, pleasure, regret, 
+            party_movie, ski_snowboard, wg_alleine, hund_katze, regen_sonne, spotify, file_path
+        ))
+
         conn.commit()
         conn.close()
         return redirect(url_for('index'))
@@ -259,12 +316,33 @@ def edit_post():
         if 'update' in request.form:
             # the updated content is stored in a variable
             content = request.form['content']
-            bday = request.form['bday'] # in the brackets 'bday' is the name of the form field
+            bday = request.form['bday'] 
             color = request.form['favcolor']
             food = request.form['Food']
             redFlag = request.form['rFlag']
             greenFlag = request.form['gFlag']
             pinterest = request.form['Pinterest']
+            name = request.form['name']
+            personnality = request.form['personnality']
+            zoe = request.form['zoe']
+            interest = request.form['interest']
+            desinterest = request.form['desinterest']
+            lernen = request.form['lernen']
+            idol = request.fomr['idol']
+            serie = request.form['serie']
+            musik = request.form['musik']
+            fashion = request.form['fashion']
+            zukunft = request.form['zukunft']
+            love = request.form['love']
+            date = request.form['date']
+            pleasure = request.form['pleasure']
+            regret = request.form['regret']
+            party_movie = request.form.get('party_movie')
+            ski_snowboard = request.form.get('ski_snowboard')
+            wg_alleine = request.form.get('wg_alleine')
+            hund_katze = request.form.get('hund_katze')
+            regen_sonne = request.form.get('regen_sonne')
+            spotify = request.form.get('spotify')
 
 
             # Initialize image path as None
@@ -298,7 +376,7 @@ def edit_post():
                 print("No image uploaded at all, retaining current image.")
 
             # Update the post with the new content and the (new or old) image path
-            conn.execute('UPDATE posts SET content = ?, birthday = ?, color = ?, redFlags = ?, greeFlags = ?, food = ?, pinterest = ?, image_path = ? WHERE user_id = ?', 
+            conn.execute('UPDATE posts SET content = ?, birthday = ?, color = ?, redFlags = ?, greenFlags = ?, food = ?, pinterest = ?, image_path = ? WHERE user_id = ?', 
                          (content, bday, color, food, redFlag, greenFlag, pinterest, file_path, session['user_id']))
             conn.commit()
             conn.close()
