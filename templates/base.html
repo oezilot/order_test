@@ -15,10 +15,12 @@
           <a href="{{ url_for('index') }}">Home</a>
         {% endif %}
 
-        <!-- Dynamically display 'Edit Post' or 'Create Post' based on has_post -->
+         <!-- Only show Edit/Create Post links if not on edit_post or post page -->
+        {% if request.endpoint not in ['edit_post', 'post'] %}
         <a href="{{ has_post and url_for('edit_post') or url_for('post') }}">
           {{ has_post and 'Edit Post' or 'Create Post' }}
         </a>
+        {% endif %}
 
         <a href="{{ url_for('logout') }}">Logout</a>
         <!-- Display the logged-in user's username -->
