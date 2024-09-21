@@ -2,154 +2,156 @@
 
 {% block content %}
 
-
 <h1>Edit Post</h1>
 <form action="{{url_for('edit_post')}}" method="post" enctype="multipart/form-data">
 
   <fieldset>
     <legend><h3>Basic Questions:</h3></legend>
-      <!--NAME-->
-      <label for="Name">My Name or Nickname:</label><br>
-      <input type="text" name="name" value="">
-      <br>
-      <br>
-      <!--BDAY-->
-      <label for="birthday">Birthday:</label>
-      <input type="date" id="birthday" name="bday">
-      <br>
-      <br>
-      <!--COLOR-->
-      <label for="favcolor">Select your favorite color:</label>
-      <input type="color" id="favcolor" name="favcolor" value="#ff0000">
-      <br>
-      <br>
-      <!--Personnality Type (16 Personnalities)-->
-      <label for="Personnality">My Personnality Type:</label><br>
-      <select name="personnality">
-        <option value="introvert">introvert</option>
-        <option value="extrovert">extrovert</option>
-        <option value="ISTJ">ISTJ</option>
-        <option value="ISTP">ISTP</option>
-        <option value="ISTP">ISFP</option>
-        <option value="ISTP">ISFJ</option>
-        <option value="ISTP">INFP</option>
-        <option value="ISTP">INFJ</option>
-        <option value="ISTP">INTP</option>
-        <option value="ISTP">INTJ</option>
-        <option value="ISTP">ESTJ</option>
-        <option value="ISTP">ESTP</option>
-        <option value="ISTP">ESFP</option>
-        <option value="ISTP">ESFJ</option>
-        <option value="ISTP">ENFJ</option>
-        <option value="ISTP">ENFP</option>
-        <option value="ISTP">ENTP</option>
-        <option value="ISTP">ENTJ</option>
-      </select>  <br>
-      <br>
-    
-      <label>Fun Fact über mich (das wissen nur wenige!): </label><br>
-      <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
-      
-      <label>Woher kenn ich Zoé und was verbindet uns?: </label><br>
-      <textarea name="zoe"></textarea><br><br>
-    </fieldset>
-    
-    <fieldset>
-    <legend><h3>Going Deeper</h3></legend>
-      <!--FOOD-->
-      <label for="food">Das esse ich am liebsten:</label><br>
-      <input type="text" id="food" name="Food">
-      <br>
-      <br>
-      <!--INTERESSEN und HOBBIES-->
-      <label >My interests:</label><br>
-      <input type="text" name="interest" placeholder="das kann ich gut/gerne">
-      <input type="text" name="desinterest" placeholder="das mache ich weniger gerne/gut">
-      <br>
-      <br>
-      <!--LERNEN-->
-      <label >Das möchte ich lernen:</label><br>
-      <input type="text" name="lernen">
-      <br>
-      <br>
-      <!--IDOL-->
-      <label >Idol oder Charskter als Vorbild:</label><br>
-      <input type="text" name="idol">
-      <br>
-      <br>
-      <!--SERIE-->
-      <label >Lieblingsgeschichten:</label><br>
-      <input type="text" name="serie" placeholder="serien, bücher, filme etc.">
-      <br>
-      <br>
-      <!--MUSIK-->
-      <label >Lieblingsmusik:</label><br>
-      <input type="text" name="musik">
-      <br>
-      <br>
-      <!--fashion Do's-->
-      <label >Beste Fashion trends:</label><br>
-      <input type="text" name="fashion">
-      <br>
-      <br>
-      <!--zukunft-->
-      <label >Zukunftstraum:</label><br>
-      <input type="text" name="zukunft" placeholder="haus, job, haustiere, familie, etc.">
-      <br>
-      <br>
-      <!--flags in others-->
-      <label >My Flags:</label><br>
-      <input type="text" name="rFlag" placeholder="meine red flags">
-      <input type="text" name="gFlag" placeholder="meine green flags">
-      <br>
-      <br>
-      <!--love language-->
-      <label >Love language:</label><br>
-      <input type="text" name="love" placeholder="presents, attention">
-      <br>
-      <br>
-      <label >Perfect Date:</label><br>
-      <textarea type="text" name="date"></textarea>
-      <br>
-      <br>
-      <label >Guilty Pleasure:</label><br>
-      <input type="text" name="pleasure">
-      <br>
-      <br>
-      <label >Biggest Regret!:</label><br>
-      <textarea type="text" name="regret"></textarea>
-    </fieldset>
-    
-    <fieldset style="margin-bottom: 20px;">
-      <legend><h3>Entweder Oder</h3></legend>
-        <tr>
-            <td><label><input type="radio" name="party_movie" value="party"> Party</label></td>
-            <td style="text-align: right;"><label><input type="radio" name="party_movie" value="movienight"> Movie Night</label></td>
-        </tr>
-        <tr>
-            <td><label><input type="radio" name="ski_snowboard" value="ski"> Ski</label></td>
-            <td style="text-align: right;"><label><input type="radio" name="ski_snowboard" value="snowboard"> Snowboard</label></td>
-        </tr>
-        <tr>
-            <td><label><input type="radio" name="wg_alleine" value="wg"> WG</label></td>
-            <td style="text-align: right;"><label><input type="radio" name="wg_alleine" value="alleine"> Alleine leben</label></td>
-        </tr>
-        <tr>
-            <td><label><input type="radio" name="hund_katze" value="hund"> Hund</label></td>
-            <td style="text-align: right;"><label><input type="radio" name="hund_katze" value="katze"> Katze</label></td>
-        </tr>
-        <tr>
-            <td><label><input type="radio" name="regen_sonne" value="regen"> Regen</label></td>
-            <td style="text-align: right;"><label><input type="radio" name="regen_sonne" value="sonne"> Sonne</label></td>
-        </tr>
-    </fieldset>
-    
+    <!--NAME-->
+    <label for="Name">My Name or Nickname:</label><br>
+    <input type="text" name="name" value="{{ post['name'] if post else '' }}">
+    <br><br>
 
-  
-<fieldset style="margin-bottom: 20px;">
+    <!--BDAY-->
+    <label for="birthday">Birthday:</label>
+    <input type="date" id="birthday" name="bday" value="{{ post['birthday'] if post else '' }}">
+    <br><br>
+
+    <!--COLOR-->
+    <label for="favcolor">Select your favorite color:</label>
+    <input type="color" id="favcolor" name="favcolor" value="{{ post['color'] if post else '#ff0000' }}">
+    <br><br>
+
+    <!--Personnality Type (16 Personnalities)-->
+    <label for="Personnality">My Personnality Type:</label><br>
+    <select name="personnality">
+      <option value="introvert" {% if post and post['personnality'] == 'introvert' %}selected{% endif %}>Introvert</option>
+      <option value="extrovert" {% if post and post['personnality'] == 'extrovert' %}selected{% endif %}>Extrovert</option>
+      <option value="ISTJ" {% if post and post['personnality'] == 'ISTJ' %}selected{% endif %}>ISTJ</option>
+      <option value="ISTP" {% if post and post['personnality'] == 'ISTP' %}selected{% endif %}>ISTP</option>
+      <option value="ISFP" {% if post and post['personnality'] == 'ISFP' %}selected{% endif %}>ISFP</option>
+      <option value="ISFJ" {% if post and post['personnality'] == 'ISFJ' %}selected{% endif %}>ISFJ</option>
+      <option value="INFP" {% if post and post['personnality'] == 'INFP' %}selected{% endif %}>INFP</option>
+      <option value="INFJ" {% if post and post['personnality'] == 'INFJ' %}selected{% endif %}>INFJ</option>
+      <option value="INTP" {% if post and post['personnality'] == 'INTP' %}selected{% endif %}>INTP</option>
+      <option value="INTJ" {% if post and post['personnality'] == 'INTJ' %}selected{% endif %}>INTJ</option>
+      <option value="ESTJ" {% if post and post['personnality'] == 'ESTJ' %}selected{% endif %}>ESTJ</option>
+      <option value="ESTP" {% if post and post['personnality'] == 'ESTP' %}selected{% endif %}>ESTP</option>
+      <option value="ESFP" {% if post and post['personnality'] == 'ESFP' %}selected{% endif %}>ESFP</option>
+      <option value="ESFJ" {% if post and post['personnality'] == 'ESFJ' %}selected{% endif %}>ESFJ</option>
+      <option value="ENFJ" {% if post and post['personnality'] == 'ENFJ' %}selected{% endif %}>ENFJ</option>
+      <option value="ENFP" {% if post and post['personnality'] == 'ENFP' %}selected{% endif %}>ENFP</option>
+      <option value="ENTP" {% if post and post['personnality'] == 'ENTP' %}selected{% endif %}>ENTP</option>
+      <option value="ENTJ" {% if post and post['personnality'] == 'ENTJ' %}selected{% endif %}>ENTJ</option>
+    </select>
+    <br><br>
+
+    <label>Fun Fact über mich (das wissen nur wenige!):</label><br>
+    <textarea name="content">{{ post['content'] if post else '' }}</textarea>
+    <br><br>
+
+    <label>Woher kenn ich Zoé und was verbindet uns?:</label><br>
+    <textarea name="zoe">{{ post['zoe'] if post else '' }}</textarea>
+    <br><br>
+  </fieldset>
+
+  <fieldset>
+    <legend><h3>Going Deeper</h3></legend>
+    <!--FOOD-->
+    <label for="food">Das esse ich am liebsten:</label><br>
+    <input type="text" id="food" name="Food" value="{{ post['Food'] if post else '' }}">
+    <br><br>
+
+    <!--INTERESSEN und HOBBIES-->
+    <label>My interests:</label><br>
+    <input type="text" name="interest" placeholder="das kann ich gut/gerne" value="{{ post['interest'] if post else '' }}">
+    <input type="text" name="desinterest" placeholder="das mache ich weniger gerne/gut" value="{{ post['desinterest'] if post else '' }}">
+    <br><br>
+
+    <!--LERNEN-->
+    <label>Das möchte ich lernen:</label><br>
+    <input type="text" name="lernen" value="{{ post['lernen'] if post else '' }}">
+    <br><br>
+
+    <!--IDOL-->
+    <label>Idol oder Charakter als Vorbild:</label><br>
+    <input type="text" name="idol" value="{{ post['idol'] if post else '' }}">
+    <br><br>
+
+    <!--SERIE-->
+    <label>Lieblingsgeschichten:</label><br>
+    <input type="text" name="serie" placeholder="serien, bücher, filme etc." value="{{ post['serie'] if post else '' }}">
+    <br><br>
+
+    <!--MUSIK-->
+    <label>Lieblingsmusik:</label><br>
+    <input type="text" name="musik" value="{{ post['musik'] if post else '' }}">
+    <br><br>
+
+    <!--FASHION DO's-->
+    <label>Beste Fashion trends:</label><br>
+    <input type="text" name="fashion" value="{{ post['fashion'] if post else '' }}">
+    <br><br>
+
+    <!--ZUKUNFT-->
+    <label>Zukunftstraum:</label><br>
+    <input type="text" name="zukunft" placeholder="haus, job, haustiere, familie, etc." value="{{ post['zukunft'] if post else '' }}">
+    <br><br>
+
+    <!--FLAGS IN OTHERS-->
+    <label>My Flags:</label><br>
+    <input type="text" name="rFlag" placeholder="meine red flags" value="{{ post['redFlags'] if post else '' }}">
+    <input type="text" name="gFlag" placeholder="meine green flags" value="{{ post['greenFlags'] if post else '' }}">
+    <br><br>
+
+    <!--LOVE LANGUAGE-->
+    <label>Love language:</label><br>
+    <input type="text" name="love" placeholder="presents, attention" value="{{ post['love'] if post else '' }}">
+    <br><br>
+
+    <!--PERFECT DATE-->
+    <label>Perfect Date:</label><br>
+    <textarea type="text" name="date">{{ post['date'] if post else '' }}</textarea>
+    <br><br>
+
+    <!--GUILTY PLEASURE-->
+    <label>Guilty Pleasure:</label><br>
+    <input type="text" name="pleasure" value="{{ post['pleasure'] if post else '' }}">
+    <br><br>
+
+    <!--BIGGEST REGRET-->
+    <label>Biggest Regret!:</label><br>
+    <textarea type="text" name="regret">{{ post['regret'] if post else '' }}</textarea>
+  </fieldset>
+
+  <fieldset style="margin-bottom: 20px;">
+    <legend><h3>Entweder Oder</h3></legend>
+    <tr>
+      <td><label><input type="radio" name="party_movie" value="party" {% if post and post['party_movie'] == 'party' %}checked{% endif %}> Party</label></td>
+      <td style="text-align: right;"><label><input type="radio" name="party_movie" value="movienight" {% if post and post['party_movie'] == 'movienight' %}checked{% endif %}> Movie Night</label></td>
+    </tr>
+    <tr>
+      <td><label><input type="radio" name="ski_snowboard" value="ski" {% if post and post['ski_snowboard'] == 'ski' %}checked{% endif %}> Ski</label></td>
+      <td style="text-align: right;"><label><input type="radio" name="ski_snowboard" value="snowboard" {% if post and post['ski_snowboard'] == 'snowboard' %}checked{% endif %}> Snowboard</label></td>
+    </tr>
+    <tr>
+      <td><label><input type="radio" name="wg_alleine" value="wg" {% if post and post['wg_alleine'] == 'wg' %}checked{% endif %}> WG</label></td>
+      <td style="text-align: right;"><label><input type="radio" name="wg_alleine" value="alleine" {% if post and post['wg_alleine'] == 'alleine' %}checked{% endif %}> Alleine leben</label></td>
+    </tr>
+    <tr>
+      <td><label><input type="radio" name="hund_katze" value="hund" {% if post and post['hund_katze'] == 'hund' %}checked{% endif %}> Hund</label></td>
+      <td style="text-align: right;"><label><input type="radio" name="hund_katze" value="katze" {% if post and post['hund_katze'] == 'katze' %}checked{% endif %}> Katze</label></td>
+    </tr>
+    <tr>
+      <td><label><input type="radio" name="regen_sonne" value="regen" {% if post and post['regen_sonne'] == 'regen' %}checked{% endif %}> Regen</label></td>
+      <td style="text-align: right;"><label><input type="radio" name="regen_sonne" value="sonne" {% if post and post['regen_sonne'] == 'sonne' %}checked{% endif %}> Sonne</label></td>
+    </tr>
+  </fieldset>
+
+  <fieldset style="margin-bottom: 20px;">
     <legend><h3>Uploads</h3></legend>
     <!-- Add file input for image upload -->
-    <h3>Image Upload:</h3>  
+    <h3>Image Upload:</h3>
     <!-- Display the currently uploaded image if it exists -->
     {% if post['image_path'] %}
     <p>Current Image:</p>
@@ -159,26 +161,24 @@
     <!-- Add file input for image upload -->
     <label for="image">Upload an Image (PNG only):</label>
     <input type="file" id="image" name="image" accept="image/png"><br><br>
-    
-    <!--spotify-playlist-->
-    <label>My Spotify-playlist (link): </label>
-    <input type="url" name="spotify">
-    <br>
-    <br>
-    <!--pinteres-link-->
-    <label>My Pinterest-board (link): </label>
-    <input type="url" name="Pinterest">
-</fieldset>
 
-<fieldset>
-  <!-- Update button -->
-  <input type="submit" name="update" value="Update">
-  <!-- Delete button -->
-  <button type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>
-</fieldset>
+    <!--spotify-playlist-->
+    <label>My Spotify-playlist (link):</label>
+    <input type="url" name="spotify" value="{{ post['spotify'] if post else '' }}">
+    <br><br>
+
+    <!--pinterest-link-->
+    <label>My Pinterest-board (link):</label>
+    <input type="url" name="Pinterest" value="{{ post['Pinterest'] if post else '' }}">
+  </fieldset>
+
+  <fieldset>
+    <!-- Update button -->
+    <input type="submit" name="update" value="Update">
+    <!-- Delete button -->
+    <button type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>
+  </fieldset>
 
 </form>
-
-
 
 {% endblock %}
