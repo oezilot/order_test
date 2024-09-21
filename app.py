@@ -328,7 +328,7 @@ def edit_post():
             interest = request.form['interest']
             desinterest = request.form['desinterest']
             lernen = request.form['lernen']
-            idol = request.fomr['idol']
+            idol = request.form['idol']
             serie = request.form['serie']
             musik = request.form['musik']
             fashion = request.form['fashion']
@@ -376,8 +376,20 @@ def edit_post():
                 print("No image uploaded at all, retaining current image.")
 
             # Update the post with the new content and the (new or old) image path
-            conn.execute('UPDATE posts SET content = ?, birthday = ?, color = ?, redFlags = ?, greenFlags = ?, food = ?, pinterest = ?, image_path = ? WHERE user_id = ?', 
-                         (content, bday, color, food, redFlag, greenFlag, pinterest, file_path, session['user_id']))
+            # content = ? (content is the column name of the database) and the other content in the brackets after where is a variable
+            conn.execute('''
+                UPDATE posts 
+                SET content = ?, birthday = ?, color = ?, redFlags = ?, greenFlags = ?, food = ?, pinterest = ?, 
+                    name = ?, personnality = ?, zoe = ?, interest = ?, desinterest = ?, lernen = ?, idol = ?, 
+                    serie = ?, musik = ?, fashion = ?, zukunft = ?, love = ?, date = ?, pleasure = ?, regret = ?, 
+                    party_movie = ?, ski_snowboard = ?, wg_alleine = ?, hund_katze = ?, regen_sonne = ?, 
+                    spotify = ?, image_path = ?
+                WHERE user_id = ? 
+            ''', (
+                content, bday, color, redFlag, greenFlag, food, pinterest, name, personnality, zoe, interest, 
+                desinterest, lernen, idol, serie, musik, fashion, zukunft, love, date, pleasure, regret, party_movie, 
+                ski_snowboard, wg_alleine, hund_katze, regen_sonne, spotify, file_path, session['user_id']
+            ))
             conn.commit()
             conn.close()
             print("Post updated in the database.")  # Debugging print
