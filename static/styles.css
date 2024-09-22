@@ -1,0 +1,7 @@
+.book-open {
+    border: 2px solid #000; /* Black border with 2px thickness */
+    padding: 20px;           /* Space inside the border */
+    margin: 20px;            /* Space outside the border */
+    width: 800px;            /* Fixed width */
+    background-color: #f9f9f9; /* Light gray background */
+}
