@@ -2,82 +2,74 @@
 
 {% block content %}
 
-
-
+<!--this container contains the whole page with the buttons and the left and right page!-->
+<div class="book-open" style="background-color: {{ post['color'] }};">
 <!-- indivueller post mit username und post-content -->
-{% if post %} <!--sees if posts exist, post is a variable-->
-  <h2>{{ username }}'s Post</h2>
-  <div style="background-color: {{ post['color'] }};">
+<h2>{{ username }}'s Post</h2>
 
-    <p>Nickname: {{ post['Name'] }}</p>
-    <p>I was born in: {{ post['birthday'] }}</p> <!--use the column name and not the variable-->
+  {% if post %} <!--sees if posts exist, post is a variable-->
+    <!--left page of the book-->
+    <div class="book-left">
+      <p>Nickname: {{ post['Name'] }}</p>
+      <p>I was born in: {{ post['birthday'] }}</p> <!--use the column name and not the variable-->
 
-    <!-- Display the currently uploaded image if it exists -->
-    {% if post['image_path'] %}
-    <p>This is me:</p>
-    <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
-    {% endif %}
+      <!-- Display the currently uploaded image if it exists -->
+      {% if post['image_path'] %}
+      <p>This is me:</p>
+      <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
+      {% endif %}
+      <p>Personnality Type: {{ post['Personnality'] }}</p>
+      <p>Fun Fact über mich den nur wenige wissen: {{ post['content'] }}</p>
+      <p>Woher kenne ich Zoe, was verbindet uns?: {{ post['Zoe'] }}</p>
+      <p>Look at my Pinterest-board: <a href="{{ post['pinterest']}}" target="_blank">{{ post['pinterest'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
+      <p>Listen into my Spotify-Playlist: <a href="{{ post['Spotify']}}" target="_blank">{{ post['Spotify'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
+    </div>
 
-    <p>Personnality Type: {{ post['Personnality'] }}</p>
-    <p>Fun Fact über mich den nur wenige wissen: {{ post['content'] }}</p>
-    <p>Woher kenne ich Zoe, was verbindet uns?: {{ post['Zoe'] }}</p>
-    <br>
-    <br>
-    <p>Das esse ich am liebsten (Hernkersmahlzeit): {{ post['food'] }}</p>
-    <p>Das interessiert mich sehr: {{ post['Interest'] }}</p>
-    <p>Das interessiert mich gar nicht: {{ post['Desinterest'] }}</p>
-    <p>Das möchte ich lernen: {{ post['Lernen'] }}</p>
-    <p>Beste Sierie, Buch, Film, Geschichte: {{ post['Serie'] }}</p>
-    <p>Wenn ich gute stimmung brauche höre ich: {{ post['Musik'] }}</p>
-    <p>Ein fashiontrend der echt cool ist: {{ post['Fashion'] }}</p>
-    <p>Meine ideale Zukunft stelle ich mir so vor: {{ post['Zukunft'] }}</p>
-    <p>Das esse ich am liebsten (Hernkersmahlzeit): {{ post['food'] }}</p>
-    <p>Red flags in personen: {{ post['redFlags'] }}</p> <!--the post refers to the function and the redFlags refers to the name of the column in the database-->
-    <p>green flags in personen: {{ post['greenFlags'] }}</p>
-    <p>meine love language: {{ post['Love'] }}</p>
-    <p>Ein perfektes Date stelle ich mir so vor: {{ post['Date'] }}</p>
-    <p>Das ist mein Guilty Pleasure: {{ post['Pleasure'] }}</p>
-    <p>Wenn ich eine entscheidung rückgängg machen könnte dann wäre das: {{ post['Regret'] }}</p>
-    <br>
-    <br>
-    <p>Look at my Pinterest-board: <a href="{{ post['pinterest']}}" target="_blank">{{ post['pinterest'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
+    <div class="book-right">
+      <p>Das esse ich am liebsten (Hernkersmahlzeit): {{ post['food'] }}</p>
+      <p>Das interessiert mich sehr: {{ post['Interest'] }}</p>
+      <p>Das interessiert mich gar nicht: {{ post['Desinterest'] }}</p>
+      <p>Das möchte ich lernen: {{ post['Lernen'] }}</p>
+      <p>Beste Sierie, Buch, Film, Geschichte: {{ post['Serie'] }}</p>
+      <p>Wenn ich gute stimmung brauche höre ich: {{ post['Musik'] }}</p>
+      <p>Ein fashiontrend der echt cool ist: {{ post['Fashion'] }}</p>
+      <p>Meine ideale Zukunft stelle ich mir so vor: {{ post['Zukunft'] }}</p>
+      <p>Red flags in personen: {{ post['redFlags'] }}</p> <!--the post refers to the function and the redFlags refers to the name of the column in the database-->
+      <p>green flags in personen: {{ post['greenFlags'] }}</p>
+      <p>meine love language: {{ post['Love'] }}</p>
+      <p>Ein perfektes Date stelle ich mir so vor: {{ post['Date'] }}</p>
+      <p>Das ist mein Guilty Pleasure: {{ post['Pleasure'] }}</p>
+      <p>Wenn ich eine entscheidung rückgängg machen könnte dann wäre das: {{ post['Regret'] }}</p>
+      <br>
+      <br>
+      <!--end of the right page container-->
+    </div>
 
-  </div>
-  
-
-
-
-
-
-<!-- forward und backward button -->
-<div>
-  <!-- Falls es eine Seite vorher einen Post gibt -->
-  {% if prev_username %}
-    <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
+  {% else %}
+    <div class="no-post">
+      <p>No posts available</p>
+      <p>Perhaps you'd like to create a new post!</p>
+    </div>
   {% endif %}
-  
-  <!-- Falls es eine Seite weiter einen Post gibt -->
-  {% if next_username %}
-    <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
-  {% endif %}
-</div>
 
-
-<!-- If no posts are available, show a message -->
-{% else %}
-  <h2>{{ username }}'s Post</h2>
-  <p>No posts available</p>
-  <div>
+  <div class="naviagation-buttons1">
     <!-- Falls es eine Seite vorher einen Post gibt -->
     {% if prev_username %}
       <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
     {% endif %}
-    
+
     <!-- Falls es eine Seite weiter einen Post gibt -->
     {% if next_username %}
       <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
     {% endif %}
   </div>
-{% endif %}
+
+<!--div for the book-container-->
+</div>
+
+<!-- forward und backward button -->
+
+
+
 
 {% endblock %}
