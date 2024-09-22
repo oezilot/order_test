@@ -1,8 +1,7 @@
-
-
 .book-open {
     display: flex;
     border: 2px solid #000; /* schwarzer strich des rechtecks */
+    border-radius: 15px;
     padding: 0px 5px;           /* Space inside the border */
     margin: 20px auto;            /* abstand des rect oben unten und links und rechts */
     width: 95%;            /* Fixed width */
@@ -60,3 +59,13 @@
     right: 0;                    /* Align it to the right */
 }
 
+
+
+
+/* all the divs for the questions.... */
+.question {
+    border: 2px solid #000; /* schwarzer strich des rechtecks */
+    border-radius: 15px;
+    padding: 0px 20px;
+
+}
