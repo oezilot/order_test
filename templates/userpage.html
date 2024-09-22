@@ -24,15 +24,12 @@
         <div class="question">
           <p>Nickname: {{ post['Name'] }}</p>
         </div>
-        <br>
         <div class="question">
           <p>I was born in: {{ post['birthday'] }}</p> <!--use the column name and not the variable-->
         </div>
-        <br>
         <div class="question">
           <p>Fun Fact über mich den nur wenige wissen: {{ post['content'] }}</p>
         </div>
-        <br>
         <div class="question">
           <!-- Display the currently uploaded image if it exists -->
           {% if post['image_path'] %}
@@ -40,15 +37,12 @@
           <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
           {% endif %}
         </div>
-        <br>
         <div class="question">
           <p>Personnality Type: {{ post['Personnality'] }}</p>
         </div>
-        <br>
         <div class="question">
           <p>Woher kenne ich Zoe, was verbindet uns?: {{ post['Zoe'] }}</p>
         </div>
-        <br>
         <div class="question">
           <p>Look at my Pinterest-board: <a href="{{ post['pinterest']}}" target="_blank">{{ post['pinterest'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
           <p>Listen into my Spotify-Playlist: <a href="{{ post['Spotify']}}" target="_blank">{{ post['Spotify'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
