@@ -26,4 +26,6 @@
 }
 
 /*center the username of the post*/
-
+#username {
+    text-align: center;
+}

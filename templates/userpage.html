@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="post-gesamt">
-  <h2>{{ username }}'s Post</h2>
+  <h2 id="username">{{ username }}'s Post</h2>
 
   <!--this container contains the whole page with the buttons and the left and right page!-->
   <div class="book-open" {% if post%} style="background-color: {{ post['color'] }};" {% endif %}>
