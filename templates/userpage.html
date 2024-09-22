@@ -53,20 +53,25 @@
         <div class="question">
           <p>Das esse ich am liebsten (Hernkersmahlzeit): {{ post['food'] }}</p>
         </div>
-        <div class="question">
-          <p>Das interessiert mich sehr: {{ post['Interest'] }}</p>
-        </div>
-        <div class="question">
-          <p>Das interessiert mich gar nicht: {{ post['Desinterest'] }}</p>
+        <div class="interesse-container">
+          <div class="interesse">
+            <p>Das interessiert mich sehr: {{ post['Interest'] }}</p>
+          </div>
+          <div class="desinteresse">
+            <p>Das interessiert mich gar nicht: {{ post['Desinterest'] }}</p>
+          </div>
         </div>
         <div class="question">
           <p>Das möchte ich lernen: {{ post['Lernen'] }}</p>
         </div>
         <div class="question">
-          <p>Beste Sierie, Buch, Film, Geschichte: {{ post['Serie'] }}</p>
+          <p>Mein häufigstes wort (Slang): {{ post['Musik'] }}</p>
         </div>
         <div class="question">
-          <p>Wenn ich gute stimmung brauche höre ich: {{ post['Musik'] }}</p>
+          <p>Beste Serie, Film oder Buch: {{ post['Serie'] }}</p>
+        </div>
+        <div class="question">
+          <p>Mein childhood crush oder idol: {{ post['Idol'] }}</p>
         </div>
         <div class="question">
           <p>Ein fashiontrend der echt cool ist: {{ post['Fashion'] }}</p>
@@ -74,11 +79,13 @@
         <div class="question">
           <p>Meine ideale Zukunft stelle ich mir so vor: {{ post['Zukunft'] }}</p>
         </div>
-        <div class="question">
+        <div class="flag-container">
+          <div class="red">
           <p>Red flags in personen: {{ post['redFlags'] }}</p> <!--the post refers to the function and the redFlags refers to the name of the column in the database-->
-        </div>
-        <div class="question">
-          <p>green flags in personen: {{ post['greenFlags'] }}</p>
+          </div>
+          <div class="green">
+            <p>green flags in personen: {{ post['greenFlags'] }}</p>
+          </div>
         </div>
         <div class="question">
           <p>meine love language: {{ post['Love'] }}</p>

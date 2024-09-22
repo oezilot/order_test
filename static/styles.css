@@ -63,9 +63,21 @@
 
 
 /* all the divs for the questions.... */
-.question {
+.question, .interesse, .desinteresse, .red, .green {
     border: 2px solid #000; /* schwarzer strich des rechtecks */
     border-radius: 15px;
     padding: 0% 14px;
     margin: 5px 6px;
+}
+
+/* all the divs for the questions.... */
+.interesse-container, .flag-container {
+    display: flex;              /* Aktiviert Flexbox */
+    justify-content: space-between; /* Optional: Platz zwischen den divs */
+    align-items: stretch;         /* Stellt sicher, dass die Boxen dieselbe Höhe haben */
+    gap: 0px; 
+}
+
+.interesse, .desinteresse, .red, .green {
+    flex: 1;                    /* Beide Boxen haben die gleiche Breite */
 }
