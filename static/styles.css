@@ -25,14 +25,18 @@
     padding-left: 20px;       /* Optional: Adjust padding for better spacing */
 }
 
+
+
+
+
 /*center the username of the post*/
 .naviagation-buttons {
     display: flex;
-    justify-content: center;    /* Center the elements in the container */
+    justify-content: space-between;    /* Center the elements in the container */
     align-items: center;        /* Vertically center the items */
-    width: 100%;                /* Full width of the parent container */
-    max-width: 600px;           /* Optional: Set a max width to control the layout */
-    margin: 25px auto;             /* Center the whole navigation container */
+    width: 95%;                /* Full width of the parent container */
+    margin: 25px auto; 
+    margin-bottom: 20px;            /* Center the whole navigation container */
     position: relative;         /* Allows absolute positioning for buttons */
 }
 
