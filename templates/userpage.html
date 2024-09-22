@@ -2,10 +2,11 @@
 
 {% block content %}
 <div class="post-gesamt">
+  <h2>{{ username }}'s Post</h2>
+
   <!--this container contains the whole page with the buttons and the left and right page!-->
   <div class="book-open" {% if post%} style="background-color: {{ post['color'] }};" {% endif %}>
   <!-- indivueller post mit username und post-content -->
-  <h2>{{ username }}'s Post</h2>
 
     {% if post %} <!--sees if posts exist, post is a variable-->
       <!--left page of the book-->
@@ -40,8 +41,6 @@
         <p>Ein perfektes Date stelle ich mir so vor: {{ post['Date'] }}</p>
         <p>Das ist mein Guilty Pleasure: {{ post['Pleasure'] }}</p>
         <p>Wenn ich eine entscheidung rückgängg machen könnte dann wäre das: {{ post['Regret'] }}</p>
-        <br>
-        <br>
         <!--end of the right page container-->
       </div>
 

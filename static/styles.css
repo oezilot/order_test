@@ -1,7 +1,29 @@
 .book-open {
-    border: 2px solid #000; /* Black border with 2px thickness */
-    padding: 20px;           /* Space inside the border */
-    margin: 20px;            /* Space outside the border */
-    width: 800px;            /* Fixed width */
+    display: flex;
+    border: 2px solid #000; /* schwarzer strich des rechtecks */
+    padding: 0px 5px;           /* Space inside the border */
+    margin: 20px auto;            /* abstand des rect oben unten und links und rechts */
+    width: 95%;            /* Fixed width */
     background-color: #f9f9f9; /* Light gray background */
 }
+/*
+.book-open h2 {
+    margin: 45px; 
+}
+*/
+
+.book-left, .book-right {
+    flex: 1;                 /* Both sections take up equal space */
+    padding: 20px;
+}
+
+.book-left {
+    border-right: 2px solid #000; /* The vertical line in the center */
+}
+
+.book-right {
+    padding-left: 20px;       /* Optional: Adjust padding for better spacing */
+}
+
+/*center the username of the post*/
+
