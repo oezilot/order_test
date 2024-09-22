@@ -2,7 +2,17 @@
 
 {% block content %}
 <div class="post-gesamt">
-  <h2 id="username">{{ username }}'s Post</h2>
+  <div class="naviagation-buttons">
+    <!-- Falls es eine Seite vorher einen Post gibt -->
+    {% if prev_username %}
+      <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
+    {% endif %}
+    <h2 id="username">{{ username }}'s Post</h2>
+    <!-- Falls es eine Seite weiter einen Post gibt -->
+    {% if next_username %}
+      <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
+    {% endif %}
+  </div>
 
   <!--this container contains the whole page with the buttons and the left and right page!-->
   <div class="book-open" {% if post%} style="background-color: {{ post['color'] }};" {% endif %}>
@@ -54,17 +64,7 @@
   <!--div for the book-container-->
   </div>
 
-  <div class="naviagation-buttons">
-    <!-- Falls es eine Seite vorher einen Post gibt -->
-    {% if prev_username %}
-      <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
-    {% endif %}
-
-    <!-- Falls es eine Seite weiter einen Post gibt -->
-    {% if next_username %}
-      <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
-    {% endif %}
-  </div>
+  
 </div>
 
 <!-- forward und backward button -->

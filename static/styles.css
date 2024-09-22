@@ -26,6 +26,21 @@
 }
 
 /*center the username of the post*/
-#username {
-    text-align: center;
+.naviagation-buttons {
+    display: flex;
+    justify-content: space-between; /* Equal space between the items */
+    align-items: center;            /* Vertically center the items */
+    width: 100%;                    /* Optional: full width of the parent container */
+    max-width: 600px;               /* Optional: set a max width to control the layout */
+    margin: 0 auto;                 /* Center the whole navigation container */
+}
+
+.naviagation-buttons h2 {
+    margin: 0;                      /* Remove default margin from heading */
+    text-align: center;              /* Center heading text */
+}
+
+.naviagation-buttons a {
+    text-decoration: none;           /* Optional: Remove underline from links */
+    margin: 0 10px;                  /* Optional: Add a bit of space around the links */
 }
