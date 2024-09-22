@@ -28,19 +28,34 @@
 /*center the username of the post*/
 .naviagation-buttons {
     display: flex;
-    justify-content: space-between; /* Equal space between the items */
-    align-items: center;            /* Vertically center the items */
-    width: 100%;                    /* Optional: full width of the parent container */
-    max-width: 600px;               /* Optional: set a max width to control the layout */
-    margin: 0 auto;                 /* Center the whole navigation container */
+    justify-content: center;    /* Center the elements in the container */
+    align-items: center;        /* Vertically center the items */
+    width: 100%;                /* Full width of the parent container */
+    max-width: 600px;           /* Optional: Set a max width to control the layout */
+    margin: 25px auto;             /* Center the whole navigation container */
+    position: relative;         /* Allows absolute positioning for buttons */
 }
 
 .naviagation-buttons h2 {
-    margin: 0;                      /* Remove default margin from heading */
-    text-align: center;              /* Center heading text */
+    margin: 0;                  /* Remove default margin from heading */
+    text-align: center;          /* Center the text */
+    position: absolute;          /* Position the heading absolutely in the center */
+    left: 50%;                  /* Move to the center horizontally */
+    transform: translateX(-50%); /* Adjust for the width of the heading */
 }
 
 .naviagation-buttons a {
-    text-decoration: none;           /* Optional: Remove underline from links */
-    margin: 0 10px;                  /* Optional: Add a bit of space around the links */
+    text-decoration: none;       /* Optional: Remove underline from links */
+    margin: 0 10px;              /* Optional: Add some space around the links */
 }
+
+.naviagation-buttons a:first-child {
+    position: absolute;          /* Position the first button (left side) */
+    left: 0;                     /* Align it to the left */
+}
+
+.naviagation-buttons a:last-child {
+    position: absolute;          /* Position the second button (right side) */
+    right: 0;                    /* Align it to the right */
+}
+
