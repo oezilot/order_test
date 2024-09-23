@@ -27,7 +27,7 @@
 }
 
 /* Apply Flexbox to the body to center the container */
-body {
+.body1 {
     display: flex;
     justify-content: center;    /* Centers horizontally */
     align-items: center;        /* Centers vertically */
