@@ -1,3 +1,54 @@
+/* LANDING PAGE */
+
+/* TITLE DIV */
+/* Center the main title */
+.landing-title {
+    text-align: center;
+    margin-bottom: 20px;    /* Adds some space below the title */
+}
+
+/* Flexbox container for the buttons */
+.landing-buttons {
+    display: flex;
+    justify-content: center;  /* Center the buttons horizontally */
+    align-items: center;      /* Vertically center the button sections */
+    gap: 40px;                /* Space between each button section */
+}
+
+/* Each button section (SignIn, SignUp, About) */
+.signin, .signup, .about {
+    display: flex;
+    flex-direction: column;   /* Stack the heading and button vertically */
+    align-items: center;      /* Center the content in each section */
+}
+
+.nes-btn {
+    margin-top: 10px;         /* Add space between the headings and buttons */
+}
+
+/* Apply Flexbox to the body to center the container */
+body {
+    display: flex;
+    justify-content: center;    /* Centers horizontally */
+    align-items: center;        /* Centers vertically */
+    height: 100vh;              /* Full viewport height */
+    margin: 0;                  /* Remove default body margins */
+}
+
+/* Optional: Style for the container */
+.nes-container {
+    padding: 20px;              /* Add some padding around the content */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+    border-radius: 10px;        /* Optional: Slight rounding of corners */
+    background-color: #ffe600;     /* Optional: Background color */
+}
+
+
+
+
+
+
+
 .book-open {
     display: flex;
     border: 2px solid #000; /* schwarzer strich des rechtecks */
