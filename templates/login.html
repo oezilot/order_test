@@ -7,22 +7,29 @@
   <p style="color: red;">{{ error_message }}</p>
 {% endif %}
 
-<div class="login">
-  <div class="login-title">
-    <h2>Login</h2>
-  </div>
-  <form method="post">
-    <label for="username">Username:</label><br>
-    <input type="text" id="username" name="username" required><br><br>
-    <label for="password">Password:</label><br>
-    <input type="password" id="password" name="password" required><br><br>
-    <input class="nes-btn" type="submit" value="Login">
-  </form>
-
-  <div class="deleted">
-    <!--link to reactivate a previousily deleted account-->
-      <p>Deleted your account? <br><a href="{{ url_for('reactivate_account') }}">Reactivate your account here</a></p>
+<div class="body2">
+  <div class="login nes-container">
+    <div class="login-title">
+      <h2>Login</h2>
+      <br>
     </div>
+    <form method="post">
+      <div>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+      </div>
+        <div class="login-button">
+        <input class="nes-btn" type="submit" value="Login">
+      </div>
+    </form>
+
+    <div class="deleted">
+      <!--link to reactivate a previousily deleted account-->
+        <p>Deleted your account? <br><a href="{{ url_for('reactivate_account') }}">Reactivate your account here</a></p>
+    </div>
+  </div>
 </div>
 
 {% endblock %}

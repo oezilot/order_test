@@ -1,31 +1,5 @@
 /* LANDING PAGE */
-
-/* TITLE DIV */
 /* Center the main title */
-.landing-title {
-    text-align: center;
-    margin-bottom: 20px;    /* Adds some space below the title */
-}
-
-/* Flexbox container for the buttons */
-.landing-buttons {
-    display: flex;
-    justify-content: center;  /* Center the buttons horizontally */
-    align-items: center;      /* Vertically center the button sections */
-    gap: 40px;                /* Space between each button section */
-}
-
-/* Each button section (SignIn, SignUp, About) */
-.signin, .signup, .about {
-    display: flex;
-    flex-direction: column;   /* Stack the heading and button vertically */
-    align-items: center;      /* Center the content in each section */
-}
-
-.nes-btn {
-    margin-top: 10px;         /* Add space between the headings and buttons */
-}
-
 /* Apply Flexbox to the body to center the container */
 .body1 {
     display: flex;
@@ -34,30 +8,76 @@
     height: 100vh;              /* Full viewport height */
     margin: 0;                  /* Remove default body margins */
 }
+.landing-title {
+    text-align: center;
+    margin-bottom: 20px;    /* Adds some space below the title */
+}
+/* Flexbox container for the buttons */
+.landing-buttons {
+    display: flex;
+    justify-content: center;  /* Center the buttons horizontally */
+    align-items: center;      /* Vertically center the button sections */
+    gap: 40px;                /* Space between each button section */
+}
+/* Each button section (SignIn, SignUp, About) */
+.signin, .signup, .about {
+    display: flex;
+    flex-direction: column;   /* Stack the heading and button vertically */
+    align-items: center;      /* Center the content in each section */
+}
+.nes-btn {
+    margin-top: 10px;         /* Add space between the headings and buttons */
+}
 
+
+
+
+
+
+/* LOGIN PAGE */
+/* Optional: gelber kasten */
+/* Centering the login page container */
+.body2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;     /* Remove default body margins */
+}
+
+/* Login-specific container */
 .login {
     display: flex;
-    justify-content: center;    /* Centers horizontally */
-    align-items: center;        /* Centers vertically */
-    height: 100vh;              /* Full viewport height */
-    margin: 0;                  /* Remove default body margins */
-    flex-direction: column;   /* Stack the heading and button vertically */
+    flex-direction: column;
+    align-items: center; /* Centers form elements vertically */
+    justify-content: center;
+    padding: 20px;       /* Padding inside the nes-container */
+    max-width: 400px;    /* Optional max-width for login form */
+    width: 100%;         /* Ensure the login container is responsive */
 }
+.login-button {
+    display: flex;
+    justify-content: center;  /* Centers the button horizontally */
+}
+
+
+/* Login title styling */
 .login-title {
-    margin: 8%;
-}
-.deleted {
-    margin: 8%;
+    margin: 16px; /* Add space between the title and the form */
 }
 
-
-/* Optional: Style for the container */
 .nes-container {
-    padding: 20px;              /* Add some padding around the content */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
     border-radius: 10px;        /* Optional: Slight rounding of corners */
-    background-color: #ffe600;     /* Optional: Background color */
+    background-color: #ffe600;  /* Optional: Background color */
 }
+.deleted {
+    margin: 10% 10% 0% 0%;
+}
+
+
+
+
 
 
 
