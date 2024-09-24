@@ -35,6 +35,22 @@
     margin: 0;                  /* Remove default body margins */
 }
 
+.login {
+    display: flex;
+    justify-content: center;    /* Centers horizontally */
+    align-items: center;        /* Centers vertically */
+    height: 100vh;              /* Full viewport height */
+    margin: 0;                  /* Remove default body margins */
+    flex-direction: column;   /* Stack the heading and button vertically */
+}
+.login-title {
+    margin: 8%;
+}
+.deleted {
+    margin: 8%;
+}
+
+
 /* Optional: Style for the container */
 .nes-container {
     padding: 20px;              /* Add some padding around the content */
@@ -42,8 +58,6 @@
     border-radius: 10px;        /* Optional: Slight rounding of corners */
     background-color: #ffe600;     /* Optional: Background color */
 }
-
-
 
 
 

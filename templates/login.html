@@ -7,16 +7,22 @@
   <p style="color: red;">{{ error_message }}</p>
 {% endif %}
 
-<h2>Login</h2>
-<form method="post">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username" required><br><br>
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password" required><br><br>
-  <input type="submit" value="Login">
-</form>
+<div class="login">
+  <div class="login-title">
+    <h2>Login</h2>
+  </div>
+  <form method="post">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    <input class="nes-btn" type="submit" value="Login">
+  </form>
 
-<!--link to reactivate a previousily deleted account-->
-<p>Deleted your account? <a href="{{ url_for('reactivate_account') }}">Reactivate your account here</a></p>
+  <div class="deleted">
+    <!--link to reactivate a previousily deleted account-->
+      <p>Deleted your account? <br><a href="{{ url_for('reactivate_account') }}">Reactivate your account here</a></p>
+    </div>
+</div>
 
 {% endblock %}
