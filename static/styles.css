@@ -39,6 +39,7 @@
 /* Centering the login page container */
 .body2 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh; /* Full viewport height */
@@ -74,6 +75,7 @@
 .deleted {
     margin: 10% 10% 0% 0%;
 }
+
 
 
 

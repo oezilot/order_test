@@ -2,13 +2,15 @@
 
 {% block content %}
 
-<!-- Display the error message if it's set -->
-{% if error_message %}
-  <p style="color: red;">{{ error_message }}</p>
-{% endif %}
-
 <div class="body2">
+  <!-- Display the error message if it's set -->
+  {% if error_message %}
+    <div class="error-message nes-balloon from-right">
+      <p style="color: red;">{{ error_message }}</p>
+    </div>
+  {% endif %}
   <div class="login nes-container">
+    
     <div class="login-title">
       <h2>Login</h2>
       <br>
