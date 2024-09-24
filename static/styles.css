@@ -47,13 +47,12 @@
 }
 
 /* Login-specific container */
-.login {
+.login, .inhaltsverzeichnis {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centers form elements vertically */
     justify-content: center;
     padding: 20px;       /* Padding inside the nes-container */
-    max-width: 400px;    /* Optional max-width for login form */
     width: 100%;         /* Ensure the login container is responsive */
 }
 .login-button {
@@ -195,4 +194,9 @@ hr {
 
 .username {
     margin-left: auto;               /* Pushes the username to the far right */
+}
+
+/* INHALTSVERZEICHNIS */
+.inhaltsverzeichnis {
+    margin-top: 6%;
 }

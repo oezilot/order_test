@@ -2,36 +2,44 @@
 
 {% block content %}
 
-<h2>Inhaltsverzeichnis</h2>
 
-<!-- link um das buch anzuschauen (beginnt mit dem ersten eintrag) -->
-{% if user_posts %}
-  <!-- Link to the first user's post -->
-  <a href="{{ url_for('show_post', username=user_posts[0]['username']) }}">View Book</a>
-{% else %}
-  <p>No posts available to view.</p>
-{% endif %}
+<div class="inhaltsverzeichnis">
+  <h2>Inhaltsverzeichnis</h2>
+  <div class="nes-container">
 
 
-<!--inhaltsverzeichnis mit allen usern (auch diejenigen die keinen post besitzen!)-->
-<ul>
-  <!-- Loop through all users and their posts; user_post stands for a single post of a user and user_posts stands for the lists of all posts -->
-  {% for user_post in user_posts %}
-    <li>
-      <!-- Always show the username and link to the user's post page -->
-      <!--when the user is not logged in and clicks on one of the links it gets redirected to the login page-->
-      <a href="{{ url_for('show_post', username=user_post['username']) }}">
-        {{ user_post['username'] }}'s Post
-      </a>
-      
-      <!-- Check if the user has content in the post -->
-      {% if user_post['content'] %}
-        (posted on: {{ user_post['created_at'] }})
-      {% else %}
-        - No post yet
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
+    <!--inhaltsverzeichnis mit allen usern (auch diejenigen die keinen post besitzen!)-->
+    <ul>
+      <!-- Loop through all users and their posts; user_post stands for a single post of a user and user_posts stands for the lists of all posts -->
+      {% for user_post in user_posts %}
+        <li>
+          <!-- Always show the username and link to the user's post page -->
+          <!--when the user is not logged in and clicks on one of the links it gets redirected to the login page-->
+          <a href="{{ url_for('show_post', username=user_post['username']) }}">
+            {{ user_post['username'] }}'s Post
+          </a>
+
+          <!-- Check if the user has content in the post -->
+          {% if user_post['content'] %}
+            (posted on: {{ user_post['created_at'] }})
+          {% else %}
+            - No post yet
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- link um das buch anzuschauen (beginnt mit dem ersten eintrag) -->
+  {% if user_posts %}
+    <!-- Link to the first user's post -->
+    <a class="nes-btn" href="{{ url_for('show_post', username=user_posts[0]['username']) }}">View Book</a>
+  {% else %}
+    <p>No posts available to view.</p>
+  {% endif %}
+
+</div>
+
+
 
 {% endblock %}
