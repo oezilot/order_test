@@ -2,15 +2,16 @@
 
 {% block content %}
 <div class="post-gesamt">
-  <div class="naviagation-buttons">
+
+  <div class="naviagation-buttons margin-h2">
     <!-- Falls es eine Seite vorher einen Post gibt -->
     {% if prev_username %}
-      <a href="{{ url_for('show_post', username=prev_username) }}">Rückwärts</a>
+      <a class="nes-btn" href="{{ url_for('show_post', username=prev_username) }}"> <-- Rückwärts</a>
     {% endif %}
     <h2 id="username">{{ username }}'s Post</h2>
     <!-- Falls es eine Seite weiter einen Post gibt -->
     {% if next_username %}
-      <a href="{{ url_for('show_post', username=next_username) }}">Vorwärts</a>
+      <a class="nes-btn" href="{{ url_for('show_post', username=next_username) }}">Vorwärts --> </a>
     {% endif %}
   </div>
 

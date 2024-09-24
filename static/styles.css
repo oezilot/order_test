@@ -112,7 +112,9 @@
 }
 
 
-
+.inhalt-titel {
+    margin: 5%; 
+}
 
 /*center the username of the post*/
 .naviagation-buttons {
@@ -120,8 +122,7 @@
     justify-content: space-between;    /* Center the elements in the container */
     align-items: center;        /* Vertically center the items */
     width: 95%;                /* Full width of the parent container */
-    margin: 25px auto; 
-    margin-bottom: 20px;            /* Center the whole navigation container */
+    margin: 5% auto; 
     position: relative;         /* Allows absolute positioning for buttons */
 }
 
@@ -197,6 +198,5 @@ hr {
 }
 
 /* INHALTSVERZEICHNIS */
-.inhaltsverzeichnis {
-    margin-top: 6%;
-}
+
+
