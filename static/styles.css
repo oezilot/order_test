@@ -171,3 +171,28 @@
 .interesse, .desinteresse, .red, .green {
     flex: 1;                    /* Beide Boxen haben die gleiche Breite */
 }
+
+
+/* INDEX, navigation bar */
+.navbar {
+    margin: 3%;
+}
+hr {
+    border: none;
+    height: 3px;
+    background-color: black;
+}
+
+.nav-base {
+    display: flex;                   /* Enables Flexbox layout */
+    align-items: center;             /* Vertically center the items */
+    justify-content: flex-start;
+}
+
+.nav-base a, .nav-base form {
+    margin-right: 20px;              /* Space between links */
+}
+
+.username {
+    margin-left: auto;               /* Pushes the username to the far right */
+}

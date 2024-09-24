@@ -17,44 +17,50 @@
     <title>Flask App</title>
   </head>
   <body>
-    <nav>    
-      <!--user is logged in-->
-      {% if 'username' in session %}
+    <div class="navbar">
+            <hr>
 
-        {% if request.endpoint != 'index' %}
-          <a href="{{ url_for('index') }}">Home</a>
+      <nav class="nav-base">    
+        <!--user is logged in-->
+        {% if 'username' in session %}
+
+          {% if request.endpoint != 'index' %}
+            <a href="{{ url_for('index') }}">Home</a>
+          {% endif %}
+
+           <!-- Only show Edit/Create Post links if not on edit_post or post page -->
+          {% if request.endpoint not in ['edit_post', 'post'] %}
+          <a href="{{ has_post and url_for('edit_post') or url_for('post') }}">
+            {{ has_post and 'Edit Post' or 'Create Post' }}
+          </a>
+          {% endif %}
+
+          <a href="{{ url_for('logout') }}">Logout</a>
+
+
+          <form action="{{ url_for('delete_account') }}" method="POST" style="display:inline;">
+            <button type="submit" class="float-right" onclick="return confirm('Are you sure you want to delete your account?');" style="background:none;border:none;color:red;cursor:pointer;">Delete Account</button>
+          </form>
+
+
+          <!-- Display the logged-in user's username -->
+          <span class="username">Logged in as: {{ session['username'] }}</span>
+
+        <!--user is not logged in-->
+        {% else %}
+          <a href="{{ url_for('landing') }}">Go Back</a>
+          {% if request.endpoint == 'login' %}
+            <a href="{{ url_for('register') }}">Register</a>
+          {% elif request.endpoint == 'register'%}
+            <a href="{{ url_for('login') }}">Login</a>
+          {% endif %}
+
         {% endif %}
+      </nav>
 
-         <!-- Only show Edit/Create Post links if not on edit_post or post page -->
-        {% if request.endpoint not in ['edit_post', 'post'] %}
-        <a href="{{ has_post and url_for('edit_post') or url_for('post') }}">
-          {{ has_post and 'Edit Post' or 'Create Post' }}
-        </a>
-        {% endif %}
+      <hr>
 
-        <a href="{{ url_for('logout') }}">Logout</a>
-        <!-- Display the logged-in user's username -->
-        <span>Logged in as: {{ session['username'] }}</span>
-
-        <form action="{{ url_for('delete_account') }}" method="POST" style="display:inline;">
-          <button type="submit" class="float-right" onclick="return confirm('Are you sure you want to delete your account?');" style="background:none;border:none;color:red;cursor:pointer;">Delete Account</button>
-
-        </form>
-        
-      <!--user is not logged in-->
-      {% else %}
-        <a href="{{ url_for('landing') }}">Go Back</a>
-        {% if request.endpoint == 'login' %}
-          <a href="{{ url_for('register') }}">Register</a>
-        {% elif request.endpoint == 'register'%}
-          <a href="{{ url_for('login') }}">Login</a>
-        {% endif %}
-
-      {% endif %}
-    </nav>
-    
-    <hr>
-    
-    {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
+    </div>
   </body>
 </html>
