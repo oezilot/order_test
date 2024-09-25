@@ -102,6 +102,50 @@
           <p>Wenn ich eine entscheidung rückgängg machen könnte dann wäre das: {{ post['Regret'] }}</p>
         <!--end of the right page container-->
         </div>
+          
+        
+
+        <!-- Neue Sektion für Entweder-Oder -->
+        <div class="question">
+         <div class="entweder-oder-results">
+           <!-- Party or Movie Night -->
+           <div class="radio-result">
+             <p>Party oder Movie Night:
+               {{ post['party_movie'] == 'party' and 'Party' or 'Movie Night' }}
+             </p>
+           </div>
+           <!-- Ski or Snowboard -->
+           <div class="radio-result">
+             <p>Ski oder Snowboard:
+               {{ post['ski_snowboard'] == 'ski' and 'Ski' or 'Snowboard' }}
+             </p>
+           </div>
+           <!-- WG or Alone -->
+           <div class="radio-result">
+             <p>WG oder Alleine Leben:
+               {{ post['wg_alleine'] == 'wg' and 'WG' or 'Alleine Leben' }}
+             </p>
+           </div>
+           <!-- Hund or Katze -->
+           <div class="radio-result">
+             <p>Hund oder Katze:
+               {{ post['hund_katze'] == 'hund' and 'Hund' or 'Katze' }}
+             </p>
+           </div>
+           <!-- Regen or Sonne -->
+           <div class="radio-result">
+             <p>Regen oder Sonne:
+               {{ post['regen_sonne'] == 'regen' and 'Regen' or 'Sonne' }}
+             </p>
+           </div>
+         </div>
+        </div>
+        </div>
+
+
+
+
+        
       </div>
 
     {% else %}

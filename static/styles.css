@@ -224,7 +224,7 @@ hr {
     flex: 1;                             /* Beide divs haben die gleiche Breite */
     border: 2px solid #ccc;              /* Heller Rand für die inneren Boxen */
     border-radius: 15px;                 /* Runde Ecken für die Boxen */
-    background-color: #eee;              /* Heller Hintergrund für die Boxen */
+    background-color: white;              /* Heller Hintergrund für die Boxen */
     margin: 0 10px;                      /* Abstand zwischen den Boxen */
     padding: 20px;                       /* Innenabstand in den Boxen */
     display: flex;
