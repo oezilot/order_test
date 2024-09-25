@@ -84,32 +84,9 @@
 
 
 
-.book-open {
-    display: flex;
-    border: 2px solid #000; /* schwarzer strich des rechtecks */
-    border-radius: 15px;
-    padding: 0px 5px;           /* Space inside the border */
-    margin: 20px auto;            /* abstand des rect oben unten und links und rechts */
-    width: 95%;            /* Fixed width */
-    background-color: #f9f9f9; /* Light gray background */
-}
-/*
-.book-open h2 {
-    margin: 45px; 
-}
-*/
-.book-left, .book-right {
-    flex: 1;                 /* Both sections take up equal space */
-    padding: 20px;
-}
 
-.book-left {
-    border-right: 2px solid #000; /* The vertical line in the center */
-}
 
-.book-right {
-    padding-left: 20px;       /* Optional: Adjust padding for better spacing */
-}
+
 
 
 .inhalt-titel {
@@ -197,6 +174,38 @@ hr {
     margin-left: auto;               /* Pushes the username to the far right */
 }
 
-/* INHALTSVERZEICHNIS */
+/* USERPAGE */
+.book-open {
+    display: flex;
+    justify-content: space-between; /* Platz zwischen den beiden Seiten */
+    border: 2px solid #000;      /* Schwarzer Strich des Rechtecks */
+    border-radius: 20px;
+    padding: 20px;               /* Platz innerhalb des Rahmens */
+    margin: 20px auto;           /* Abstand des Rechtecks oben und unten */
+    width: 95%;  
+    box-sizing: border-box;    /* Padding und Border in die Größe einberechnen */
+    overflow: hidden;          /* Verhindert, dass Inhalt über den Container hinausläuft */
+}
+
+/* Linke und rechte Seite des Buches */
+.book-left, .book-right {
+    flex: 1;                             /* Beide divs haben die gleiche Breite */
+    border: 2px solid #ccc;              /* Heller Rand für die inneren Boxen */
+    border-radius: 15px;                 /* Runde Ecken für die Boxen */
+    background-color: #eee;              /* Heller Hintergrund für die Boxen */
+    margin: 0 10px;                      /* Abstand zwischen den Boxen */
+    padding: 20px;                       /* Innenabstand in den Boxen */
+    display: flex;
+    flex-direction: column;              /* Inhalt wird vertikal gestapelt */
+    justify-content: space-between;      /* Inhalt wird gleichmäßig verteilt */
+    box-sizing: border-box;              /* Verhindert, dass Padding/Borders die Größe beeinflussen */
+    height: 100%;                        /* Stellt sicher, dass beide Seiten dieselbe Höhe haben */
+    max-width: 100%;                     /* Maximal so breit wie der äußere Container */
+    overflow: hidden;                    /* Verhindert, dass Inhalte über die Box hinauslaufen */
+
+}
+
+
+
 
 
