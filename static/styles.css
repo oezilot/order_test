@@ -199,11 +199,12 @@ hr {
     flex-direction: column;              /* Inhalt wird vertikal gestapelt */
     justify-content: space-between;      /* Inhalt wird gleichmäßig verteilt */
     box-sizing: border-box;              /* Verhindert, dass Padding/Borders die Größe beeinflussen */
-    height: 100%;                        /* Stellt sicher, dass beide Seiten dieselbe Höhe haben */
-    max-width: 100%;                     /* Maximal so breit wie der äußere Container */
+    max-width: 100%; 
+    min-height: 100%;                    /* Maximal so breit wie der äußere Container */
     overflow: hidden;                    /* Verhindert, dass Inhalte über die Box hinauslaufen */
-
 }
+
+
 
 
 
