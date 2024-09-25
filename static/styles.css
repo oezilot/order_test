@@ -129,16 +129,16 @@
 
 
 
-/* all the divs for the questions.... */
+/* QUESTIONS */
 .question, .interesse, .desinteresse, .red, .green {
     border: 2px solid #000; /* schwarzer strich des rechtecks */
     border-radius: 15px;
     padding: 0% 14px;
     margin: 5px 6px;
-    overflow-wrap: anywhere;
+    overflow-wrap: anywhere; /* verhindert dass wörter aus dem div herausgehen oder abgeschnitten werden! diese wörter die zu lang sind für den container werden gebrochen und gehenauf der nächsten zeile weiter */
 }
 
-/* all the divs for the questions.... */
+/* INTERESSE UND FLAG_CONTAINER*/
 .interesse-container, .flag-container {
     display: flex;              /* Aktiviert Flexbox */
     justify-content: space-between; /* Optional: Platz zwischen den divs */
