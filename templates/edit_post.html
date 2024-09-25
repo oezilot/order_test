@@ -36,18 +36,19 @@
       <option value="ISTP" {% if post and post['personnality'] == 'ISTP' %}selected{% endif %}>ISTP</option>
       <option value="ISFP" {% if post and post['personnality'] == 'ISFP' %}selected{% endif %}>ISFP</option>
       <option value="ISFJ" {% if post and post['personnality'] == 'ISFJ' %}selected{% endif %}>ISFJ</option>
-      <option value="ISTP">INFP</option>
-      <option value="ISTP">INFJ</option>
-      <option value="ISTP">INTP</option>
-      <option value="ISTP">INTJ</option>
-      <option value="ISTP">ESTJ</option>
-      <option value="ISTP">ESTP</option>
-      <option value="ISTP">ESFP</option>
-      <option value="ISTP">ESFJ</option>
-      <option value="ISTP">ENFJ</option>
-      <option value="ISTP">ENFP</option>
-      <option value="ISTP">ENTP</option>
-      <option value="ISTP">ENTJ</option>    
+      <option value="INFP" {% if post and post['personnality'] == 'INFP' %}selected{% endif %}>INFP</option>
+      <option value="INFJ" {% if post and post['personnality'] == 'INFJ' %}selected{% endif %}>INFJ</option>
+      <option value="INTP" {% if post and post['personnality'] == 'INTP' %}selected{% endif %}>INTP</option>
+      <option value="INTJ" {% if post and post['personnality'] == 'INTJ' %}selected{% endif %}>INTJ</option>
+      <option value="ESTJ" {% if post and post['personnality'] == 'ESTJ' %}selected{% endif %}>ESTJ</option>
+      <option value="ESTP" {% if post and post['personnality'] == 'ESTP' %}selected{% endif %}>ESTP</option>
+      <option value="ESFP" {% if post and post['personnality'] == 'ESFP' %}selected{% endif %}>ESFP</option>
+      <option value="ESFJ" {% if post and post['personnality'] == 'ESFJ' %}selected{% endif %}>ESFJ</option>
+      <option value="ENFJ" {% if post and post['personnality'] == 'ENFJ' %}selected{% endif %}>ENFJ</option>
+      <option value="ENFP" {% if post and post['personnality'] == 'ENFP' %}selected{% endif %}>ENFP</option>
+      <option value="ENTP" {% if post and post['personnality'] == 'ENTP' %}selected{% endif %}>ENTP</option>
+      <option value="ENTJ" {% if post and post['personnality'] == 'ENTJ' %}selected{% endif %}>ENTJ</option>
+         
     </select>  
   </div>
   <br>
@@ -153,21 +154,18 @@
         <label><input type="radio" name="ski_snowboard" value="snowboard" {% if post and post['ski_snowboard'] == 'snowboard' %}checked{% endif %}> <span>Snowboard</span></label>
       </div>
       <div class="radio-row">
-        <label><input type="radio" name="wg_alleine" value="wg" /> <span>WG</span></label>
-        <label><input type="radio" name="wg_alleine" value="alleine" /> <span>Alleine leben</span></label>
+        <label><input type="radio" name="wg_alleine" value="wg" {% if post and post['wg_alleine'] == 'wg' %}checked{% endif %}> <span>WG</span></label>
+        <label><input type="radio" name="wg_alleine" value="alleine" {% if post and post['wg_alleine'] == 'alleine' %}checked{% endif %}> <span>Alleine leben</span></label>
       </div>
-
-      <!-- Dog or Cat -->
       <div class="radio-row">
-        <label><input type="radio" name="hund_katze" value="hund" /> <span>Hund</span></label>
-        <label><input type="radio" name="hund_katze" value="katze" /> <span>Katze</span></label>
+        <label><input type="radio" name="hund_katze" value="hund" {% if post and post['hund_katze'] == 'hund' %}checked{% endif %}> <span>Hund</span></label>
+        <label><input type="radio" name="hund_katze" value="katze" {% if post and post['hund_katze'] == 'katze' %}checked{% endif %}> <span>Katze</span></label>
       </div>
-
-      <!-- Rain or Sun -->
       <div class="radio-row">
-        <label><input type="radio" name="regen_sonne" value="regen" /> <span>Regen</span></label>
-        <label><input type="radio" name="regen_sonne" value="sonne" /> <span>Sonne</span></label>
-      </div>    </div>
+        <label><input type="radio" name="regen_sonne" value="regen" {% if post and post['regen_sonne'] == 'regen' %}checked{% endif %}> <span>Regen</span></label>
+        <label><input type="radio" name="regen_sonne" value="sonne" {% if post and post['regen_sonne'] == 'sonne' %}checked{% endif %}> <span>Sonne</span></label>
+      </div>     
+    </div>
   </section>
 </section>
 <br>
