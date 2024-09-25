@@ -143,10 +143,12 @@
     justify-content: space-between; /* Optional: Platz zwischen den divs */
     align-items: stretch;         /* Stellt sicher, dass die Boxen dieselbe Höhe haben */
     gap: 0px; 
+    max-width: 100%;
 }
 
 .interesse, .desinteresse, .red, .green {
     flex: 1;                    /* Beide Boxen haben die gleiche Breite */
+    overflow: hidden; /* sorft in diesem fall dafür dass die interesse und flaggen boxen inerhalb der flaggen und interesse-container blieben und ihre grösse dementsprechend angepasst wird */
 }
 
 
@@ -200,7 +202,7 @@ hr {
     justify-content: space-between;      /* Inhalt wird gleichmäßig verteilt */
     box-sizing: border-box;              /* Verhindert, dass Padding/Borders die Größe beeinflussen */
     max-width: 100%; 
-    min-height: 100%;                    /* Maximal so breit wie der äußere Container */
+    min-height: 100%;                    /* Sorgt dafür dass links und rechts gleich lang sind */
     overflow: hidden;                    /* Verhindert, dass Inhalte über die Box hinauslaufen */
 }
 
