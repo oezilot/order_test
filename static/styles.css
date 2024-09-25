@@ -83,6 +83,7 @@
     max-width: 100%;     /* Stellt sicher, dass es auf kleinen Bildschirmen nicht größer als der Bildschirm ist */
     padding: 20px;       /* Optional: Innenabstand */
     box-sizing: border-box; /* Bezieht Padding und Border in die Breite ein */
+    margin: 0;
 }
 
 

@@ -24,36 +24,36 @@
       <!--left page of the book-->
       <div class="book-left">
         <div class="question">
-          <p>Nickname: {{ post['Name'] }}</p>
+          <p>Spitzname: {{ post['Name'] }}</p>
         </div>
         <div class="question">
-          <p>I was born in: {{ post['birthday'] }}</p> <!--use the column name and not the variable-->
+          <p>So lange lebe ich schon: {{ post['birthday'] }}</p> <!--use the column name and not the variable-->
         </div>
         <div class="question">
-          <p>Fun Fact über mich den nur wenige wissen: {{ post['content'] }}</p>
+          <p>Das wissen nur wenige über mich: {{ post['content'] }}</p>
         </div>
         <div class="question">
           <!-- Display the currently uploaded image if it exists -->
           {% if post['image_path'] %}
-          <p>This is me:</p>
+          <p>Das bin ich:</p>
           <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 200px; max-height: 200px;"><br>
           {% endif %}
         </div>
         <div class="question">
-          <p>Personnality Type: {{ post['Personnality'] }}</p>
+          <p>Mein Persönlichkeitstyp: {{ post['Personnality'] }}</p>
         </div>
         <div class="question">
-          <p>Woher kenne ich Zoe, was verbindet uns?: {{ post['Zoe'] }}</p>
+          <p>So kenne ich Zoé: {{ post['Zoe'] }}</p>
         </div>
         <div class="question">
-          <p>Look at my Pinterest-board: <a href="{{ post['pinterest']}}" target="_blank">{{ post['pinterest'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
-          <p>Listen into my Spotify-Playlist: <a href="{{ post['Spotify']}}" target="_blank">{{ post['Spotify'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
+          <p>Mein Pinterest-Board: <a href="{{ post['pinterest']}}" target="_blank">{{ post['pinterest'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
+          <p>Mein Musikgeschmack: <a href="{{ post['Spotify']}}" target="_blank">{{ post['Spotify'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
         </div>
       </div>
 
       <div class="book-right">
         <div class="question">
-          <p>Das esse ich am liebsten (Hernkersmahlzeit): {{ post['food'] }}</p>
+          <p>Meine Henkersmahlzeit sähe so aus: {{ post['food'] }}</p>
         </div>
         <div class="interesse-container">
           <div class="interesse">
@@ -67,30 +67,30 @@
           <p>Das möchte ich lernen: {{ post['Lernen'] }}</p>
         </div>
         <div class="question">
-          <p>Mein häufigstes wort (Slang): {{ post['Musik'] }}</p>
+          <p>Dieses Wort sage ich oft: {{ post['Musik'] }}</p>
         </div>
         <div class="question">
-          <p>Beste Serie, Film oder Buch: {{ post['Serie'] }}</p>
+          <p>Die besten Serien, Filme und Geschichten allerzeiten!: {{ post['Serie'] }}</p>
         </div>
         <div class="question">
-          <p>Mein childhood crush oder idol: {{ post['Idol'] }}</p>
+          <p>Mein Childhood Crush oder mein Idol: {{ post['Idol'] }}</p>
         </div>
         <div class="question">
-          <p>Ein fashiontrend der echt cool ist: {{ post['Fashion'] }}</p>
+          <p>Diesen Fashiontrend mag ich besonders: {{ post['Fashion'] }}</p>
         </div>
         <div class="question">
-          <p>Meine ideale Zukunft stelle ich mir so vor: {{ post['Zukunft'] }}</p>
+          <p>Meine Traumzukunft stelle ich mir so vor: {{ post['Zukunft'] }}</p>
         </div>
         <div class="flag-container">
           <div class="red">
-          <p>Red flags in personen: {{ post['redFlags'] }}</p> <!--the post refers to the function and the redFlags refers to the name of the column in the database-->
+          <p>Red Flags: {{ post['redFlags'] }}</p> <!--the post refers to the function and the redFlags refers to the name of the column in the database-->
           </div>
           <div class="green">
-            <p>green flags in personen: {{ post['greenFlags'] }}</p>
+            <p>Green Flags: {{ post['greenFlags'] }}</p>
           </div>
         </div>
         <div class="question">
-          <p>meine love language: {{ post['Love'] }}</p>
+          <p>Meine Love Language: {{ post['Love'] }}</p>
         </div>
         <div class="question">
           <p>Ein perfektes Date stelle ich mir so vor: {{ post['Date'] }}</p>
@@ -99,7 +99,7 @@
           <p>Das ist mein Guilty Pleasure: {{ post['Pleasure'] }}</p>
         </div>
         <div class="question">
-          <p>Wenn ich eine entscheidung rückgängg machen könnte dann wäre das: {{ post['Regret'] }}</p>
+          <p>Wenn ich eine Entscheidung rückgängig machen könnte, dann wäre das: {{ post['Regret'] }}</p>
         <!--end of the right page container-->
         </div>
           
@@ -110,31 +110,31 @@
          <div class="entweder-oder-results">
            <!-- Party or Movie Night -->
            <div class="radio-result">
-             <p>Party oder Movie Night:
+             <p>Party vs. Movie Night:
                {{ post['party_movie'] == 'party' and 'Party' or 'Movie Night' }}
              </p>
            </div>
            <!-- Ski or Snowboard -->
            <div class="radio-result">
-             <p>Ski oder Snowboard:
+             <p>Ski vs. Snowboard:
                {{ post['ski_snowboard'] == 'ski' and 'Ski' or 'Snowboard' }}
              </p>
            </div>
            <!-- WG or Alone -->
            <div class="radio-result">
-             <p>WG oder Alleine Leben:
+             <p>WG vs. Alleine Leben:
                {{ post['wg_alleine'] == 'wg' and 'WG' or 'Alleine Leben' }}
              </p>
            </div>
            <!-- Hund or Katze -->
            <div class="radio-result">
-             <p>Hund oder Katze:
+             <p>Hund vs. Katze:
                {{ post['hund_katze'] == 'hund' and 'Hund' or 'Katze' }}
              </p>
            </div>
            <!-- Regen or Sonne -->
            <div class="radio-result">
-             <p>Regen oder Sonne:
+             <p>Regen vs. Sonne:
                {{ post['regen_sonne'] == 'regen' and 'Regen' or 'Sonne' }}
              </p>
            </div>
@@ -150,8 +150,7 @@
 
     {% else %}
       <div class="no-post">
-        <p>No posts available</p>
-        <p>Perhaps you'd like to create a new post!</p>
+        <p>No post available so far!</p>
       </div>
     {% endif %}
 

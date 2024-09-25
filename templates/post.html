@@ -13,23 +13,23 @@
     <h2 class="title">Basic Questions</h2>  
     <br>
   <!--NAME-->
-  <label for="Name">My Name or Nickname:</label><br>
+  <label for="Name">So nennt man mich auch noch:</label><br>
   <input class="nes-input" type="text" name="name" value="">
   <br>
   <br>
   <!--BDAY-->
-  <label for="birthday">Birthday:</label>
+  <label for="birthday">Mein Geburtstag:</label>
   <input class="nes-input" type="date" id="birthday" name="bday">
   <br>
   <br>
   <!--COLOR-->
-  <label for="favcolor">Select your favorite color:</label>
+  <label for="favcolor">Meine Lieblingsfarbe:</label>
   <input type="color" id="favcolor" name="favcolor" value="#ff0000">
   <br>
   <br>
   <div class="nes-select">
     <!--Personnality Type (16 Personnalities)-->
-    <label class="default-select" for="Personnality">My Personnality Type:</label><br>
+    <label class="default-select" for="Personnality">Mein Persönlichkeitstyp:</label><br>
     <select name="personnality">
       <option value="introvert">introvert</option>
       <option value="extrovert">extrovert</option>
@@ -54,10 +54,10 @@
   <br>
   <br>
 
-  <label>Fun Fact über mich (das wissen nur wenige!): </label><br>
+  <label>Fun Fact: das wissen die wenigsten über mich!:</label><br>
   <textarea class="nes-textarea" name="content">{{ post['content'] if post else '' }}</textarea><br><br>
   
-  <label>Woher kenn ich Zoé und was verbindet uns?: </label><br>
+  <label>Woher kennst du Zoé und was verbindet euch?:</label><br>
   <textarea class="nes-textarea" name="zoe"></textarea><br><br>
 </section>
 <br>
@@ -73,7 +73,7 @@
   <br>
   <!--INTERESSEN und HOBBIES-->
   <div class="flags-container">
-    <label>My Interests:</label> <!-- Label stays above the input fields -->
+    <label>Das macht mich aus:</label> <!-- Label stays above the input fields -->
     <div class="input-row">
       <input class="nes-input small-input" type="text" name="interest" placeholder="Das kann ich gut!">
       <input class="nes-input small-input" type="text" name="desinterest" placeholder="Das kann ich weniger gut!">
@@ -82,38 +82,38 @@
   <br>
   <br>
   <!--LERNEN-->
-  <label >Das möchte ich lernen:</label><br>
+  <label >Das möchte ich irgendwann lernen:</label><br>
   <input class="nes-input" type="text" name="lernen">
   <br>
   <br>
   <!--IDOL-->
-  <label >Idol oder Charskter als Vorbild:</label><br>
+  <label >Mein Kindheitsidol oder Childhood Crush ist:</label><br>
   <input class="nes-input" type="text" name="idol">
   <br>
   <br>
   <!--SERIE-->
-  <label >Lieblingsgeschichten:</label><br>
+  <label >Was sind meine Lieblingsserien, -filme, bücher?:</label><br>
   <input class="nes-input" type="text" name="serie" placeholder="serien, bücher, filme etc.">
   <br>
   <br>
   <!--MUSIK-->
-  <label >Lieblingsmusik:</label><br>
+  <label >Dieses Wort sage ich oft:</label><br>
   <input class="nes-input" type="text" name="musik">
   <br>
   <br>
   <!--fashion Do's-->
-  <label >Beste Fashion trends:</label><br>
+  <label >Welcher Fashion Trend inspiriert dich momentan?:</label><br>
   <input class="nes-input" type="text" name="fashion">
   <br>
   <br>
   <!--zukunft-->
-  <label >Zukunftstraum:</label><br>
+  <label >Wie malst du dir deine Traumzukunft aus?:</label><br>
   <input class="nes-input" type="text" name="zukunft" placeholder="haus, job, haustiere, familie, etc.">
   <br>
   <br>
   <!-- Flags in others -->
   <div class="flags-container">
-    <label>My Flags:</label> <!-- Label stays above the input fields -->
+    <label>Welche Flags fallen dir bei anderen besonders gut auf?</label> <!-- Label stays above the input fields -->
     <div class="input-row">
       <input class="nes-input small-input" type="text" name="rFlag" placeholder="meine red flags">
       <input class="nes-input small-input" type="text" name="gFlag" placeholder="meine green flags">
@@ -123,19 +123,19 @@
   <br>
   <br>
   <!--love language-->
-  <label >Love language:</label><br>
+  <label >Meine Love language:</label><br>
   <input class="nes-input" type="text" name="love" placeholder="presents, attention">
   <br>
   <br>
-  <label >Perfect Date:</label><br>
+  <label >Wie sähe ein perfektes Date für dich aus?:</label><br>
   <textarea class="nes-textarea" type="text" name="date"></textarea>
   <br>
   <br>
-  <label >Guilty Pleasure:</label><br>
+  <label >Was ist dein Guilty Pleasure?:</label><br>
   <input class="nes-input" type="text" name="pleasure">
   <br>
   <br>
-  <label >Biggest Regret!:</label><br>
+  <label >Was ist Etwas, das du bereust?:</label><br>
   <textarea class="nes-textarea" type="text" name="regret"></textarea>
 </section>
 <br>
@@ -190,17 +190,17 @@
   <section class="nes-container with-title">
     <h2 class="title">Uploads</h2>  <!--NAME-->
     <!-- Add file input for image upload -->
-    <label for="image">Upload an Image (PNG only):</label>
+    <label for="image">Lade hier ein gezeichnetes Bild von dir hoch (PNG only!):</label>
     <input type="file" id="image" name="image" accept="image/png">
     <br>
     <br>
     <!--spotify-playlist-->
-    <label>My Spotify-playlist (link): </label>
+    <label>Mein Spotify-playlist (Link): </label>
     <input type="url" name="spotify">
     <br>
     <br>
     <!--pinteres-link-->
-    <label>My Pinterest-board (link): </label>
+    <label>Mein Pinterest-board (Link): </label>
     <input type="url" name="Pinterest">
   </section>
   <br>
