@@ -11,132 +11,136 @@
   <section class="nes-container with-title">
     <h2 class="title">Basic Questions</h2>  
     <br>
-  <!--NAME-->
-  <label for="Name">So nennt man mich auch noch:</label><br>
-  <input class="nes-input" type="text" name="name" value="{{ post['name'] if post else '' }}">
-  <br>
-  <br>
-  <!--BDAY-->
-  <label for="birthday">Mein Geburtstag:</label>
-  <input class="nes-input" type="date" id="birthday" name="bday" value="{{ post['birthday'] if post else '' }}">
-  <br>
-  <br>
-  <!--COLOR-->
-  <label for="favcolor">Meine Lieblingsfarbe:</label>
-  <input type="color" id="favcolor" name="favcolor" value="{{ post['color'] if post else '#ff0000' }}">
-  <br>
-  <br>
-  <div class="nes-select">
-    <!--Personality Type-->
-    <label class="default-select" for="Personnality">Mein Persönlichkeitstyp:</label><br>
-    <select name="personnality">
-      <option value="introvert" {% if post and post['personnality'] == 'introvert' %}selected{% endif %}>Introvert</option>
-      <option value="extrovert" {% if post and post['personnality'] == 'extrovert' %}selected{% endif %}>Extrovert</option>
-      <option value="ISTJ" {% if post and post['personnality'] == 'ISTJ' %}selected{% endif %}>ISTJ</option>
-      <option value="ISTP" {% if post and post['personnality'] == 'ISTP' %}selected{% endif %}>ISTP</option>
-      <option value="ISFP" {% if post and post['personnality'] == 'ISFP' %}selected{% endif %}>ISFP</option>
-      <option value="ISFJ" {% if post and post['personnality'] == 'ISFJ' %}selected{% endif %}>ISFJ</option>
-      <option value="INFP" {% if post and post['personnality'] == 'INFP' %}selected{% endif %}>INFP</option>
-      <option value="INFJ" {% if post and post['personnality'] == 'INFJ' %}selected{% endif %}>INFJ</option>
-      <option value="INTP" {% if post and post['personnality'] == 'INTP' %}selected{% endif %}>INTP</option>
-      <option value="INTJ" {% if post and post['personnality'] == 'INTJ' %}selected{% endif %}>INTJ</option>
-      <option value="ESTJ" {% if post and post['personnality'] == 'ESTJ' %}selected{% endif %}>ESTJ</option>
-      <option value="ESTP" {% if post and post['personnality'] == 'ESTP' %}selected{% endif %}>ESTP</option>
-      <option value="ESFP" {% if post and post['personnality'] == 'ESFP' %}selected{% endif %}>ESFP</option>
-      <option value="ESFJ" {% if post and post['personnality'] == 'ESFJ' %}selected{% endif %}>ESFJ</option>
-      <option value="ENFJ" {% if post and post['personnality'] == 'ENFJ' %}selected{% endif %}>ENFJ</option>
-      <option value="ENFP" {% if post and post['personnality'] == 'ENFP' %}selected{% endif %}>ENFP</option>
-      <option value="ENTP" {% if post and post['personnality'] == 'ENTP' %}selected{% endif %}>ENTP</option>
-      <option value="ENTJ" {% if post and post['personnality'] == 'ENTJ' %}selected{% endif %}>ENTJ</option>
-         
-    </select>  
-  </div>
-  <br>
-  <br>
+    <!-- NAME -->
+    <label for="Name">So nennt man mich auch noch:</label><br>
+    <input class="nes-input" type="text" name="name" value="{{ post['name'] if post else '' }}" required>
+    <br><br>
 
-  <label>Fun Fact: das wissen die wenigsten über mich!:</label><br>
-  <textarea class="nes-textarea" name="content">{{ post['content'] if post else '' }}</textarea><br><br>
-  
-  <label>Woher kennst du Zoé und was verbindet euch?:</label><br>
-  <textarea class="nes-textarea" name="zoe">{{ post['zoe'] if post else '' }}</textarea><br><br>
+    <!-- BDAY -->
+    <label for="birthday">Mein Geburtstag:</label>
+    <input class="nes-input" type="date" id="birthday" name="bday" value="{{ post['birthday'] if post else '' }}" required>
+    <br><br>
+
+    <!-- COLOR -->
+    <label for="favcolor">Meine Lieblingsfarbe:</label>
+    <input type="color" id="favcolor" name="favcolor" value="{{ post['color'] if post else '#ff0000' }}" required>
+    <br><br>
+
+    <!-- Personality Type -->
+    <div class="nes-select">
+      <label class="default-select" for="Personnality">Mein Persönlichkeitstyp:</label><br>
+      <select name="personnality" required>
+        <option value="introvert" {% if post and post['personnality'] == 'introvert' %}selected{% endif %}>Introvert</option>
+        <option value="extrovert" {% if post and post['personnality'] == 'extrovert' %}selected{% endif %}>Extrovert</option>
+        <option value="ISTJ" {% if post and post['personnality'] == 'ISTJ' %}selected{% endif %}>ISTJ</option>
+        <option value="ISTP" {% if post and post['personnality'] == 'ISTP' %}selected{% endif %}>ISTP</option>
+        <option value="ISFP" {% if post and post['personnality'] == 'ISFP' %}selected{% endif %}>ISFP</option>
+        <option value="ISFJ" {% if post and post['personnality'] == 'ISFJ' %}selected{% endif %}>ISFJ</option>
+        <option value="INFP" {% if post and post['personnality'] == 'INFP' %}selected{% endif %}>INFP</option>
+        <option value="INFJ" {% if post and post['personnality'] == 'INFJ' %}selected{% endif %}>INFJ</option>
+        <option value="INTP" {% if post and post['personnality'] == 'INTP' %}selected{% endif %}>INTP</option>
+        <option value="INTJ" {% if post and post['personnality'] == 'INTJ' %}selected{% endif %}>INTJ</option>
+        <option value="ESTJ" {% if post and post['personnality'] == 'ESTJ' %}selected{% endif %}>ESTJ</option>
+        <option value="ESTP" {% if post and post['personnality'] == 'ESTP' %}selected{% endif %}>ESTP</option>
+        <option value="ESFP" {% if post and post['personnality'] == 'ESFP' %}selected{% endif %}>ESFP</option>
+        <option value="ESFJ" {% if post and post['personnality'] == 'ESFJ' %}selected{% endif %}>ESFJ</option>
+        <option value="ENFJ" {% if post and post['personnality'] == 'ENFJ' %}selected{% endif %}>ENFJ</option>
+        <option value="ENFP" {% if post and post['personnality'] == 'ENFP' %}selected{% endif %}>ENFP</option>
+        <option value="ENTP" {% if post and post['personnality'] == 'ENTP' %}selected{% endif %}>ENTP</option>
+        <option value="ENTJ" {% if post and post['personnality'] == 'ENTJ' %}selected{% endif %}>ENTJ</option>
+      </select>  
+    </div>
+    <br><br>
+
+    <!-- Fun Fact -->
+    <label>Fun Fact: das wissen die wenigsten über mich!:</label><br>
+    <textarea class="nes-textarea" name="content" required>{{ post['content'] if post else '' }}</textarea><br><br>
+    
+    <!-- Connection to Zoé -->
+    <label>Woher kennst du Zoé und was verbindet euch?:</label><br>
+    <textarea class="nes-textarea" name="zoe" required>{{ post['zoe'] if post else '' }}</textarea><br><br>
+  </section>
 </section>
 <br>
 
 <section class="showcase" v-for="sample in collection" :key="sample">
   <section class="nes-container with-title">
     <h2 class="title">Going Deeper</h2>  
-    <!--FOOD-->
+    
+    <!-- FOOD -->
     <label for="food">Das esse ich am liebsten:</label><br>
-    <input class="nes-input" type="text" id="food" name="Food" value="{{ post['food'] if post else '' }}">
-    <br>
-    <br>
-    <!--INTERESTS and HOBBIES-->
+    <input class="nes-input" type="text" id="food" name="Food" value="{{ post['food'] if post else '' }}" required>
+    <br><br>
+
+    <!-- INTERESTS and HOBBIES -->
     <div class="flags-container">
       <label>Das macht mich aus:</label>
       <div class="input-row">
-        <input class="nes-input small-input" type="text" name="interest" placeholder="Interessen, Hobbies, Stärken" value="{{ post['interest'] if post else '' }}">
-        <input class="nes-input small-input" type="text" name="desinterest" placeholder="Schwächen, Desinteresse, Icks" value="{{ post['desinterest'] if post else '' }}">
+        <input class="nes-input small-input" type="text" name="interest" placeholder="Interessen, Hobbies, Stärken" value="{{ post['interest'] if post else '' }}" required>
+        <input class="nes-input small-input" type="text" name="desinterest" placeholder="Schwächen, Desinteresse, Icks" value="{{ post['desinterest'] if post else '' }}" required>
       </div>
     </div>
-    <br>
-    <br>
-    <!--LERNEN-->
+    <br><br>
+
+    <!-- LERNEN -->
     <label>Das möchte ich irgendwann lernen:</label><br>
-    <input class="nes-input" type="text" name="lernen" value="{{ post['lernen'] if post else '' }}">
-    <br>
-    <br>
-    <!--IDOL-->
+    <input class="nes-input" type="text" name="lernen" value="{{ post['lernen'] if post else '' }}" required>
+    <br><br>
+
+    <!-- IDOL -->
     <label>Mein Kindheitsidol oder Childhood Crush ist:</label><br>
-    <input class="nes-input" type="text" name="idol" value="{{ post['idol'] if post else '' }}">
-    <br>
-    <br>
-    <!--SERIE-->
+    <input class="nes-input" type="text" name="idol" value="{{ post['idol'] if post else '' }}" required>
+    <br><br>
+
+    <!-- SERIE -->
     <label>Was sind meine Lieblingsserien, -filme, bücher?:</label><br>
-    <input class="nes-input" type="text" name="serie" value="{{ post['serie'] if post else '' }}">
-    <br>
-    <br>
-    <!--MUSIK-->
+    <input class="nes-input" type="text" name="serie" value="{{ post['serie'] if post else '' }}" required>
+    <br><br>
+
+    <!-- MUSIK -->
     <label>Dieses Wort sage ich oft:</label><br>
-    <input class="nes-input" type="text" name="musik" value="{{ post['musik'] if post else '' }}">
-    <br>
-    <br>
-    <!--FASHION-->
+    <input class="nes-input" type="text" name="musik" value="{{ post['musik'] if post else '' }}" required>
+    <br><br>
+
+    <!-- FASHION -->
     <label>Welcher Fashion Trend inspiriert dich momentan?:</label><br>
-    <input class="nes-input" type="text" name="fashion" value="{{ post['fashion'] if post else '' }}">
-    <br>
-    <br>
-    <!--ZUKUNFT-->
+    <input class="nes-input" type="text" name="fashion" value="{{ post['fashion'] if post else '' }}" required>
+    <br><br>
+
+    <!-- ZUKUNFT -->
     <label>Wie malst du dir deine Traumzukunft aus?:</label><br>
-    <input class="nes-input" type="text" name="zukunft" value="{{ post['zukunft'] if post else '' }}">
-    <br>
-    <br>
-    <!--FLAGS-->
+    <input class="nes-input" type="text" name="zukunft" value="{{ post['zukunft'] if post else '' }}" required>
+    <br><br>
+
+    <!-- FLAGS -->
     <div class="flags-container">
       <label>Welche Flags fallen dir bei anderen besonders gut auf?</label>
       <div class="input-row">
-        <input class="nes-input small-input" type="text" name="rFlag" placeholder="Red Flags..." value="{{ post['redFlags'] if post else '' }}">
-        <input class="nes-input small-input" type="text" name="gFlag" placeholder="Green Flags..." value="{{ post['greenFlags'] if post else '' }}">
+        <input class="nes-input small-input" type="text" name="rFlag" placeholder="Red Flags..." value="{{ post['redFlags'] if post else '' }}" required>
+        <input class="nes-input small-input" type="text" name="gFlag" placeholder="Green Flags..." value="{{ post['greenFlags'] if post else '' }}" required>
       </div>
     </div>
-    <br>
-    <br>
-    <!--LOVE-->
+    <br><br>
+
+    <!-- LOVE -->
     <label>Meine Love language:</label><br>
-    <input class="nes-input" type="text" name="love" value="{{ post['love'] if post else '' }}">
-    <br>
-    <br>
+    <input class="nes-input" type="text" name="love" value="{{ post['love'] if post else '' }}" required>
+    <br><br>
+
+    <!-- PERFECT DATE -->
     <label>Wie sähe ein perfektes Date für dich aus?:</label><br>
-    <textarea class="nes-textarea" name="date">{{ post['date'] if post else '' }}</textarea>
-    <br>
-    <br>
+    <textarea class="nes-textarea" name="date" required>{{ post['date'] if post else '' }}</textarea>
+    <br><br>
+
+    <!-- GUILTY PLEASURE -->
     <label>Was ist dein Guilty Pleasure?:</label><br>
-    <input class="nes-input" type="text" name="pleasure" value="{{ post['pleasure'] if post else '' }}">
-    <br>
-    <br>
+    <input class="nes-input" type="text" name="pleasure" value="{{ post['pleasure'] if post else '' }}" required>
+    <br><br>
+
+    <!-- REGRET -->
     <label>Was ist Etwas, das du bereust?:</label><br>
-    <textarea class="nes-textarea" name="regret">{{ post['regret'] if post else '' }}</textarea>
-    <br>
-    <br>
+    <textarea class="nes-textarea" name="regret" required>{{ post['regret'] if post else '' }}</textarea>
+    <br><br>
   </section>
 </section>
 <br>
@@ -146,40 +150,41 @@
     <h2 class="title">Entweder Oder</h2>
     <div class="column-container entweder-oder">
       <div class="radio-row">
-        <label><input type="radio" name="party_movie" value="party" {% if post and post['party_movie'] == 'party' %}checked{% endif %}> <span>Party</span></label>
+        <label><input type="radio" name="party_movie" value="party" {% if post and post['party_movie'] == 'party' %}checked{% endif %} required> <span>Party</span></label>
         <label><input type="radio" name="party_movie" value="movienight" {% if post and post['party_movie'] == 'movienight' %}checked{% endif %}> <span>Movie Night</span></label>
       </div>
       <div class="radio-row">
-        <label><input type="radio" name="ski_snowboard" value="ski" {% if post and post['ski_snowboard'] == 'ski' %}checked{% endif %}> <span>Ski</span></label>
+        <label><input type="radio" name="ski_snowboard" value="ski" {% if post and post['ski_snowboard'] == 'ski' %}checked{% endif %} required> <span>Ski</span></label>
         <label><input type="radio" name="ski_snowboard" value="snowboard" {% if post and post['ski_snowboard'] == 'snowboard' %}checked{% endif %}> <span>Snowboard</span></label>
       </div>
       <div class="radio-row">
-        <label><input type="radio" name="wg_alleine" value="wg" {% if post and post['wg_alleine'] == 'wg' %}checked{% endif %}> <span>WG</span></label>
+        <label><input type="radio" name="wg_alleine" value="wg" {% if post and post['wg_alleine'] == 'wg' %}checked{% endif %} required> <span>WG</span></label>
         <label><input type="radio" name="wg_alleine" value="alleine" {% if post and post['wg_alleine'] == 'alleine' %}checked{% endif %}> <span>Alleine leben</span></label>
       </div>
       <div class="radio-row">
-        <label><input type="radio" name="hund_katze" value="hund" {% if post and post['hund_katze'] == 'hund' %}checked{% endif %}> <span>Hund</span></label>
+        <label><input type="radio" name="hund_katze" value="hund" {% if post and post['hund_katze'] == 'hund' %}checked{% endif %} required> <span>Hund</span></label>
         <label><input type="radio" name="hund_katze" value="katze" {% if post and post['hund_katze'] == 'katze' %}checked{% endif %}> <span>Katze</span></label>
       </div>
       <div class="radio-row">
-        <label><input type="radio" name="regen_sonne" value="regen" {% if post and post['regen_sonne'] == 'regen' %}checked{% endif %}> <span>Regen</span></label>
+        <label><input type="radio" name="regen_sonne" value="regen" {% if post and post['regen_sonne'] == 'regen' %}checked{% endif %} required> <span>Regen</span></label>
         <label><input type="radio" name="regen_sonne" value="sonne" {% if post and post['regen_sonne'] == 'sonne' %}checked{% endif %}> <span>Sonne</span></label>
       </div>     
     </div>
   </section>
 </section>
 <br>
+
 <section class="showcase" v-for="sample in collection" :key="sample">
   <section class="nes-container with-title">
     <h2 class="title">Uploads</h2>
     <label for="image">Lade hier ein gezeichnetes Bild von dir hoch (PNG only!):</label>
-    <input type="file" id="image" name="image" accept="image/png">
-    <br>
-    <br>
+    <input type="file" id="image" name="image" value="{{ post['image'] if post else '' }}" accept="image/png" required>
+    <br><br>
+
     <label>Meine Spotify-playlist (Link):</label>
     <input type="url" name="spotify" value="{{ post['spotify'] if post else '' }}">
-    <br>
-    <br>
+    <br><br>
+
     <label>Mein Pinterest-board (Link):</label>
     <input type="url" name="Pinterest" value="{{ post['Pinterest'] if post else '' }}">
   </section>
