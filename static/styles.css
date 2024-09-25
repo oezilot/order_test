@@ -57,7 +57,7 @@
 }
 .nes-container {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
-    border-radius: 10px;        /* Optional: Slight rounding of corners */
+    border-radius: 25px;        /* Optional: Slight rounding of corners */
     background-color: #ffe600;  /* Optional: Background color */
 }
 .deleted {
@@ -67,7 +67,12 @@
 
 /* INDEX.html */
 .inhalt-titel {
-    margin: 5%; 
+    margin: 0; 
+}
+.inhalt {
+    min-height: 65vh;
+    margin: 23px 0 23px 0;
+
 }
 
 /* BASE.html */
