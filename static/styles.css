@@ -1,3 +1,9 @@
+.non-scrollable-body {
+    height: 100%;              /* Stellt sicher, dass Body die volle Höhe hat */
+    margin: 0;                 /* Entfernt Standard-Margin vom Body */
+    padding: 0;  
+    overflow: hidden;              /* Entfernt Standard-Padding vom Body */
+}
 /* LANDING PAGE */
 .body1 {
     display: flex;
@@ -38,8 +44,19 @@
     height: 100vh; /* Full viewport height */
     margin: 0;     /* Remove default body margins */
 }
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers form elements vertically */
+    width: 400px;        /* Feste Breite in Pixeln */
+    max-width: 100%;     /* Stellt sicher, dass es auf kleinen Bildschirmen nicht größer als der Bildschirm ist */
+    padding: 20px;       /* Optional: Innenabstand */
+    box-sizing: border-box; /* Bezieht Padding und Border in die Breite ein */
+}
+
+
 /* Login-specific container */
-.login, .inhaltsverzeichnis {
+.inhaltsverzeichnis {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centers form elements vertically */
@@ -58,7 +75,7 @@
 .nes-container {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
     border-radius: 25px;        /* Optional: Slight rounding of corners */
-    background-color: #ffe600;  /* Optional: Background color */
+    background-color: #FFFF00;  /* Optional: Background color */
 }
 .deleted {
     margin: 10% 10% 0% 0%;

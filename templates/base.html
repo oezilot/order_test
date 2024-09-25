@@ -16,7 +16,7 @@
 
     <title>Flask App</title>
   </head>
-  <body>
+  <body class="{% if request.endpoint in ['show_post', 'edit_post', 'post'] %}scrollable-body{% else %}non-scrollable-body{% endif %}">
     <div class="navbar">
             <hr>
 

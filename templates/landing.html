@@ -16,7 +16,8 @@
 
     <title>Flask App</title>
   </head>
-  <body class="body1">
+  <body class="body1 {% if request.endpoint == 'show_post' %}userpage-body{% else %}otherpage-body{% endif %}">
+  
     <div class="nes-container">
       <div class="landing-title">
         <h1>Willkommen!</h1>
