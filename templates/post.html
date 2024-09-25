@@ -10,14 +10,16 @@
   
 <section class="showcase" v-for="sample in collection" :key="sample">
   <section class="nes-container with-title">
-    <h2 class="title">Basic Questions</h2>  <!--NAME-->
+    <h2 class="title">Basic Questions</h2>  
+    <br>
+  <!--NAME-->
   <label for="Name">My Name or Nickname:</label><br>
-  <input type="text" name="name" value="">
+  <input class="nes-input" type="text" name="name" value="">
   <br>
   <br>
   <!--BDAY-->
   <label for="birthday">Birthday:</label>
-  <input type="date" id="birthday" name="bday">
+  <input class="nes-input" type="date" id="birthday" name="bday">
   <br>
   <br>
   <!--COLOR-->
@@ -25,35 +27,38 @@
   <input type="color" id="favcolor" name="favcolor" value="#ff0000">
   <br>
   <br>
-  <!--Personnality Type (16 Personnalities)-->
-  <label for="Personnality">My Personnality Type:</label><br>
-  <select name="personnality">
-    <option value="introvert">introvert</option>
-    <option value="extrovert">extrovert</option>
-    <option value="ISTJ">ISTJ</option>
-    <option value="ISTP">ISTP</option>
-    <option value="ISTP">ISFP</option>
-    <option value="ISTP">ISFJ</option>
-    <option value="ISTP">INFP</option>
-    <option value="ISTP">INFJ</option>
-    <option value="ISTP">INTP</option>
-    <option value="ISTP">INTJ</option>
-    <option value="ISTP">ESTJ</option>
-    <option value="ISTP">ESTP</option>
-    <option value="ISTP">ESFP</option>
-    <option value="ISTP">ESFJ</option>
-    <option value="ISTP">ENFJ</option>
-    <option value="ISTP">ENFP</option>
-    <option value="ISTP">ENTP</option>
-    <option value="ISTP">ENTJ</option>
-  </select>  <br>
+  <div class="nes-select">
+    <!--Personnality Type (16 Personnalities)-->
+    <label class="default-select" for="Personnality">My Personnality Type:</label><br>
+    <select name="personnality">
+      <option value="introvert">introvert</option>
+      <option value="extrovert">extrovert</option>
+      <option value="ISTJ">ISTJ</option>
+      <option value="ISTP">ISTP</option>
+      <option value="ISTP">ISFP</option>
+      <option value="ISTP">ISFJ</option>
+      <option value="ISTP">INFP</option>
+      <option value="ISTP">INFJ</option>
+      <option value="ISTP">INTP</option>
+      <option value="ISTP">INTJ</option>
+      <option value="ISTP">ESTJ</option>
+      <option value="ISTP">ESTP</option>
+      <option value="ISTP">ESFP</option>
+      <option value="ISTP">ESFJ</option>
+      <option value="ISTP">ENFJ</option>
+      <option value="ISTP">ENFP</option>
+      <option value="ISTP">ENTP</option>
+      <option value="ISTP">ENTJ</option>
+    </select>  
+  </div>
+  <br>
   <br>
 
   <label>Fun Fact über mich (das wissen nur wenige!): </label><br>
-  <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
+  <textarea class="nes-textarea" name="content">{{ post['content'] if post else '' }}</textarea><br><br>
   
   <label>Woher kenn ich Zoé und was verbindet uns?: </label><br>
-  <textarea name="zoe"></textarea><br><br>
+  <textarea class="nes-textarea" name="zoe"></textarea><br><br>
 </section>
 <br>
 
@@ -63,66 +68,66 @@
     <h2 class="title">Going Deeper</h2>  <!--NAME-->
     <!--FOOD-->
   <label for="food">Das esse ich am liebsten:</label><br>
-  <input type="text" id="food" name="Food">
+  <input class="nes-input" type="text" id="food" name="Food">
   <br>
   <br>
   <!--INTERESSEN und HOBBIES-->
   <label >My interests:</label><br>
-  <input type="text" name="interest" placeholder="das kann ich gut/gerne">
-  <input type="text" name="desinterest" placeholder="das mache ich weniger gerne/gut">
+  <input class="nes-input" type="text" name="interest" placeholder="das kann ich gut/gerne">
+  <input class="nes-input" type="text" name="desinterest" placeholder="das mache ich weniger gerne/gut">
   <br>
   <br>
   <!--LERNEN-->
   <label >Das möchte ich lernen:</label><br>
-  <input type="text" name="lernen">
+  <input class="nes-input" type="text" name="lernen">
   <br>
   <br>
   <!--IDOL-->
   <label >Idol oder Charskter als Vorbild:</label><br>
-  <input type="text" name="idol">
+  <input class="nes-input" type="text" name="idol">
   <br>
   <br>
   <!--SERIE-->
   <label >Lieblingsgeschichten:</label><br>
-  <input type="text" name="serie" placeholder="serien, bücher, filme etc.">
+  <input class="nes-input" type="text" name="serie" placeholder="serien, bücher, filme etc.">
   <br>
   <br>
   <!--MUSIK-->
   <label >Lieblingsmusik:</label><br>
-  <input type="text" name="musik">
+  <input class="nes-input" type="text" name="musik">
   <br>
   <br>
   <!--fashion Do's-->
   <label >Beste Fashion trends:</label><br>
-  <input type="text" name="fashion">
+  <input class="nes-input" type="text" name="fashion">
   <br>
   <br>
   <!--zukunft-->
   <label >Zukunftstraum:</label><br>
-  <input type="text" name="zukunft" placeholder="haus, job, haustiere, familie, etc.">
+  <input class="nes-input" type="text" name="zukunft" placeholder="haus, job, haustiere, familie, etc.">
   <br>
   <br>
   <!--flags in others-->
   <label >My Flags:</label><br>
-  <input type="text" name="rFlag" placeholder="meine red flags">
-  <input type="text" name="gFlag" placeholder="meine green flags">
+  <input class="nes-input" type="text" name="rFlag" placeholder="meine red flags">
+  <input class="nes-input" type="text" name="gFlag" placeholder="meine green flags">
   <br>
   <br>
   <!--love language-->
   <label >Love language:</label><br>
-  <input type="text" name="love" placeholder="presents, attention">
+  <input class="nes-input" type="text" name="love" placeholder="presents, attention">
   <br>
   <br>
   <label >Perfect Date:</label><br>
-  <textarea type="text" name="date"></textarea>
+  <textarea class="nes-textarea" type="text" name="date"></textarea>
   <br>
   <br>
   <label >Guilty Pleasure:</label><br>
-  <input type="text" name="pleasure">
+  <input class="nes-input" type="text" name="pleasure">
   <br>
   <br>
   <label >Biggest Regret!:</label><br>
-  <textarea type="text" name="regret"></textarea>
+  <textarea class="nes-textarea" type="text" name="regret"></textarea>
 </section>
 <br>
 
