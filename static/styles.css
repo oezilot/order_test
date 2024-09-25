@@ -238,7 +238,25 @@ hr {
 
 
 
-
+/* Flexbox container to keep both inputs in the same row */
+/* Ensure label stays on its own line */
+.flags-container label {
+    display: block;
+    margin-bottom: 8px; /* Adds a little space between label and inputs */
+  }
+  
+  /* Flexbox container to keep both inputs in the same row */
+  .input-row {
+    display: flex;
+    gap: 10px; /* Space between the two input fields */
+  }
+  
+  /* Set smaller size for the input fields */
+  .small-input {
+    width: 100%; /* Adjust width to fit two fields side by side */
+    max-width: 100%; /* Optional: limit the max width */
+  }
+  
 
 
 

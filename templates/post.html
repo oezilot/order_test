@@ -72,9 +72,13 @@
   <br>
   <br>
   <!--INTERESSEN und HOBBIES-->
-  <label >My interests:</label><br>
-  <input class="nes-input" type="text" name="interest" placeholder="das kann ich gut/gerne">
-  <input class="nes-input" type="text" name="desinterest" placeholder="das mache ich weniger gerne/gut">
+  <div class="flags-container">
+    <label>My Interests:</label> <!-- Label stays above the input fields -->
+    <div class="input-row">
+      <input class="nes-input small-input" type="text" name="interest" placeholder="Das kann ich gut!">
+      <input class="nes-input small-input" type="text" name="desinterest" placeholder="Das kann ich weniger gut!">
+    </div>
+  </div>
   <br>
   <br>
   <!--LERNEN-->
@@ -107,10 +111,15 @@
   <input class="nes-input" type="text" name="zukunft" placeholder="haus, job, haustiere, familie, etc.">
   <br>
   <br>
-  <!--flags in others-->
-  <label >My Flags:</label><br>
-  <input class="nes-input" type="text" name="rFlag" placeholder="meine red flags">
-  <input class="nes-input" type="text" name="gFlag" placeholder="meine green flags">
+  <!-- Flags in others -->
+  <div class="flags-container">
+    <label>My Flags:</label> <!-- Label stays above the input fields -->
+    <div class="input-row">
+      <input class="nes-input small-input" type="text" name="rFlag" placeholder="meine red flags">
+      <input class="nes-input small-input" type="text" name="gFlag" placeholder="meine green flags">
+    </div>
+  </div>
+
   <br>
   <br>
   <!--love language-->
