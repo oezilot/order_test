@@ -9,7 +9,7 @@
     {% if prev_username %}
       <a class="nes-btn" href="{{ url_for('show_post', username=prev_username) }}"> <-- Rückwärts</a>
     {% endif %}
-    <h2 id="username">{{ username }}'s Post</h2>
+    <h2 id="username"><mark>{{ username }}'s Post</mark></h2>
     <!-- Falls es eine Seite weiter einen Post gibt -->
     {% if next_username %}
       <a class="nes-btn" href="{{ url_for('show_post', username=next_username) }}">Vorwärts --> </a>
