@@ -34,6 +34,37 @@
 }
 /**/
 
+/* Container to stack the groups of radio buttons vertically */
+.column-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between the radio button groups */
+  }
+  
+  /* Radio row container for two options side by side */
+  .radio-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Create two equal columns for the radio buttons */
+    gap: 20px; /* Space between the two radio options */
+  }
+  
+  /* Label styling with spacing between the radio button and the label text */
+  .radio-row label {
+    display: flex;
+    align-items: center; /* Vertically align the label text with the radio button */
+    gap: 10px; /* Add space between the radio button and the label text */
+  }
+  
+  /* Optional: Add some padding and background color to the container */
+  .nes-container {
+    padding: 20px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+  }
+.entweder-oder {
+    margin: 0;
+}  
+
 
 /* LOGIN PAGE */
 .body2 {

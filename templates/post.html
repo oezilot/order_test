@@ -134,28 +134,46 @@
 
 <section class="showcase" v-for="sample in collection" :key="sample">
   <section class="nes-container with-title">
-    <h2 class="title">Entweder Oder</h2>  <!--NAME-->
-    <tr>
-        <td><label><input type="radio" name="party_movie" value="party"> Party</label></td>
-        <td style="text-align: right;"><label><input type="radio" name="party_movie" value="movienight"> Movie Night</label></td>
-    </tr>
-    <tr>
-        <td><label><input type="radio" name="ski_snowboard" value="ski"> Ski</label></td>
-        <td style="text-align: right;"><label><input type="radio" name="ski_snowboard" value="snowboard"> Snowboard</label></td>
-    </tr>
-    <tr>
-        <td><label><input type="radio" name="wg_alleine" value="wg"> WG</label></td>
-        <td style="text-align: right;"><label><input type="radio" name="wg_alleine" value="alleine"> Alleine leben</label></td>
-    </tr>
-    <tr>
-        <td><label><input type="radio" name="hund_katze" value="hund"> Hund</label></td>
-        <td style="text-align: right;"><label><input type="radio" name="hund_katze" value="katze"> Katze</label></td>
-    </tr>
-    <tr>
-        <td><label><input type="radio" name="regen_sonne" value="regen"> Regen</label></td>
-        <td style="text-align: right;"><label><input type="radio" name="regen_sonne" value="sonne"> Sonne</label></td>
-    </tr>
+    <h2 class="title">Entweder Oder</h2> <!-- NAME -->
+
+    <div class="column-container entweder-oder">
+      <!-- Party or Movie Night -->
+      <div class="radio-row">
+        <label><input type="radio" name="party_movie" value="party" checked /> <span>Party</span></label>
+        <label><input type="radio" name="party_movie" value="movienight" /> <span>Movie Night</span></label>
+      </div>
+
+      <!-- Ski or Snowboard -->
+      <div class="radio-row">
+        <label><input type="radio" name="ski_snowboard" value="ski" /> <span>Ski</span></label>
+        <label><input type="radio" name="ski_snowboard" value="snowboard" /> <span>Snowboard</span></label>
+      </div>
+
+      <!-- WG or Alone -->
+      <div class="radio-row">
+        <label><input type="radio" name="wg_alleine" value="wg" /> <span>WG</span></label>
+        <label><input type="radio" name="wg_alleine" value="alleine" /> <span>Alleine leben</span></label>
+      </div>
+
+      <!-- Dog or Cat -->
+      <div class="radio-row">
+        <label><input type="radio" name="hund_katze" value="hund" /> <span>Hund</span></label>
+        <label><input type="radio" name="hund_katze" value="katze" /> <span>Katze</span></label>
+      </div>
+
+      <!-- Rain or Sun -->
+      <div class="radio-row">
+        <label><input type="radio" name="regen_sonne" value="regen" /> <span>Regen</span></label>
+        <label><input type="radio" name="regen_sonne" value="sonne" /> <span>Sonne</span></label>
+      </div>
+
+    </div>
+
+  </section>
 </section>
+
+
+
 <br>
 
 
