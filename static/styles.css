@@ -135,6 +135,7 @@
     border-radius: 15px;
     padding: 0% 14px;
     margin: 5px 6px;
+    overflow-wrap: anywhere;
 }
 
 /* all the divs for the questions.... */
@@ -148,7 +149,7 @@
 
 .interesse, .desinteresse, .red, .green {
     flex: 1;                    /* Beide Boxen haben die gleiche Breite */
-    overflow: hidden; /* sorft in diesem fall dafür dass die interesse und flaggen boxen inerhalb der flaggen und interesse-container blieben und ihre grösse dementsprechend angepasst wird */
+    overflow: hidden; /* sorgt in diesem fall dafür dass die interesse und flaggen boxen inerhalb der flaggen und interesse-container blieben und ihre grösse dementsprechend angepasst wird */
 }
 
 
