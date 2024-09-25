@@ -2,12 +2,15 @@
 
 {% block content %}
 
-<h1>Create Post</h1>
+<br>
+<h1>Create a Post</h1>
+<br>
 <form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
 
-<fieldset>
-<legend><h3>Basic Questions:</h3></legend>
-  <!--NAME-->
+  
+<section class="showcase" v-for="sample in collection" :key="sample">
+  <section class="nes-container with-title">
+    <h2 class="title">Basic Questions</h2>  <!--NAME-->
   <label for="Name">My Name or Nickname:</label><br>
   <input type="text" name="name" value="">
   <br>
@@ -51,11 +54,14 @@
   
   <label>Woher kenn ich Zoé und was verbindet uns?: </label><br>
   <textarea name="zoe"></textarea><br><br>
-</fieldset>
+</section>
+<br>
 
-<fieldset>
-<legend><h3>Going Deeper</h3></legend>
-  <!--FOOD-->
+
+<section class="showcase" v-for="sample in collection" :key="sample">
+  <section class="nes-container with-title">
+    <h2 class="title">Going Deeper</h2>  <!--NAME-->
+    <!--FOOD-->
   <label for="food">Das esse ich am liebsten:</label><br>
   <input type="text" id="food" name="Food">
   <br>
@@ -117,10 +123,13 @@
   <br>
   <label >Biggest Regret!:</label><br>
   <textarea type="text" name="regret"></textarea>
-</fieldset>
+</section>
+<br>
 
-<fieldset style="margin-bottom: 20px;">
-  <legend><h3>Entweder Oder</h3></legend>
+
+<section class="showcase" v-for="sample in collection" :key="sample">
+  <section class="nes-container with-title">
+    <h2 class="title">Entweder Oder</h2>  <!--NAME-->
     <tr>
         <td><label><input type="radio" name="party_movie" value="party"> Party</label></td>
         <td style="text-align: right;"><label><input type="radio" name="party_movie" value="movienight"> Movie Night</label></td>
@@ -141,11 +150,13 @@
         <td><label><input type="radio" name="regen_sonne" value="regen"> Regen</label></td>
         <td style="text-align: right;"><label><input type="radio" name="regen_sonne" value="sonne"> Sonne</label></td>
     </tr>
-</fieldset>
+</section>
+<br>
 
-  
-<fieldset style="margin-bottom: 20px;">
-    <legend><h3>Uploads</h3></legend>
+
+<section class="showcase" v-for="sample in collection" :key="sample">
+  <section class="nes-container with-title">
+    <h2 class="title">Uploads</h2>  <!--NAME-->
     <!-- Add file input for image upload -->
     <label for="image">Upload an Image (PNG only):</label>
     <input type="file" id="image" name="image" accept="image/png">
@@ -159,12 +170,11 @@
     <!--pinteres-link-->
     <label>My Pinterest-board (link): </label>
     <input type="url" name="Pinterest">
-</fieldset>
+  </section>
+  <br>
 
-<fieldset>
-  <input type="submit" value="Submit">
-  <button type="submit" name="abbrechen" value="Abbrechen" >Abbrechen</button>
-</fieldset>
+  <input class="nes-btn" type="submit" value="Submit">
+  <button class="nes-btn" type="submit" name="abbrechen" value="Abbrechen" >Abbrechen</button>
 
 </form>
 
