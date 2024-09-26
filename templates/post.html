@@ -184,6 +184,7 @@
     <!-- Add file input for image upload -->
     <label for="image">Lade hier ein gezeichnetes Bild von dir hoch (PNG only!):</label>
     <input type="file" id="image" name="image" accept="image/png" required>
+    
     <br><br>
 
     <!-- Spotify Playlist -->
@@ -201,9 +202,9 @@
 <div class="update-delete">
   <!-- Action buttons -->
   <input class="nes-btn" type="submit" value="Submit">
-  
+
   </form>
-  
+
   <form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
     <button class="nes-btn is-error" type="submit" name="abbrechen" value="Abbrechen">Abbrechen</button>
   </form>
