@@ -198,11 +198,15 @@
 </section>
 
 <br>
-
-<!-- Action buttons -->
-<input class="nes-btn" type="submit" value="Submit">
-<button class="nes-btn is-error" type="submit" name="abbrechen" value="Abbrechen">Abbrechen</button>
-
-</form>
+<div class="update-delete">
+  <!-- Action buttons -->
+  <input class="nes-btn" type="submit" value="Submit">
+  
+  </form>
+  
+  <form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
+    <button class="nes-btn is-error" type="submit" name="abbrechen" value="Abbrechen">Abbrechen</button>
+  </form>
+</div>
 
 {% endblock %}
