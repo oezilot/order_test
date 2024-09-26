@@ -427,18 +427,18 @@ def show_post(username):
         return redirect(url_for('login'))
     
     conn = get_db_connection()
-    # Get user by username
-    user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+    
+    # Get active user by username
+    user = conn.execute('SELECT * FROM users WHERE username = ? AND is_active = 1', (username,)).fetchone()
     
     if not user:
-        return "User not found", 404
+        return "User not found or inactive", 404
 
-    # Get the user's post
-    post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (user['id'],)).fetchone()
+    # Get the user's post, but only if the post is active
+    post = conn.execute('SELECT * FROM posts WHERE user_id = ? AND is_active = 1', (user['id'],)).fetchone()
 
-
-    # Get all usernames to determine navigation
-    users = conn.execute('SELECT username FROM users ORDER BY username').fetchall()
+    # Get all active usernames to determine navigation
+    users = conn.execute('SELECT username FROM users WHERE is_active = 1 ORDER BY username').fetchall()
     conn.close()
 
     # Find the current index of the username
