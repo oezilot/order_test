@@ -237,14 +237,20 @@ hr {
     box-sizing: border-box;    /* Padding und Border in die Größe einberechnen */
     overflow: hidden;          /* Verhindert, dass Inhalt über den Container hinausläuft */
 }
+/* The parent div adjusts to the size of the image */
 .image-mom {
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    
+    display: inline-block; /* Make div wrap around the image */
+    border: 2px solid black; /* Add the border */
+    box-sizing: border-box; /* Ensure padding and border are included in the div's size */
+    padding:0;
 }
+
+/* Image takes up 100% of the parent's width and height */
 .image-daughter {
+    border-radius:12px;
     width: 100%;
+    height: auto; /* Maintain aspect ratio of the image */
+    display: block; /* Ensures the image is treated as a block-level element */
 }
 
 /* Linke und rechte Seite des Buches */
