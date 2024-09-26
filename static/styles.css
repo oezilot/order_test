@@ -67,14 +67,20 @@
 
 
 /* LOGIN PAGE */
+
+
 .body2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    margin: 0;     /* Remove default body margins */
+    display: flex;                /* Enables Flexbox */
+    justify-content: center;       /* Centers the content horizontally */
+    align-items: center;           /* Centers the content vertically */
+    height: 85vh;                 /* Full viewport height to center vertically */
+    border: 3px solid black;       /* Adds a 2px solid black border */
+    padding: 20px;                 /* Optional: Adds padding inside the border */
+    box-sizing: border-box;  
+    margin-top: 15px;      /* Ensures padding is included within the border width */
 }
+
+
 .login {
     display: flex;
     flex-direction: column;
