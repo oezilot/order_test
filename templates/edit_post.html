@@ -177,16 +177,17 @@
 <section class="showcase" v-for="sample in collection" :key="sample">
   <section class="nes-container with-title">
     <h2 class="title">Uploads</h2>
-    {% if post['image'] %}
+    <!-- Display the uploaded image -->
+    {% if post['image_path'] %}
       <div>
-        <!-- Display the uploaded image -->
-        <img src="{{ url_for('static', filename=post['image']) }}" alt="Uploaded Image" style="max-width: 200px; max-height: 200px;">
-      </div>
-      <div>
-        <p>You can upload a new image if you want to replace the current one.</p>
+        <p>Previously uploaded image:</p>
+        <div class="image-upload">
+          <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Uploaded Image" style="max-width: 200px; max-height: 200px;">
+        </div>
       </div>
     {% endif %}
-    <label for="image">Lade hier ein gezeichnetes Bild von dir hoch (PNG only!):</label>
+    <br>
+    <label for="image">Mein Bild ändern (PNG only!):</label>
     <input type="file" id="image" name="image" value="{{ post['image'] }}" accept="image/png" >
     <br><br>
 

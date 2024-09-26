@@ -71,7 +71,11 @@
     justify-content: center; /* Optional: Behalte die Buttons linksbündig */
     gap: 10px;                 /* Abstand zwischen den Buttons */
   }
-  
+.image-upload {
+    background-color: white;
+    padding: 15px;
+    border-style: dotted solid dotted solid;
+}
 
 /* LOGIN PAGE */
 
