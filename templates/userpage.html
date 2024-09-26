@@ -32,11 +32,10 @@
         <div class="question">
           <p>Das wissen nur wenige über mich: {{ post['content'] }}</p>
         </div>
-        <div class="question">
+        <div class="image-mom question">
           <!-- Display the currently uploaded image if it exists -->
           {% if post['image_path'] %}
-          <p>Das bin ich:</p>
-          <img src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 100%; max-height: 100%; width: auto; height: auto;">
+          <img class="image-daughter" src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" style="max-width: 100%; max-height: 100%; width: auto; height: auto;">
           {% endif %}
         </div>
         <div class="question">

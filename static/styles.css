@@ -78,8 +78,6 @@
 }
 
 /* LOGIN PAGE */
-
-
 .body2 {
     display: flex;                /* Enables Flexbox */
     justify-content: center;       /* Centers the content horizontally */
@@ -238,6 +236,15 @@ hr {
     width: 95%;  
     box-sizing: border-box;    /* Padding und Border in die Größe einberechnen */
     overflow: hidden;          /* Verhindert, dass Inhalt über den Container hinausläuft */
+}
+.image-mom {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.image-daughter {
+    width: 100%;
 }
 
 /* Linke und rechte Seite des Buches */
