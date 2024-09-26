@@ -17,12 +17,12 @@
   </div>
   <br>
   <!--this container contains the whole page with the buttons and the left and right page!-->
-  <div class="book-open" style="{% if post %} background-color: {{ post['color'] }}; {% else %} background-color: #f9f9f9; {% endif %}">
+  <div class="book-open" style="background-color: brown;">
   <!-- indivueller post mit username und post-content -->
 
     {% if post %} <!--sees if posts exist, post is a variable-->
       <!--left page of the book-->
-      <div class="book-left">
+      <div class="book-left" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
         <div class="question">
           <p>Spitzname: {{ post['Name'] }}</p>
         </div>
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div class="book-right">
+      <div class="book-right" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
         <div class="question">
           <p>Meine Henkersmahlzeit sähe so aus: {{ post['food'] }}</p>
         </div>
