@@ -78,6 +78,8 @@
     padding: 20px;                 /* Optional: Adds padding inside the border */
     box-sizing: border-box;  
     margin-top: 15px;      /* Ensures padding is included within the border width */
+    flex-direction: column; /* Ordnet die Child-Elemente vertikal an */
+    gap: 10px; 
 }
 
 
