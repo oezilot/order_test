@@ -47,15 +47,22 @@
           <span class="username">Logged in as: {{ session['username'] }}</span>
 
         <!--user is not logged in-->
+        <!--request.endpoint == 'functionName'-->
         {% else %}
-          <a href="{{ url_for('landing') }}">Go Back</a>
-          {% if request.endpoint == 'login' %}
+          {% if request.endpoint == 'index' %}
+            <a href="{{ url_for('about') }}">Go Back</a>
+          {% elif request.endpoint == 'show_post' %}
+            <a href="{{ url_for('index') }}">Home</a>
+          {% elif request.endpoint == 'login' %}
             <a href="{{ url_for('register') }}">Register</a>
-          {% elif request.endpoint == 'register'%}
+          {% elif request.endpoint == 'register' %}
             <a href="{{ url_for('login') }}">Login</a>
           {% endif %}
-
         {% endif %}
+      
+        
+        
+  
       </nav>
 
       <hr>
