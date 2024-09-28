@@ -1,15 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>About</h1>
-    <p>This 'friendship-book' is a collection of posts which my friends made to introduce themselves. <br> Each friend is able to produce one post and edit this one whenever they want<br> One post contains: <br><br></p>
-        <ul>
-            <li>selfdrawn portait of themselves</li>
-            <li>basic info and facts such as age, gender and favourite color</li>
-            <li>statements to some interesting questions</li>
-        </ul>
+
+<br>
+<div class="inhaltsverzeichnis">
+  <div class="inhalt-titel">
+    <h1>About</h1>
+    <br>
+  </div>
+  
+
+    <p>Welcome to the Friendship Book. This is a place where my friends can introduce themselves by making a post. It is based on the idea of a traditional friendship book, where people write fun facts about themselves and answer questions.<br><br> Each friend can create one post, and they can update it whenever they want. A post includes:<br><br></p>
+    <ul>
+        <li>A self-drawn portrait</li>
+        <li>Basic details like age, gender, and favorite color</li>
+        <li>Answers to a few interesting questions</li>
+    </ul>
+    <br>
 
     </p>Preview:</p>
     <a href="{{url_for('index')}}"> Inhaltsverzeichnis </a>
+</div>
+
+<div class="about-me">
+    
+</div>
 
 {% endblock %}
