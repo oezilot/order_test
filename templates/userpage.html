@@ -5,146 +5,236 @@
   <br>
   <br>
   <div class="naviagation-buttons margin-h2">
-    <!-- Falls es eine Seite vorher einen Post gibt -->
     {% if prev_username %}
       <a class="nes-btn" href="{{ url_for('show_post', username=prev_username) }}"> <-- Rückwärts</a>
     {% endif %}
     <h2 id="username"><mark>{{ username }}'s Post</mark></h2>
-    <!-- Falls es eine Seite weiter einen Post gibt -->
     {% if next_username %}
       <a class="nes-btn" href="{{ url_for('show_post', username=next_username) }}">Vorwärts --> </a>
     {% endif %}
   </div>
   <br>
-  <!--this container contains the whole page with the buttons and the left and right page!-->
-  <div class="book-open" style="background-color: brown;">
-  <!-- indivueller post mit username und post-content -->
+  <div class="book-open" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+    {% if post %}
+      <div class="book-left" style="background-color: white;">
+        
+        <div class="question">
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Spitzname:
+          </div>
+          <div class="lower-container">
+            {{ post['Name'] }}
+          </div>
+        </div>
 
-    {% if post %} <!--sees if posts exist, post is a variable-->
-      <!--left page of the book-->
-      <div class="book-left" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
         <div class="question">
-          <p>Spitzname: {{ post['Name'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            So lange lebe ich schon:
+          </div>
+          <div class="lower-container">
+            {{ post['birthday'] }}
+          </div>
         </div>
-        <div class="question">
-          <p>So lange lebe ich schon: {{ post['birthday'] }}</p> <!--use the column name and not the variable-->
-        </div>
-        <div class="question">
-          <p>Das wissen nur wenige über mich: {{ post['content'] }}</p>
-        </div>
+
         <div class="image-mom question">
-          <!-- Display the currently uploaded image if it exists -->
           {% if post['image_path'] %}
-          <img class="image-daughter" src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image" >
+          <img class="image-daughter" src="{{ url_for('static', filename=post['image_path'].split('static/')[-1]) }}" alt="Current Image">
           {% endif %}
         </div>
+        
         <div class="question">
-          <p>Mein Persönlichkeitstyp: {{ post['Personnality'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Mein Persönlichkeitstyp:
+          </div>
+          <div class="lower-container">
+            {{ post['Personnality'] }}
+          </div>
         </div>
+        
         <div class="question">
-          <p>So kenne ich Zoé: {{ post['Zoe'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            So kenne ich Zoé:
+          </div>
+          <div class="lower-container">
+            {{ post['Zoe'] }}
+          </div>
         </div>
+        
         <div class="question">
-          <p>Mein Pinterest-Board: <a href="{{ post['pinterest']}}" target="_blank">{{ post['pinterest'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
-          <p>Mein Musikgeschmack: <a href="{{ post['Spotify']}}" target="_blank">{{ post['Spotify'] }}</a></p> <!--blank means that the link is opened in a new tab when clicking it-->
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Mein Pinterest-Board:
+          </div>
+          <div class="lower-container">
+            <a href="{{ post['pinterest'] }}" target="_blank">{{ post['pinterest'] }}</a>
+          </div>
         </div>
+
+        <div class="question">
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Mein Musikgeschmack:
+          </div>
+          <div class="lower-container">
+            <a href="{{ post['Spotify'] }}" target="_blank">{{ post['Spotify'] }}</a>
+          </div>
+        </div>
+        
       </div>
 
-      <div class="book-right" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+      <div class="book-right" style="background-color: white;">
+        
         <div class="question">
-          <p>Meine Henkersmahlzeit sähe so aus: {{ post['food'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Meine Henkersmahlzeit sähe so aus:
+          </div>
+          <div class="lower-container">
+            {{ post['food'] }}
+          </div>
         </div>
+        
         <div class="interesse-container">
           <div class="interesse">
-            <p>Das interessiert mich sehr: {{ post['Interest'] }}</p>
+            <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+              Das interessiert mich sehr: 
+            </div>
+            <div class="lower-container">
+              {{ post['Interest'] }}
+            </div>
           </div>
+
           <div class="desinteresse">
-            <p>Das interessiert mich gar nicht: {{ post['Desinterest'] }}</p>
+            <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+              Das interessiert mich gar nicht: 
+            </div>
+            <div class="lower-container">
+              {{ post['Desinterest'] }}
+            </div>
           </div>
         </div>
+
         <div class="question">
-          <p>Das möchte ich lernen: {{ post['Lernen'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Das möchte ich lernen:
+          </div>
+          <div class="lower-container">
+            {{ post['Lernen'] }}
+          </div>
         </div>
+        
         <div class="question">
-          <p>Dieses Wort sage ich oft: {{ post['Musik'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Dieses Wort sage ich oft:
+          </div>
+          <div class="lower-container">
+            {{ post['Musik'] }}
+          </div>
         </div>
+        
         <div class="question">
-          <p>Die besten Serien, Filme und Geschichten allerzeiten!: {{ post['Serie'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Die besten Serien, Filme und Geschichten allerzeiten:
+          </div>
+          <div class="lower-container">
+            {{ post['Serie'] }}
+          </div>
         </div>
+        
         <div class="question">
-          <p>Mein Childhood Crush oder mein Idol: {{ post['Idol'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Mein Childhood Crush oder mein Idol:
+          </div>
+          <div class="lower-container">
+            {{ post['Idol'] }}
+          </div>
         </div>
+        
         <div class="question">
-          <p>Diesen Fashiontrend mag ich besonders: {{ post['Fashion'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Diesen Fashiontrend mag ich besonders:
+          </div>
+          <div class="lower-container">
+            {{ post['Fashion'] }}
+          </div>
         </div>
+        
         <div class="question">
-          <p>Meine Traumzukunft stelle ich mir so vor: {{ post['Zukunft'] }}</p>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Meine Traumzukunft stelle ich mir so vor:
+          </div>
+          <div class="lower-container">
+            {{ post['Zukunft'] }}
+          </div>
         </div>
+        
         <div class="flag-container">
           <div class="red">
-          <p>Red Flags: {{ post['redFlags'] }}</p> <!--the post refers to the function and the redFlags refers to the name of the column in the database-->
+            <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+              Red Flags:
+            </div>
+            <div class="lower-container">
+             {{ post['redFlags'] }}
+            </div>
+
           </div>
           <div class="green">
-            <p>Green Flags: {{ post['greenFlags'] }}</p>
+            <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+              Green Flags:
+            </div>
+            <div class="lower-container">
+              {{ post['greenFlags'] }}
+            </div>
           </div>
         </div>
-        <div class="question">
-          <p>Meine Love Language: {{ post['Love'] }}</p>
-        </div>
-        <div class="question">
-          <p>Ein perfektes Date stelle ich mir so vor: {{ post['Date'] }}</p>
-        </div>
-        <div class="question">
-          <p>Das ist mein Guilty Pleasure: {{ post['Pleasure'] }}</p>
-        </div>
-        <div class="question">
-          <p>Wenn ich eine Entscheidung rückgängig machen könnte, dann wäre das: {{ post['Regret'] }}</p>
-        <!--end of the right page container-->
-        </div>
-          
-        
 
-        <!-- Neue Sektion für Entweder-Oder -->
         <div class="question">
-         <div class="entweder-oder-results">
-           <!-- Party or Movie Night -->
-           <div class="radio-result">
-             <p>Party vs. Movie Night:
-               {{ post['party_movie'] == 'party' and 'Party' or 'Movie Night' }}
-             </p>
-           </div>
-           <!-- Ski or Snowboard -->
-           <div class="radio-result">
-             <p>Ski vs. Snowboard:
-               {{ post['ski_snowboard'] == 'ski' and 'Ski' or 'Snowboard' }}
-             </p>
-           </div>
-           <!-- WG or Alone -->
-           <div class="radio-result">
-             <p>WG vs. Alleine Leben:
-               {{ post['wg_alleine'] == 'wg' and 'WG' or 'Alleine Leben' }}
-             </p>
-           </div>
-           <!-- Hund or Katze -->
-           <div class="radio-result">
-             <p>Hund vs. Katze:
-               {{ post['hund_katze'] == 'hund' and 'Hund' or 'Katze' }}
-             </p>
-           </div>
-           <!-- Regen or Sonne -->
-           <div class="radio-result">
-             <p>Regen vs. Sonne:
-               {{ post['regen_sonne'] == 'regen' and 'Regen' or 'Sonne' }}
-             </p>
-           </div>
-         </div>
-        </div>
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Meine Love Language:
+          </div>
+          <div class="lower-container">
+            {{ post['Love'] }}
+          </div>
         </div>
 
+        <div class="question">
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Ein perfektes Date stelle ich mir so vor:
+          </div>
+          <div class="lower-container">
+            {{ post['Date'] }}
+          </div>
+        </div>
 
+        <div class="question">
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Das ist mein Guilty Pleasure:
+          </div>
+          <div class="lower-container">
+            {{ post['Pleasure'] }}
+          </div>
+        </div>
 
+        <div class="question">
+          <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+            Wenn ich eine Entscheidung rückgängig machen könnte, dann wäre das:
+          </div>
+          <div class="lower-container">
+            {{ post['Regret'] }}
+          </div>
+        </div>
 
-        
+        <!-- Entweder-Oder Ergebnisse -->
+        <div class="question">
+          <div class="entweder-oder-results">
+            <div class="upper-container" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">Entweder-Oder:</div>
+            <div class="lower-container">
+              <p>Party vs. Movie Night: {{ post['party_movie'] == 'party' and 'Party' or 'Movie Night' }}</p>
+              <p>Ski vs. Snowboard: {{ post['ski_snowboard'] == 'ski' and 'Ski' or 'Snowboard' }}</p>
+              <p>WG vs. Alleine Leben: {{ post['wg_alleine'] == 'wg' and 'WG' or 'Alleine Leben' }}</p>
+              <p>Hund vs. Katze: {{ post['hund_katze'] == 'hund' and 'Hund' or 'Katze' }}</p>
+              <p>Regen vs. Sonne: {{ post['regen_sonne'] == 'regen' and 'Regen' or 'Sonne' }}</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     {% else %}
@@ -152,18 +242,7 @@
         <p>No post available so far!</p>
       </div>
     {% endif %}
-
-  <!--div for the open-book-container-->
   </div>
   <br>
-
 </div>
-
-<!-- forward und backward button -->
-
-
-
-
-
-
 {% endblock %}
