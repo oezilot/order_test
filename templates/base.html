@@ -46,7 +46,7 @@
           <!-- Display the logged-in user's username -->
           <span class="username">Logged in as: {{ session['username'] }}</span>
 
-        <!--user is not logged in-->
+        <!--navigation-bar wenn der user nicht eingeloggt ist-->
         <!--request.endpoint == 'functionName'-->
         {% else %}
           {% if request.endpoint == 'about' %}
