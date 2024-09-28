@@ -423,34 +423,30 @@ def logout():
 # NEW FUNCTION: Display a single post with forward/backward navigation
 @app.route('/buchseiten/<username>', methods=['GET'])
 def show_post(username):
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-    
     conn = get_db_connection()
     
     # Get active user by username
     user = conn.execute('SELECT * FROM users WHERE username = ? AND is_active = 1', (username,)).fetchone()
     
     if not user:
+        conn.close()
         return "User not found or inactive", 404
 
-    # Get the user's post, but only if the post is active
+
+    # Fetch the user's post
     post = conn.execute('SELECT * FROM posts WHERE user_id = ? AND is_active = 1', (user['id'],)).fetchone()
 
-    # Get all active usernames to determine navigation
+    # Get all active usernames for navigation
     users = conn.execute('SELECT username FROM users WHERE is_active = 1 ORDER BY username').fetchall()
     conn.close()
 
-    # Find the current index of the username
+    # Prepare navigation links
     usernames = [u['username'] for u in users]
     current_index = usernames.index(username)
-
-    # Calculate previous and next usernames for navigation
     next_username = usernames[current_index + 1] if current_index < len(usernames) - 1 else None
     prev_username = usernames[current_index - 1] if current_index > 0 else None
 
     return render_template('userpage.html', post=post, username=username, prev_username=prev_username, next_username=next_username)
-
 
 # ensures that the has_post-variable is used globally and for all the templates and views
 @app.context_processor
