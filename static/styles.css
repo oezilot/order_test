@@ -233,9 +233,10 @@ hr {
     border-radius: 25px;
     padding: 20px;               /* Platz innerhalb des Rahmens */
     margin: 20px auto;           /* Abstand des Rechtecks oben und unten */
-    width: 95%;  
     box-sizing: border-box;    /* Padding und Border in die Größe einberechnen */
     overflow: hidden;          /* Verhindert, dass Inhalt über den Container hinausläuft */
+    height: 76vh;
+    width: 95%;
 }
 /* The parent div adjusts to the size of the image */
 .image-mom {
@@ -267,7 +268,7 @@ hr {
     box-sizing: border-box;              /* Verhindert, dass Padding/Borders die Größe beeinflussen */
     max-width: 100%; 
     min-height: 100%;                    /* Sorgt dafür dass links und rechts gleich lang sind */
-    overflow: hidden;                    /* Verhindert, dass Inhalte über die Box hinauslaufen */
+    overflow: auto;                    /* Verhindert, dass Inhalte über die Box hinauslaufen */
 }
 /* Der obere Container */
 .upper-container {
