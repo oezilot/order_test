@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Admin</h1>
+<div class="nes-container inhalt">
+    <!--inhaltsverzeichnis mit allen usern (auch diejenigen die keinen post besitzen!)-->
+    <ul class="nes-list is-circle">
+      <!-- Loop through all users and their posts; user_post stands for a single post of a user and user_posts stands for the lists of all posts -->
+      {% for user_post in user_posts %}
+        <li>
+          <!-- Always show the username and link to the user's post page -->
+          <!--when the user is not logged in and clicks on one of the links it gets redirected to the login page-->
+          <a href="{{ url_for('show_post', username=user_post['username']) }}">
+            {{ user_post['username'] }}'s Post
+          </a>
+
+          
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+{% endblock %}

@@ -46,6 +46,11 @@
           <!-- Display the logged-in user's username -->
           <span class="username">Logged in as: {{ session['username'] }}</span>
 
+          {% if session['username'] == 'zoe' %}
+            <a href="{{ url_for('owner') }}">Owner</a>
+          {% endif %}
+
+
         <!--navigation-bar wenn der user nicht eingeloggt ist-->
         <!--request.endpoint == 'functionName'-->
         {% else %}
@@ -56,8 +61,10 @@
           {% elif request.endpoint == 'show_post' %}
             <a href="{{ url_for('index') }}">Home</a>
           {% elif request.endpoint == 'login' %}
+            <a href="{{ url_for('landing') }}">Go Back</a>
             <a href="{{ url_for('register') }}">Register</a>
           {% elif request.endpoint == 'register' %}
+            <a href="{{ url_for('landing') }}">Go Back</a>
             <a href="{{ url_for('login') }}">Login</a>
           {% endif %}
         {% endif %}
@@ -70,6 +77,8 @@
 
       <hr>
 
+
+      
       {% block content %}{% endblock %}
     </div>
 

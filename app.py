@@ -413,10 +413,23 @@ def edit_post():
 
 
 
+
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('landing'))
+
+
+@app.route('/owner')
+def owner():
+    if 'username' in session and session['username'] == 'zoe':
+        return render_template('owner.html')
+    else:
+        # Return a 403 Forbidden error or redirect to another page
+        return "Unauthorized access", 403  # or use redirect(url_for('login'))
+        
+
 
 
 # einzelne posts zum durchklicken
