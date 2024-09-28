@@ -29,6 +29,12 @@
     flex-direction: column;   /* Stack the heading and button vertically */
     align-items: center;      /* Center the content in each section */
 }
+.includes {
+    border: 3px solid black;
+    border-radius: 15px;
+    background-color: yellow;
+    padding: 10px;
+}
 .nes-btn {
     margin-top: 10px;         /* Add space between the headings and buttons */
 }
