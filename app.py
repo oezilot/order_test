@@ -424,11 +424,15 @@ def logout():
 @app.route('/owner')
 def owner():
     if 'username' in session and session['username'] == 'zoe':
-        return render_template('owner.html')
+        conn = get_db_connection()
+
+        inactive_users = conn.execute('SELECT * FROM users WHERE is_active = 0').fetchall()
+        conn.close()
+        return render_template('owner.html', inactive_users=inactive_users)
     else:
         # Return a 403 Forbidden error or redirect to another page
         return "Unauthorized access", 403  # or use redirect(url_for('login'))
-        
+
 
 
 
