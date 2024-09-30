@@ -26,15 +26,17 @@ def init_db():
     c = conn.cursor()
 
     # Drop the old tables (be careful with this step if you have important data)
-    # c.execute('DROP TABLE IF EXISTS users')
-    # c.execute('DROP TABLE IF EXISTS posts')
+    c.execute('DROP TABLE IF EXISTS users')
+    c.execute('DROP TABLE IF EXISTS posts')
 
     # Create users table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT UNIQUE,
                     password TEXT,
-                    is_active BOOLEAN DEFAULT 1)''')  # Default is_active = 1 (active)
+                    is_active BOOLEAN DEFAULT 1,
+                    is_admin BOOLEAN DEFAULT 0)''')  # Default is_active = 1 (active)
+
 
     # Create posts table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS posts (
@@ -72,6 +74,28 @@ def init_db():
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     is_active BOOLEAN DEFAULT 1,
                     FOREIGN KEY(user_id) REFERENCES users(id))''')
+
+    # admin account
+    # Check if the admin account exists
+    admin_username = 'zoe'
+    admin_password = os.getenv('ZOE_PASSWORD', 'admin')  # Replace 'admin_password' with a secure password or set ZOE_PASSWORD
+
+    c.execute('SELECT * FROM users WHERE username = ?', (admin_username,))
+    admin = c.fetchone()
+
+    if not admin:
+        # Hash the admin password
+        hashed_password = generate_password_hash(admin_password)
+
+        # Insert the admin account with is_admin = 1
+        c.execute('''
+            INSERT INTO users (username, password, is_active, is_admin)
+            VALUES (?, ?, ?, ?)
+        ''', (admin_username, hashed_password, 1, 1))
+
+        print(f"Admin account '{admin_username}' created successfully.")
+    else:
+        print(f"Admin account '{admin_username}' already exists.")
 
     conn.commit()
     conn.close()
