@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Admin</h1>
+
+<h3>Active Users (is_active = 1)</h3>
+{% if active_users %}
+<div>
+    <table style="border:3px solid black">
+        <tr>
+          <th>Username</th>
+          <th>Action</th>
+          <th>Deletion-Button<th>
+        </tr>
+        {% for user in active_users %}
+          <tr>
+            <td>{{ user['username'] }}</td>
+            <td>kei ahnig</td>
+            <td>...</td>
+          </tr>
+        {% endfor %}
+          <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+          </tr>
+    </table>
+</div>
+{% else %}
+  <p>There are no active users at this time.</p>
+{% endif %}
+<br>
+
+
+<h3>Inactive Users (is_active = 0)</h3>
+{% if inactive_users %}
+<div>
+    <table style="border:3px solid black">
+        <tr>
+          <th>Username</th>
+          <th>Action</th>
+          <th>Deletion-Button<th>
+        </tr>
+        {% for user in inactive_users %}
+          <tr>
+            <td>{{ user['username'] }}</td>
+            <td>kei ahnig</td>
+            <td>...</td>
+          </tr>
+        {% endfor %}
+        <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+</div>
+{% else %}
+  <p>There are no inactive users at this time.</p>
+{% endif %}
+<br>
+
+<h3>Waiting Users (is_active = -1)</h3>
+<!--
+{% if inactive_users %}
+<div>
+    <table style="border:3px solid black">
+        <tr>
+          <th>Username</th>
+          <th>Action</th>
+          <th>Deletion-Button<th>
+        </tr>
+        {% for user in inactive_users %}
+          <tr>
+            <td>{{ user['username'] }}</td>
+            <td>kei ahnig</td>
+            <td>...</td>
+          </tr>
+        {% endfor %}
+        <tr>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+</div>
+{% else %}
+  <p>There are no inactive users at this time.</p>
+{% endif %}
+-->
+
+
+
+{% endblock %}

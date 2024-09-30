@@ -91,12 +91,15 @@ def admin():
     if 'user_id' in session:
         conn = get_db_connection()
         user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+        active_users = conn.execute('SELECT * FROM users WHERE is_active = 1').fetchall()
+        inactive_users = conn.execute('SELECT * FROM users WHERE is_active = 0').fetchall()
+        #waiting_users = conn.execute('SELECT * FROM users WHERE is_active = -1').fetchall()
         conn.close()
 
         # If the user is an admin, render the admin page
         # is_admin is a boolean therefore when it is true this case gets runned (if user['is_admin] is the same as if the user has a true in the column admin)
         if user and user['is_admin']:
-            return render_template('admin.html')
+            return render_template('admin.html', inactive_users=inactive_users, active_users=active_users)
         else:
             # If the user is not an admin, show an unauthorized message
             return "Unauthorized access", 403
@@ -443,19 +446,6 @@ def edit_post():
 def logout():
     session.clear()
     return redirect(url_for('landing'))
-
-
-@app.route('/owner')
-def owner():
-    if 'username' in session and session['username'] == 'zoe':
-        conn = get_db_connection()
-
-        inactive_users = conn.execute('SELECT * FROM users WHERE is_active = 0').fetchall()
-        conn.close()
-        return render_template('owner.html', inactive_users=inactive_users)
-    else:
-        # Return a 403 Forbidden error or redirect to another page
-        return "Unauthorized access", 403  # or use redirect(url_for('login'))
 
 
 
