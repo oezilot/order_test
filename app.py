@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session, url_for
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
+
 # for the png submission
 import os
 from werkzeug.utils import secure_filename
@@ -9,6 +10,7 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'  # For session management
+
 
 
 # Define the folder where uploaded images will be stored
@@ -26,8 +28,8 @@ def init_db():
     c = conn.cursor()
 
     # Drop the old tables (be careful with this step if you have important data)
-    c.execute('DROP TABLE IF EXISTS users')
-    c.execute('DROP TABLE IF EXISTS posts')
+    #c.execute('DROP TABLE IF EXISTS users')
+    #c.execute('DROP TABLE IF EXISTS posts')
 
     # Create users table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS users (
@@ -75,27 +77,6 @@ def init_db():
                     is_active BOOLEAN DEFAULT 1,
                     FOREIGN KEY(user_id) REFERENCES users(id))''')
 
-    # admin account
-    # Check if the admin account exists
-    admin_username = 'zoe'
-    admin_password = os.getenv('ZOE_PASSWORD', 'admin')  # Replace 'admin_password' with a secure password or set ZOE_PASSWORD
-
-    c.execute('SELECT * FROM users WHERE username = ?', (admin_username,))
-    admin = c.fetchone()
-
-    if not admin:
-        # Hash the admin password
-        hashed_password = generate_password_hash(admin_password)
-
-        # Insert the admin account with is_admin = 1
-        c.execute('''
-            INSERT INTO users (username, password, is_active, is_admin)
-            VALUES (?, ?, ?, ?)
-        ''', (admin_username, hashed_password, 1, 1))
-
-        print(f"Admin account '{admin_username}' created successfully.")
-    else:
-        print(f"Admin account '{admin_username}' already exists.")
 
     conn.commit()
     conn.close()
