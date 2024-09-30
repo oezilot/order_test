@@ -183,6 +183,8 @@ def login():
             if check_password_hash(user['password'], password):
                 session['user_id'] = user['id']
                 session['username'] = user['username']
+                session['is_admin'] = bool(user['is_admin'])  # Convert is_admin to a boolean
+                # is_admin, id and username are the names of the database columns from users
                 return redirect(url_for('index'))
             else:
                 error_message = "Invalid credentials."
