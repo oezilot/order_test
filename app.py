@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
-app.secret_key = 'secret_key'  # For session management
+app.secret_key = 'secret_key' # For session management (damit man sich einloggen kann braucht es einen secret key!)
 
 
 
@@ -83,6 +83,25 @@ def init_db():
 
 # Call the function to initialize the database
 init_db()
+
+#admin-account: only the admin can access this page (admin is the user with id=1)
+@app.route('/admin')
+def admin():
+    # Check if the user is logged in and is an admin
+    if 'user_id' in session:
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+        conn.close()
+
+        # If the user is an admin, render the admin page
+        # is_admin is a boolean therefore when it is true this case gets runned (if user['is_admin] is the same as if the user has a true in the column admin)
+        if user and user['is_admin']:
+            return render_template('admin.html')
+        else:
+            # If the user is not an admin, show an unauthorized message
+            return "Unauthorized access", 403
+    else:
+        return redirect(url_for('login'))
 
 
 # Helper function to get DB connection

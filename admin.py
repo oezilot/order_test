@@ -1,8 +1,14 @@
-# create_admin.py
-
+# this file will only get executed when creating a new admin account!
 import sqlite3
 from werkzeug.security import generate_password_hash
 import getpass
+
+import secrets
+
+
+# Generate a strong 32-character secret key
+secret_key = secrets.token_urlsafe(32)
+print(secret_key)
 
 def create_admin_user(db_path='database.db'):
     # Prompt for admin credentials
