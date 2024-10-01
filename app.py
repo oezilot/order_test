@@ -85,21 +85,38 @@ def init_db():
 init_db()
 
 #admin-account: only the admin can access this page (admin is the user with id=1)
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 def admin():
     # Check if the user is logged in and is an admin
     if 'user_id' in session:
         conn = get_db_connection()
         user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+        
         active_users = conn.execute('SELECT * FROM users WHERE is_active = 1').fetchall()
         inactive_users = conn.execute('SELECT * FROM users WHERE is_active = 0').fetchall()
-        #waiting_users = conn.execute('SELECT * FROM users WHERE is_active = -1').fetchall()
+        waiting_users = conn.execute('SELECT * FROM users WHERE is_active = -1').fetchall()
+
+          # Handle the form submission for approving or denying users
+        if request.method == 'POST':
+            user_id = request.form['user_id']  # Get the user_id from the form
+            action = request.form['action']  # Get the action (approve/deny) from the button clicked
+
+            if action == 'approve':
+                # Approve the user (set is_active to 1)
+                conn.execute('UPDATE users SET is_active = 1 WHERE id = ?', (user_id,))
+            elif action == 'deny':
+                # Deny the user (set is_active to 0)
+                conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (user_id,))
+
+            conn.commit()  # Save the changes to the database
+            return redirect(url_for('admin'))  # Refresh the admin page after changes
+        
         conn.close()
 
         # If the user is an admin, render the admin page
         # is_admin is a boolean therefore when it is true this case gets runned (if user['is_admin] is the same as if the user has a true in the column admin)
         if user and user['is_admin']:
-            return render_template('admin.html', inactive_users=inactive_users, active_users=active_users)
+            return render_template('admin.html', inactive_users=inactive_users, active_users=active_users, waiting_users=waiting_users)
         else:
             # If the user is not an admin, show an unauthorized message
             return "Unauthorized access", 403
