@@ -175,7 +175,7 @@ def login():
         
         conn = get_db_connection()
         # Check if the user exists and is active
-        user = conn.execute('SELECT * FROM users WHERE username = ? AND is_active = 1', (username,)).fetchone()
+        user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
         conn.close()
 
         if user:
@@ -184,15 +184,24 @@ def login():
                 session['user_id'] = user['id']
                 session['username'] = user['username']
                 session['is_admin'] = bool(user['is_admin'])  # Convert is_admin to a boolean
-                # is_admin, id and username are the names of the database columns from users
-                return redirect(url_for('index'))
-            else:
-                error_message = "Invalid credentials."
+                
+                if user['is_active'] == -1:
+                    return redirect(url_for('waiting'))
+                elif user['is_active'] == 1:
+                    # is_admin, id and username are the names of the database columns from users
+                    return redirect(url_for('index'))
+                else:
+                    error_message = "Invalid credentials."
         else:
             # If the user is inactive or doesn't exist
             error_message = "Account is inactive or doesn't exist."
 
     return render_template('login.html', error_message=error_message)
+
+
+@app.route('/waiting')
+def waiting():
+    return render_template('waiting.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])

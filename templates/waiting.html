@@ -1,0 +1,53 @@
+<!-- Navigation bar with all links: Home, Create/Edit, Logout, and displays the logged-in username -->
+<!-- this is the skeleton of each template! -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--link for the css-framework-->
+    <!-- NES.css CDN -->
+    <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
+    <!-- Optional: Include a font for better text appearance -->
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!--ensures that the webpage is rendered correctly on different devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flask App</title>
+  </head>
+  <body class="{% if request.endpoint in ['edit_post', 'post'] %}scrollable-body{% else %}non-scrollable-body{% endif %}">
+    <div class="navbar">
+      <hr>
+
+      <nav class="nav-base">    
+        <!--user is logged in-->
+        <a href="{{ url_for('landing') }}">Landing Page</a>
+        
+      </nav>
+
+      <hr>
+
+
+        <h1>
+            Waiting List...
+        </h1>
+        <p>
+            Bitte warte bis ich dich akzeptiere! Du wirst im Nu Zugriff auf die Page bekommen um deinen eigenen Post zu kreiieren
+        </p>
+        
+
+
+      
+    </div>
+
+  
+
+  </body>
+</html>
+
+       
+
+
+
+
