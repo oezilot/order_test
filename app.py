@@ -36,7 +36,7 @@ def init_db():
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     username TEXT UNIQUE,
                     password TEXT,
-                    is_active BOOLEAN DEFAULT 1,
+                    is_active INTEGER DEFAULT -1,
                     is_admin BOOLEAN DEFAULT 0)''')  # Default is_active = 1 (active)
 
 
