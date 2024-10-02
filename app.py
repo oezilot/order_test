@@ -107,12 +107,7 @@ def admin():
                 conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (user_id,))
             if action == 'delete':
                 conn.execute('DELETE FROM users WHERE id = ?', (user_id,))
-            if action == 'approve':
-                # Approve the user (set is_active to 1)
-                conn.execute('UPDATE users SET is_active = 1 WHERE id = ?', (user_id,))
-            elif action == 'deny':
-                # Deny the user (set is_active to 0)
-                conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (user_id,))
+        
 
             conn.commit()  # Save the changes to the database
             return redirect(url_for('admin'))  # Refresh the admin page after changes

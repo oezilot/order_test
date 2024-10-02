@@ -76,12 +76,12 @@
                 <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
                 <input type="hidden" name="user_id" value="{{ user['id'] }}">
                 <!--with buttons the value often stands for the function behind the button and the name is for grouping multiple buttons!-->
-                <button name="action" value="approve" type="submit">Approve</button>
+                <button name="action" value="activate" type="submit">Approve</button>
             </form>
             <form action="{{ url_for('admin') }}" method="POST">
                 <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
                 <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                <button name="action" value="deny" type="submit">Deny</button>
+                <button name="action" value="delete" type="submit">Deny</button>
             </form>
         </td>
       </tr>
