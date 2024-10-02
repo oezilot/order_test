@@ -5,58 +5,60 @@
 <h1>Admin</h1>
 
 <h3>Active Users (is_active = 1)</h3>
-{% if active_users %}
-<div>
-    <table style="border:3px solid black">
-        <tr>
-          <th>Username</th>
-          <th>Action</th>
-          <th>Deletion-Button<th>
-        </tr>
-        {% for user in active_users %}
-          <tr>
-            <td>{{ user['username'] }}</td>
-            <td>kei ahnig</td>
-            <td>...</td>
-          </tr>
-        {% endfor %}
-          <tr>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-          </tr>
-    </table>
-</div>
-{% else %}
-  <p>There are no active users at this time.</p>
-{% endif %}
+<table style="border:3px solid black" class="waiting-table">
+    <th>Username</th>
+    <th>Id</th>
+    <th>Deactivate/Delete-Button</th>
+    {% for user in active_users %}
+      <tr>
+        <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+        <td>{{ user['id'] }}</td> <!-- Display the id -->
+        <td>
+            <!--the form will submit this t the /admin-route!-->
+            <form action="{{ url_for('admin') }}" method="POST">
+                <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                <!--with buttons the value often stands for the function behind the button and the name is for grouping multiple buttons!-->
+                <button name="action" value="deactivate" type="submit">Deactivate</button>
+            </form>
+            <form action="{{ url_for('admin') }}" method="POST">
+                <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                <button name="action" value="delete" type="submit">Delete</button>
+            </form>
+        </td>
+      </tr>
+    {% endfor %}
+</table>
 <br>
 
 
 <h3>Inactive Users (is_active = 0)</h3>
-{% if inactive_users %}
-<div>
-    <table style="border:3px solid black">
-        <tr>
-          <th>Username</th>
-          <th>Action</th>
-          <th>Deletion-Button<th>
-        </tr>
-        {% for user in inactive_users %}
-          <tr>
-            <td>{{ user['username'] }}</td>
-            <td>kei ahnig</td>
-            <td>...</td>
-          </tr>
-        {% endfor %}
-        <tr>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-</div>
-{% else %}
-  <p>There are no inactive users at this time.</p>
-{% endif %}
+<table style="border:3px solid black" class="waiting-table">
+    <th>Username</th>
+    <th>Id</th>
+    <th>Approve</th>
+    {% for user in waiting_users %}
+      <tr>
+        <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+        <td>{{ user['id'] }}</td> <!-- Display the id -->
+        <td>
+            <!--the form will submit this t the /admin-route!-->
+            <form action="{{ url_for('admin') }}" method="POST">
+                <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                <!--with buttons the value often stands for the function behind the button and the name is for grouping multiple buttons!-->
+                <button name="action" value="approve" type="submit">Approve</button>
+            </form>
+            <form action="{{ url_for('admin') }}" method="POST">
+                <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                <button name="action" value="deny" type="submit">Deny</button>
+            </form>
+        </td>
+      </tr>
+    {% endfor %}
+</table>
 <br>
 
 <h3>Waiting Users (is_active = -1)</h3>

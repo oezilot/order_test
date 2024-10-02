@@ -94,13 +94,17 @@ def admin():
         
         active_users = conn.execute('SELECT * FROM users WHERE is_active = 1').fetchall()
         inactive_users = conn.execute('SELECT * FROM users WHERE is_active = 0').fetchall()
-        waiting_users = conn.execute('SELECT * FROM users WHERE is_active = -1').fetchall()
+        waiting_users = conn.execute('SELECT * FROM users WHERE is_active = -1').fetchall() # only use fetchone or fetchall when returning something!
 
           # Handle the form submission for approving or denying users
         if request.method == 'POST':
             user_id = request.form['user_id']  # Get the user_id from the form
             action = request.form['action']  # Get the action (approve/deny) from the button clicked
 
+            if action == 'deactivate':
+                conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (user_id,))
+            if action == 'delete':
+                conn.execute('DELETE FROM users WHERE id = ?', (user_id,))
             if action == 'approve':
                 # Approve the user (set is_active to 1)
                 conn.execute('UPDATE users SET is_active = 1 WHERE id = ?', (user_id,))
