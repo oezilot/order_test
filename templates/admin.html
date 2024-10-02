@@ -6,6 +6,29 @@
 
 <h1>Admin</h1>
 
+<h3>Admin-Account</h3>
+<table style="border:3px solid black" class="waiting-table">
+    <th>Username</th>
+    <th>Id</th>
+    <th>Buttons</th>
+    {% for user in admin_accounts %}
+      <tr>
+        <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+        <td>{{ user['id'] }}</td> <!-- Display the id -->
+        <td>
+            <!--the form will submit this t the /admin-route!-->
+            <form action="{{ url_for('admin') }}" method="POST">
+                <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                <button name="action" value="delete" type="submit">Delete</button>
+            </form>
+        </td>
+      </tr>
+    {% endfor %}
+</table>
+
+<br>
+
 <h3>Active Users (is_active = 1)</h3>
 <table style="border:3px solid black" class="waiting-table">
     <th>Username</th>
