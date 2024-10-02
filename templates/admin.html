@@ -23,11 +23,11 @@
                 <form action="{{ url_for('admin') }}" method="POST">
                     <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
                     <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                    <button name="action" value="delete" type="submit">Delete</button>
+                    <button class="nes-btn" name="action" value="delete" type="submit">Delete</button>
                 </form>
                 <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
                     <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                    <button name="action" value="depromote" type="submit">Remove as Admin!</button>
+                    <button class="nes-btn" name="action" value="depromote" type="submit">Remove as Admin!</button>
                 </form>
             </td>
           </tr>
@@ -55,19 +55,19 @@
                 <!-- Form for Deactivate -->
                 <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
                     <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                    <button name="action" value="deactivate" type="submit">Deactivate</button>
+                    <button class="nes-btn" name="action" value="deactivate" type="submit">Deactivate</button>
                 </form>
     
                 <!-- Form for Delete -->
                 <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
                     <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                    <button name="action" value="delete" type="submit">Delete</button>
+                    <button class="nes-btn" name="action" value="delete" type="submit">Delete</button>
                 </form>
     
                 <!-- Form for Promote to Admin -->
                 <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
                     <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                    <button name="action" value="promote" type="submit">Promote to Admin</button>
+                    <button class="nes-btn" name="action" value="promote" type="submit">Promote to Admin</button>
                 </form>
             </td>
           </tr>
@@ -97,12 +97,12 @@
                 <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
                 <input type="hidden" name="user_id" value="{{ user['id'] }}">
                 <!--with buttons the value often stands for the function behind the button and the name is for grouping multiple buttons!-->
-                <button name="action" value="activate" type="submit">Activate</button>
+                <button class="nes-btn" name="action" value="activate" type="submit">Activate</button>
             </form>
             <form action="{{ url_for('admin') }}" method="POST">
                 <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
                 <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                <button name="action" value="delete" type="submit">Delete</button>
+                <button class="nes-btn" name="action" value="delete" type="submit">Delete</button>
             </form>
         </td>
       </tr>
@@ -131,12 +131,12 @@
                     <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
                     <input type="hidden" name="user_id" value="{{ user['id'] }}">
                     <!--with buttons the value often stands for the function behind the button and the name is for grouping multiple buttons!-->
-                    <button name="action" value="activate" type="submit">Approve</button>
+                    <button class="nes-btn" name="action" value="activate" type="submit">Approve</button>
                 </form>
                 <form action="{{ url_for('admin') }}" method="POST">
                     <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
                     <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                    <button name="action" value="delete" type="submit">Deny</button>
+                    <button class="nes-btn" name="action" value="delete" type="submit">Deny</button>
                 </form>
             </td>
           </tr>
