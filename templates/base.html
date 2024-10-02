@@ -52,9 +52,6 @@
           <!-- Display the logged-in user's username -->
           <span class="username">Logged in as: {{ session['username'] }}</span>
 
-          {% if session['username'] == 'zoe' %}
-            <a href="{{ url_for('owner') }}">Owner</a>
-          {% endif %}
 
 
         <!--navigation-bar wenn der user nicht eingeloggt ist-->

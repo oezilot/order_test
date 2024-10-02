@@ -196,12 +196,12 @@ def login():
     error_message = None  # Initialize the error message
 
     if request.method == 'POST':
-        username = request.form['username']
+        username_or_email = request.form['username_or_email']  # Can be either username or email
         password = request.form['password']
         
         conn = get_db_connection()
         # Check if the user exists and is active
-        user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        user = conn.execute('SELECT * FROM users WHERE username = ? OR email = ?', (username_or_email, username_or_email)).fetchone()
         conn.close()
 
         if user:
