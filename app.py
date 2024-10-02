@@ -34,6 +34,7 @@ def init_db():
     # Create users table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    email TEXT UNIQUE,
                     username TEXT UNIQUE,
                     password TEXT,
                     is_active INTEGER DEFAULT -1,
@@ -223,6 +224,31 @@ def login():
 
     return render_template('login.html', error_message=error_message)
 
+'''
+@app.route('/reset', methods=['GET', 'POST'])
+def reset():
+    error_message = None
+    if request.method == 'POST':
+        email = request.form['email']
+        
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+        
+        if user:
+            # Generate a password reset token (using itsdangerous or any other method)
+            token = s.dumps(user['email'], salt='password-reset-salt')
+            
+            # Send the reset link to the user's email (using your email sending logic)
+            reset_url = url_for('reset_password', token=token, _external=True)
+            send_reset_email(user['email'], reset_url)
+            flash('A password reset link has been sent to your email.')
+        else:
+            error_message = "Email address not found."
+
+        conn.close()
+
+    return render_template('forgot_password.html', error_message=error_message)
+'''
 
 @app.route('/waiting')
 def waiting():
@@ -234,6 +260,7 @@ def register():
     error_message = None  # Initialize a variable to store the error message
 
     if request.method == 'POST':
+        email = request.form['email']
         username = request.form['username']
         password = request.form['password']
 
@@ -249,7 +276,7 @@ def register():
             # If the username is unique, proceed with registration
             password_hash = generate_password_hash(password)
 
-            conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', (username, password_hash))
+            conn.execute('INSERT INTO users (email, username, password) VALUES (?, ?, ?)', (email, username, password_hash))
             conn.commit()
             conn.close()
 
