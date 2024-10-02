@@ -101,6 +101,8 @@ def admin():
             user_id = request.form['user_id']  # Get the user_id from the form
             action = request.form['action']  # Get the action (approve/deny) from the button clicked
 
+            if action == 'activate':
+                conn.execute('UPDATE users SET is_active = 1 WHERE id =?', (user_id,))
             if action == 'deactivate':
                 conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (user_id,))
             if action == 'delete':
