@@ -316,3 +316,9 @@ hr {
   table, th, td {
     border:1px solid black;
   }
+
+
+
+.admin-tables {
+    width: 100%;
+}
