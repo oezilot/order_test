@@ -108,6 +108,12 @@ def admin():
                 conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (user_id,))
             if action == 'delete':
                 conn.execute('DELETE FROM users WHERE id = ?', (user_id,))
+            if action == 'promote':
+                conn.execute('UPDATE users SET is_admin = 1 WHERE id = ?', (user_id,))
+            if action == 'depromote':
+                conn.execute('UPDATE users SET is_admin = 0 WHERE id = ?', (user_id,))
+
+
         
 
             conn.commit()  # Save the changes to the database
