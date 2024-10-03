@@ -1,10 +1,8 @@
-# this file will only get executed when creating a new admin account!
+# This file will only get executed when creating a new admin account!
 import sqlite3
 from werkzeug.security import generate_password_hash
 import getpass
-
 import secrets
-
 
 # Generate a strong 32-character secret key
 secret_key = secrets.token_urlsafe(32)
@@ -13,11 +11,19 @@ print(secret_key)
 def create_admin_user(db_path='database.db'):
     # Prompt for admin credentials
     print("=== Admin Account Creation ===")
+    
+    # Prompt for username
     username = input("Enter admin username: ").strip()
     if not username:
         print("Username cannot be empty.")
         return
-
+    
+    # Prompt for email
+    email = input("Enter admin email: ").strip()
+    if not email:
+        print("Email cannot be empty.")
+        return
+    
     # Use getpass to securely input the password without echoing
     password = getpass.getpass("Enter admin password: ")
     confirm_password = getpass.getpass("Confirm admin password: ")
@@ -38,19 +44,19 @@ def create_admin_user(db_path='database.db'):
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
 
-        # Check if the username already exists
-        cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
+        # Check if the username or email already exists
+        cursor.execute("SELECT * FROM users WHERE username = ? OR email = ?", (username, email))
         existing_user = cursor.fetchone()
 
         if existing_user:
-            print(f"Error: Username '{username}' already exists.")
+            print(f"Error: Username or email already exists.")
             return
 
-        # Insert the new admin user
+        # Insert the new admin user with email
         cursor.execute("""
-            INSERT INTO users (username, password, is_active, is_admin)
-            VALUES (?, ?, ?, ?)
-        """, (username, hashed_password, 1, 1))
+            INSERT INTO users (username, email, password, is_active, is_admin)
+            VALUES (?, ?, ?, ?, ?)
+        """, (username, email, hashed_password, 1, 1))
 
         conn.commit()
         print(f"Success: Admin user '{username}' has been created.")
