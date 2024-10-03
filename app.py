@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
@@ -8,13 +8,27 @@ import os
 from werkzeug.utils import secure_filename
 
 import secrets
-from flask_mail import Message
+from flask_mail import Mail, Message
 
 
 
 app = Flask(__name__)
 app.secret_key = 'secret_key' # For session management (damit man sich einloggen kann braucht es einen secret key!)
 
+# Configuration for Flask-Mail (using Gmail as an example)
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'zoe.flumini@gmail.com'  # Your email
+app.config['MAIL_PASSWORD'] = 'wvkibvzegmhjxbhj'  # Your email password
+app.config['MAIL_MAX_EMAILS'] = None
+app.config['MAIL_ASCII_ATTACHMENTS'] = False
+app.config['MAIL_DEFAULT_SENDER'] = 'zoe.flumini@gmail.com'
+
+
+# initialize mail from the imports
+mail = Mail(app)
 
 
 # Define the folder where uploaded images will be stored
