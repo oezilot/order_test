@@ -7,6 +7,10 @@ import sqlite3
 import os
 from werkzeug.utils import secure_filename
 
+import secrets
+from flask_mail import Message
+
+
 
 app = Flask(__name__)
 app.secret_key = 'secret_key' # For session management (damit man sich einloggen kann braucht es einen secret key!)
@@ -35,8 +39,10 @@ def init_db():
     c.execute('''CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     email TEXT UNIQUE,
+                    reset_token TEXT,
                     username TEXT UNIQUE,
                     password TEXT,
+                    time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     is_active INTEGER DEFAULT -1,
                     is_admin BOOLEAN DEFAULT 0)''')  # Default is_active = 1 (active)
 
@@ -579,6 +585,60 @@ def delete_account():
 
     # Step 4: Redirect to the landing page after deletion
     return redirect(url_for('landing'))
+
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    error_message = None
+    if request.method == 'POST':
+        email = request.form['email']
+        conn = get_db_connection()
+        # fetch user by their email
+        user = conn.execute('SELECT * FROM users WHERE email = ?', (email,)).fetchone()
+        conn.close()
+
+        if user:
+            reset_token = secrets.token_urlsafe(16)
+            conn = get_db_connection()
+            conn.execute('UPDATE users SET reset_token = ? WHERE email = ?', (reset_token, email))
+            conn.commit()
+            conn.close()
+
+            # Send reset email
+            reset_link = url_for('reset_form', token=reset_token, _external=True)
+            msg = Message('Reset your password', recipients=[email])
+            msg.body = f'Click the link to reset your password: {reset_link}'
+            mail.send(msg)
+
+            flash('A password reset link has been sent to your email.')
+            return redirect(url_for('login'))
+        # if the email provided does not exist there comes this error message
+        error_message = "Email not found!"
+    return render_template('reset.html', error_message=error_message)
+
+
+# display the form to enter the email to reset the password for
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_form(token):
+    # handle the form submission
+    if request.method == 'POST':
+        new_password = request.form['new_password']
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM users WHERE reset_token = ?', (token,)).fetchone()
+
+        if user:
+            hashed_password = generate_password_hash(new_password)
+            conn.execute('UPDATE users SET password = ?, reset_token = NULL WHERE reset_token = ?', (hashed_password, token))
+            conn.commit()
+            conn.close()
+
+            flash('Password successfully reset. Please log in.')
+            return redirect(url_for('login'))
+        else:
+            flash('Invalid or expired token.')
+            return redirect(url_for('forgot_password'))
+
+    return render_template('reset2.html', token=token)
+
 
 
 @app.route('/reactivate_account', methods=['POST', 'GET'])

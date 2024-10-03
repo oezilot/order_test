@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Display the error message if it's set -->
+{% if error_message %}
+  <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
+<h2>New Pawword Creation (Reset)</h2>
+<form method="POST" action="{{ url_for('reset_password_confirm', token=token) }}">
+    <label for="new_password">Enter your new password:</label>
+    <input type="password" name="new_password" required>
+    <input type="submit" value="Reset Password">
+</form>
+
+
+{% endblock %}
+
+
+
+
+
