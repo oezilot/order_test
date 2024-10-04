@@ -25,7 +25,16 @@
       <nav class="nav-base">    
         <!--user is logged in-->
         <a href="{{ url_for('landing') }}">Landing Page</a>
+
+        <a href="{{ url_for('logout') }}">Logout</a>
+
+        <form action="{{ url_for('delete_account') }}" method="POST" style="display:inline;">
+          <button type="submit" class="float-right" onclick="return confirm('Are you sure you want to delete your account?');" style="background:none;border:none;color:red;cursor:pointer;">Delete Account</button>
+        </form>
         
+        <span class="username">Logged in as: {{ session['username'] }}</span>
+
+
       </nav>
 
       <hr>
