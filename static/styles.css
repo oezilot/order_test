@@ -143,9 +143,10 @@
     margin: 0; 
 }
 .inhalt {
-    min-height: 65vh;
+    height: 65vh;
     margin: 23px 0 23px 0;
-
+    overflow:hidden;
+    overflow-y: auto;
 }
 
 /* BASE.html */

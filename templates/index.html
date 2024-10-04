@@ -9,7 +9,8 @@
   </div>
 
   <!-- User Posts Section -->
-  <div class="nes-container inhalt">
+  <div class="nes-container inhalt ">
+    <div class="scrollable-content">
     <h3>Admin Posts</h3>
     <ul class="nes-list is-circle">
       {% for admin_post in admin_posts %}
@@ -27,6 +28,9 @@
       {% endfor %}
     </ul>
     <br>
+
+
+
     <h3>User Posts</h3>
     <ul class="nes-list is-circle">
       {% for user_post in user_posts %}
@@ -43,6 +47,7 @@
         </li>
       {% endfor %}
     </ul>
+    </div>
   </div>
 
   {% if user_posts %}
