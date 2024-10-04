@@ -18,19 +18,47 @@
       <div>
         <label for="username_or_email">Username or Email:</label><br>
         <input class="nes-input" type="text" id="username_or_email" name="username_or_email" required><br><br>
+
         <label for="password">Password:</label><br>
-        <input class="nes-input" type="password" id="password" name="password" required><br><br>
+        <div style="position: relative;">
+          <input class="nes-input" type="password" id="password" name="password" required>
+          <!-- NES.css icon for toggling password visibility -->
+          <span id="togglePassword" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); padding: 0 0 2px 2px;">
+            <i class="nes-icon is-small star" id="eyeIcon"></i>
+          </span>
+        </div>
+        <br>
       </div>
       <div class="login-button">
         <input class="nes-btn is-primary" type="submit" value="Login">
       </div>
     </form>
     <div class="deleted">
-      <!--link to reactivate a previousily deleted account-->
-        <p>Forgot your Password? <br><a href="{{ url_for('reset_password') }}">Reset your Password here!</a></p>
+      <p>Forgot your Password? <br><a href="{{ url_for('reset_password') }}">Reset your Password here!</a></p>
     </div>
-
   </div>
 </div>
+
+<!-- Add JavaScript for toggling password visibility -->
+<script>
+  const togglePassword = document.getElementById('togglePassword');
+  const passwordField = document.getElementById('password');
+  const eyeIcon = document.getElementById('eyeIcon');
+
+  togglePassword.addEventListener('click', function () {
+    // Toggle the type attribute between 'password' and 'text'
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+
+    // Change the NES.css icon (if you want to switch between two different NES.css icons)
+    if (eyeIcon.classList.contains('star')) {
+        eyeIcon.classList.remove('star');
+        eyeIcon.classList.add('close');  // NES.css also provides a "close" icon
+    } else {
+        eyeIcon.classList.remove('close');
+        eyeIcon.classList.add('star');
+    }
+  });
+</script>
 
 {% endblock %}
