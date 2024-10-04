@@ -48,15 +48,12 @@
 
           <a href="{{ url_for('logout') }}">Logout</a>
 
-          {% if not session.get('is_admin', False) %}
-          <form action="{{ url_for('delete_account') }}" method="POST" style="display:inline;">
-            <button type="submit" class="float-right" onclick="return confirm('Are you sure you want to delete your account?');" style="background:none;border:none;color:red;cursor:pointer;">Delete Account</button>
-          </form>
-          {% else %}
-            {% if request.endpoint not in ['admin'] %}
+          {% if not session.get('is_admin', False) and request.endpoint != 'delete_account' %}
+            <a href="{{ url_for('delete_account') }}" class="float-right" style="background:none;border:none;color:red;cursor:pointer;">Delete Account</a>
+          {% elif session.get('is_admin', False) and request.endpoint != 'admin' %}
             <a href="{{ url_for('admin') }}">Admin</a>
-            {% endif %}
           {% endif %}
+
 
 
           
@@ -105,7 +102,7 @@
 
       <hr>
 
-
+    
       
       {% block content %}{% endblock %}
     </div>

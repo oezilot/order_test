@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="delete">
+        <br>
+        <h1 class="title">Delete Account</h1>
+        <br>
+        <p>Are you sure you want to delete your account?</p>
+        <p>You have two options:</p>
+        <ul>
+            <li>Deactivate your account: You can come back and reactivate it anytime.</li>
+            <li>Delete your account permanently: All your data will be removed.</li>
+        </ul>
+        <form method="POST">
+            <button type="submit" class="nes-btn is-primary" name="action1" value="deactivate">Deactivate Account</button>
+            <button type="submit" class="nes-btn is-error" name="action1" value="delete">Delete Permanently</button>
+        </form>
+    </div>
+{% endblock %}

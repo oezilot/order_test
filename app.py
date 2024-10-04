@@ -610,27 +610,48 @@ def inject_has_post():
 
 
 
-@app.route('/delete_account', methods=['POST', 'GET'])
+
+@app.route('/delete', methods=['POST', 'GET'])
 def delete_account():
     if 'user_id' not in session:
         return redirect(url_for('login'))  # Redirect to login if not logged in
 
-    conn = get_db_connection()
 
-    # Step 1: Soft delete the user's posts by setting is_active to 0
-    conn.execute('UPDATE posts SET is_active = 0 WHERE user_id = ?', (session['user_id'],))
 
-    # Step 2: Soft delete the user's account by setting is_active to 0
-    conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (session['user_id'],))
+    if request.method == 'POST':
+        # Check if 'action' is in the form data
+        action = request.form.get('action1')  # Use .get() to avoid KeyError
 
-    conn.commit()
-    conn.close()
+        if action == 'deactivate':
+            # Deactivate account and posts (soft delete)
+            conn = get_db_connection()
+            conn.execute('UPDATE posts SET is_active = 0 WHERE user_id = ?', (session['user_id'],))
+            conn.execute('UPDATE users SET is_active = 0 WHERE id = ?', (session['user_id'],))
+            conn.commit()
+            conn.close()
+            flash('Your account has been deactivated.', 'info')
+        
+        elif action == 'delete':
+            # Permanently delete the user and their posts
+            conn = get_db_connection()
+            conn.execute('DELETE FROM posts WHERE user_id = ?', (session['user_id'],))
+            conn.execute('DELETE FROM users WHERE id = ?', (session['user_id'],))
+            conn.commit()
+            conn.close()
+            flash('Your account has been permanently deleted.', 'info')
 
-    # Step 3: Clear the session since the user is "deleted"
-    session.clear()
+        # Clear the session
+        session.clear()
 
-    # Step 4: Redirect to the landing page after deletion
-    return redirect(url_for('landing'))
+        return redirect(url_for('landing'))  # Redirect to the landing page
+
+    # For GET requests, render the delete confirmation page
+    return render_template('delete.html')
+
+
+
+
+
 
 @app.route('/reset_password', methods=['GET', 'POST'])
 def reset_password():
