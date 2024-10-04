@@ -53,11 +53,11 @@ def create_admin_user(db_path='database.db'):
             return
 
         # Insert the new admin user with email
+        # Insert the new admin user with id = 1
         cursor.execute("""
-            INSERT INTO users (username, email, password, is_active, is_admin)
-            VALUES (?, ?, ?, ?, ?)
-        """, (username, email, hashed_password, 1, 1))
-
+            INSERT INTO users (id, username, email, password, is_active, is_admin)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (1, username, email, hashed_password, 1, 1))
         conn.commit()
         print(f"Success: Admin user '{username}' has been created.")
 
