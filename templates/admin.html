@@ -12,12 +12,14 @@
   <div class="admin-table">
   <table>
       <th>Id</th>
+      <td>Date</td>
       <th>Username</th>
       <th>Email</th>
       <th>Buttons</th>
       {% for user in admin_accounts %}
         <tr>
           <td>{{ user['id'] }}</td> <!-- Display the id -->
+          <td>{{ user['time'] }}</td>
           <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
           <td>{{ user['email'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
           <td class="admin-buttons">
@@ -47,12 +49,14 @@
       <div class="admin-table">
       <table>
         <th>Id</th>
+        <td>Date</td>
         <th>Username</th>
         <th>Email</th>
         <th>Actions</th>
         {% for user in active_users %}
           <tr>
             <td>{{ user['id'] }}</td>
+            <td>{{ user['time'] }}</td>
             <td>{{ user['username'] }}</td>
             <td>{{ user['email'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
             <td class="admin-buttons">
@@ -88,12 +92,14 @@
     <div class="admin-table">
       <table>
         <th>Id</th>
+        <td>Date</td>
         <th>Username</th>
         <th>Email</th>
         <th>Approve</th>
         {% for user in inactive_users %}
         <tr>
           <td>{{ user['id'] }}</td> <!-- Display the id -->
+          <td>{{ user['time'] }}</td>
           <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
           <td>{{ user['email'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
           <td class="admin-buttons">
@@ -124,12 +130,14 @@
       <div class="admin-table">
       <table>
         <th>Id</th>
+        <th>Date</th>
         <th>Username</th>
         <th>Email</th>
         <th>Approve</th>
         {% for user in waiting_users %}
           <tr>
             <td>{{ user['id'] }}</td> <!-- Display the id -->
+            <td>{{ user['time'] }}</td>
             <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
             <td>{{ user['email'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
             <td class="admin-buttons">

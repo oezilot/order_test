@@ -319,34 +319,33 @@ hr {
 
 
 /*ADMIN.HTML (tables etc.)*/
-.admin-buttons {
-    display: flex;             /* Makes buttons appear in a row */
-    justify-content: flex-start; /* Align buttons to the left */
-    align-items: center;        /* Vertically center buttons in the row */
-    gap: 10px;                 /* Adds space between buttons */
-    flex-wrap: wrap;
+.admin-table-div {
+    border: 3px solid black;  /* Sichtbarer Rand um den Container */
+    border-radius: 8px;       /* Optional: Abgerundete Ecken */
+    overflow-x: auto;         /* Ermöglicht horizontales Scrollen bei Bedarf */
+    overflow-y: auto;         /* Ermöglicht vertikales Scrollen */
+    padding: 10px;            /* Fügt Abstand zwischen Rand und Tabelle hinzu */
+    max-height: 70vh;         /* Begrenze die Höhe des Containers auf 70% der Viewport-Höhe */
+    width: 100%;              /* Füllt die Breite des Bildschirms aus */
+    box-sizing: border-box;   /* Sorgt dafür, dass Padding und Border in der Breite und Höhe berücksichtigt werden */
 }
-
 
 .admin-table {
     border-collapse: collapse; /* Verhindert doppelte Linien */
     width: 100%;               /* Passt die Tabelle an die Breite des Containers an */
-    display: felx;
-    border-collapse: collapse; /* Ensures the borders do not double up */
-    overflow: hidden;
-    overflow-x: auto; 
-    flex: wrap;
+    table-layout: fixed;       /* Sorgt dafür, dass die Tabelle gleichmäßige Spalten hat */
+    overflow: hidden;          /* Verhindert, dass der Inhalt über die Tabelle hinausläuft */
+    overflow-x: auto;
 }
 
-.admin-table-div {
-    border: 3px solid black;  /* Legt einen sichtbaren Rand um den Container */
-    border-radius: 8px;       /* Optional: Abgerundete Ecken */
-    overflow-x: auto;         /* Ermöglicht horizontales Scrollen bei Bedarf */
-    padding: 10px;            /* Fügt einen Abstand zwischen dem Rand und der Tabelle hinzu */
-    width: auto;              /* Passt sich der Breite der Tabelle an */
-    height: auto;             /* Passt sich der Höhe der Tabelle an */
-    display: inline-block;     /* Das div wird auf die Größe seines Inhalts (der Tabelle) begrenzt */
+.admin-buttons {
+    display: flex;             /* Buttons in einer Reihe */
+    justify-content: flex-start; /* Buttons nach links ausrichten */
+    align-items: center;       /* Vertikal in der Mitte ausrichten */
+    gap: 10px;                 /* Abstand zwischen den Buttons */
+    flex-wrap: wrap;           /* Buttons umbrechen, falls der Platz nicht ausreicht */
 }
+
 
 .admin-table th, .admin-table td {
     border: 1px solid black;   /* Legt eine klare Grenze für die Zellen fest */
