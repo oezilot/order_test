@@ -68,19 +68,31 @@
         <!--navigation-bar wenn der user nicht eingeloggt ist-->
         <!--request.endpoint == 'functionName'-->
         {% else %}
+
           {% if request.endpoint == 'about' %}
-            <a href="{{ url_for('landing') }}">Go Back</a>
+          <a href="{{ request.referrer or url_for('index') }}">Go Back</a>
+
+          {% elif request.endpoint == 'reset_password' %}
+          <a href="{{ request.referrer or url_for('index') }}">Go Back</a>
+
+          {% elif request.endpoint == 'reactivate_account' %}
+          <a href="{{ request.referrer or url_for('index') }}">Go Back</a>
+  
           {% elif request.endpoint == 'index' %}
-            <a href="{{ url_for('about') }}">Go Back</a>
+          <a href="{{ request.referrer or url_for('index') }}">Go Back</a>
+
           {% elif request.endpoint == 'show_post' %}
             <a href="{{ url_for('index') }}">Home</a>
+            
           {% elif request.endpoint == 'login' %}
-            <a href="{{ url_for('landing') }}">Go Back</a>
+            <a href="{{ request.referrer or url_for('index') }}">Go Back</a>
             <a href="{{ url_for('register') }}">Register</a>
+
           {% elif request.endpoint == 'register' %}
-            <a href="{{ url_for('landing') }}">Go Back</a>
+            <a href="{{ request.referrer or url_for('index') }}">Go Back</a>
             <a href="{{ url_for('login') }}">Login</a>
           {% endif %}
+
         {% endif %}
       
       
