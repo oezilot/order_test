@@ -209,7 +209,9 @@
 
 /* INDEX, navigation bar */
 .navbar {
-    margin: 3%;
+    margin: 30px;
+    margin-left: 0;
+    margin-right: 0;
 }
 hr {
     border: none;
@@ -225,10 +227,12 @@ hr {
 
 .nav-base a, .nav-base form {
     margin-right: 20px;              /* Space between links */
+    padding-left: 20px;
 }
 
 .username {
     margin-left: auto;               /* Pushes the username to the far right */
+    padding-right: 20px;
 }
 
 /* USERPAGE */
