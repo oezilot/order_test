@@ -318,9 +318,38 @@ hr {
   }
 
 
+/*ADMIN.HTML (tables etc.)*/
+.admin-buttons {
+    display: flex;             /* Makes buttons appear in a row */
+    justify-content: flex-start; /* Align buttons to the left */
+    align-items: center;        /* Vertically center buttons in the row */
+    gap: 10px;                 /* Adds space between buttons */
+    flex-wrap: wrap;
+}
 
-.admin-tables {
-     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
-    border-radius: 25px;        /* Optional: Slight rounding of corners */
-    background-color: #FFFF00;
+
+.admin-table {
+    border-collapse: collapse; /* Verhindert doppelte Linien */
+    width: 100%;               /* Passt die Tabelle an die Breite des Containers an */
+    display: felx;
+    border-collapse: collapse; /* Ensures the borders do not double up */
+    overflow: hidden;
+    overflow-x: auto; 
+    flex: wrap;
+}
+
+.admin-table-div {
+    border: 3px solid black;  /* Legt einen sichtbaren Rand um den Container */
+    border-radius: 8px;       /* Optional: Abgerundete Ecken */
+    overflow-x: auto;         /* Ermöglicht horizontales Scrollen bei Bedarf */
+    padding: 10px;            /* Fügt einen Abstand zwischen dem Rand und der Tabelle hinzu */
+    width: auto;              /* Passt sich der Breite der Tabelle an */
+    height: auto;             /* Passt sich der Höhe der Tabelle an */
+    display: inline-block;     /* Das div wird auf die Größe seines Inhalts (der Tabelle) begrenzt */
+}
+
+.admin-table th, .admin-table td {
+    border: 1px solid black;   /* Legt eine klare Grenze für die Zellen fest */
+    padding: 8px;              /* Fügt etwas Abstand innerhalb der Zellen hinzu */
+    text-align: left;          /* Richtet den Text innerhalb der Zellen linksbündig aus */
 }
