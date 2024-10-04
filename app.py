@@ -181,34 +181,66 @@ def index():
     conn = get_db_connection()
 
     if 'user_id' not in session:
-        # No user logged in, set has_post and user_post to None or False
-        user_post = None # variable which tells if the user logged in or not (this variable holds the information of the logged in user)
-        has_post = False # variable which tells if the user has a post or not
+        user_post = None
+        has_post = False
     else:
-        # Check if the logged-in user has a post
         user_post = conn.execute('SELECT * FROM posts WHERE user_id = ? AND is_active = 1', (session['user_id'],)).fetchone()
         has_post = user_post is not None
 
-    # Query to get all active users
-    users = conn.execute('SELECT username FROM users WHERE is_active = 1 ORDER BY username ASC').fetchall()
+    # Query to get all active users (admins and normal users separately)
+    admins = conn.execute('SELECT username FROM users WHERE is_active = 1 AND is_admin = 1 ORDER BY username ASC').fetchall()
+    users = conn.execute('SELECT username FROM users WHERE is_active = 1 AND is_admin = 0 ORDER BY username ASC').fetchall()
 
-    # Create a list with all users and their posts (if they have one)
+    # Get admin posts
+    admin_posts = []
+    for admin in admins:
+        post = conn.execute('SELECT content, created_at FROM posts WHERE user_id = (SELECT id FROM users WHERE username = ?) AND is_active = 1', (admin['username'],)).fetchone()
+        admin_posts.append({
+            'username': admin['username'],
+            'content': post['content'] if post else None,
+            'created_at': post['created_at'] if post else None
+        })
+
+    # Get non-admin user posts
     user_posts = []
     for user in users:
-        # Try to find the user's post
         post = conn.execute('SELECT content, created_at FROM posts WHERE user_id = (SELECT id FROM users WHERE username = ?) AND is_active = 1', (user['username'],)).fetchone()
-
-        # Always add the user, even if they don't have a post
         user_posts.append({
             'username': user['username'],
-            'content': post['content'] if post else None,  # Add content if a post exists, otherwise None
-            'created_at': post['created_at'] if post else None  # Add created_at if a post exists, otherwise None
+            'content': post['content'] if post else None,
+            'created_at': post['created_at'] if post else None
         })
+
+
+    # Initialize the all_posts list
+    all_posts = []
+
+    # Add admin posts to all_posts
+    for admin in admins:
+        post = conn.execute('SELECT content, created_at FROM posts WHERE user_id = (SELECT id FROM users WHERE username = ?) AND is_active = 1', (admin['username'],)).fetchone()
+        all_posts.append({
+            'username': admin['username'],
+            'content': post['content'] if post else None,
+            'created_at': post['created_at'] if post else None,
+            'is_admin': True  # Add a flag to indicate this is an admin post
+        })
+
+    # Add user posts to all_posts
+    for user in users:
+        post = conn.execute('SELECT content, created_at FROM posts WHERE user_id = (SELECT id FROM users WHERE username = ?) AND is_active = 1', (user['username'],)).fetchone()
+        all_posts.append({
+            'username': user['username'],
+            'content': post['content'] if post else None,
+            'created_at': post['created_at'] if post else None,
+            'is_admin': False  # Add a flag to indicate this is a normal user post
+        })
+    # Now all_posts contains both admin and user posts
+    all_posts.sort(key=lambda x: x['username'].lower())
+
 
     conn.close()
 
-    # everything in the brackets is passed to the html-file which is getting rendered!
-    return render_template('index.html', user_posts=user_posts, has_post=has_post)
+    return render_template('index.html', admin_posts=admin_posts, user_posts=user_posts, has_post=has_post, all_posts=all_posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
