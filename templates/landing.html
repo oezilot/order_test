@@ -3,7 +3,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <link rel="icon" href="/static/assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon/favicon-48x48.png') }}" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon/favicon.svg') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}" />
 
     <!-- NES.css CDN -->
     <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
