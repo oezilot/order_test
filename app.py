@@ -348,6 +348,15 @@ def post():
         return redirect(url_for('login'))
     
     conn = get_db_connection()
+
+    # Get the user information, including 'is_active' status
+    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+
+    # If the user is inactive and awaiting approval, redirect them to the waiting page
+    if user['is_active'] == -1:
+        conn.close()
+        return redirect(url_for('waiting'))
+
     # in dieser variable werden alle daten des posts der eingeloggten person gespeichert!
     user_post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
     

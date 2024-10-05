@@ -16,15 +16,16 @@
     <!--ensures that the webpage is rendered correctly on different devices-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Flask App</title>
+    <title>Freundschaftsbuch</title>
   </head>
+  <div style="margin:20px;">
   <body class="{% if request.endpoint in ['edit_post', 'post'] %}scrollable-body{% else %}non-scrollable-body{% endif %}">
     <div class="navbar">
       <hr>
 
       <nav class="nav-base">    
         <!--user is logged in-->
-        <a href="{{ url_for('landing') }}">Landing Page</a>
+        <a href="{{ url_for('index') }}">Home</a>
 
         <a href="{{ url_for('logout') }}">Logout</a>
 
@@ -55,6 +56,7 @@
   
 
   </body>
+  </div>
 </html>
 
        
