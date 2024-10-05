@@ -330,6 +330,14 @@ def register():
 
             conn.execute('INSERT INTO users (email, username, password) VALUES (?, ?, ?)', (email, username, password_hash))
             conn.commit()
+
+            # Send notification email to the admin
+            admin_link = url_for('admin', _external=True)
+            msg = Message('New User Registration Awaiting Approval', 
+                          recipients=['zoe.flumini@gmail.com'])  # Admin-E-Mail hier einfügen
+            msg.body = f'A new user ({username}, {email}) has registered and is awaiting approval. Please review: {admin_link}'
+            mail.send(msg)
+
             conn.close()
 
             # Redirect to the login page after successful registration
@@ -454,6 +462,15 @@ def edit_post():
         return redirect(url_for('login'))
 
     conn = get_db_connection()
+
+    # Get the user information, including 'is_active' status
+    user = conn.execute('SELECT * FROM users WHERE id = ?', (session['user_id'],)).fetchone()
+
+    # If the user is inactive and awaiting approval, redirect them to the waiting page
+    if user['is_active'] == -1:
+        conn.close()
+        return redirect(url_for('waiting'))
+
     # der post des eingeloggten users werden "geholt" (wenn nichts drin ist dann ist post = None)
     post = conn.execute('SELECT * FROM posts WHERE user_id = ?', (session['user_id'],)).fetchone()
 
