@@ -247,6 +247,9 @@ def index():
 def login():
     error_message = None  # Initialize the error message
 
+    if 'user_id' in session:
+        return redirect(url_for('index'))
+
     if request.method == 'POST':
         username_or_email = request.form['username_or_email']  # Can be either username or email
         password = request.form['password']
@@ -310,6 +313,9 @@ def waiting():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     error_message = None  # Initialize a variable to store the error message
+
+    if 'user_id' in session:
+        return redirect(url_for('index'))
 
     if request.method == 'POST':
         email = request.form['email']
