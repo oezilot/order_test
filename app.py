@@ -46,8 +46,8 @@ def init_db():
     c = conn.cursor()
 
     # Drop the old tables (be careful with this step if you have important data)
-    #c.execute('DROP TABLE IF EXISTS users')
-    #c.execute('DROP TABLE IF EXISTS posts')
+    c.execute('DROP TABLE IF EXISTS users')
+    c.execute('DROP TABLE IF EXISTS posts')
 
     # Create users table with 'is_active' column for soft deletion
     c.execute('''CREATE TABLE IF NOT EXISTS users (
