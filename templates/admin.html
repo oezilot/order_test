@@ -13,10 +13,10 @@
   <div class="admin-table">
   <table>
       <th>Id</th>
-      <td>Date</td>
+      <td>Datum</td>
       <th>Username</th>
       <th>Email</th>
-      <th>Buttons</th>
+      <th>Action</th>
       {% for user in admin_accounts %}
         <tr>
           <td>{{ user['id'] }}</td> <!-- Display the id -->
@@ -32,7 +32,7 @@
               </form>
               <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
                   <input type="hidden" name="user_id" value="{{ user['id'] }}">
-                  <button class="nes-btn" name="action" value="depromote" type="submit">Remove as Admin!</button>
+                  <button class="nes-btn" name="action" value="depromote" type="submit">Remove as Admin</button>
               </form>
           </td>
         </tr>
@@ -96,7 +96,7 @@
         <td>Date</td>
         <th>Username</th>
         <th>Email</th>
-        <th>Approve</th>
+        <th>Action</th>
         {% for user in inactive_users %}
         <tr>
           <td>{{ user['id'] }}</td> <!-- Display the id -->

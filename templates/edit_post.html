@@ -4,13 +4,13 @@
 <div style="margin-left: 10vw; margin-right: 10vw; " class="create-post">
 <br>
 <br>
-<h1>Edit Post</h1>
+<h1>Edit your Post</h1>
 <br>
 <form action="{{url_for('edit_post')}}" method="post" enctype="multipart/form-data">
 
 <section class="showcase" v-for="sample in collection" :key="sample">
   <section class="nes-container with-title">
-    <h2 class="title">Basic Questions</h2>  
+    <h2 class="title">Basics</h2>  
     <br>
     <!-- NAME -->
     <label for="Name">So nennt man mich auch noch:</label><br>
@@ -66,7 +66,7 @@
 
 <section class="showcase" v-for="sample in collection" :key="sample">
   <section class="nes-container with-title">
-    <h2 class="title">Going Deeper</h2>  
+    <h2 class="title">Bisschen Deeper</h2>  
     
     <!-- FOOD -->
     <label for="food">Das esse ich am liebsten:</label><br>
