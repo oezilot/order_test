@@ -40,6 +40,29 @@
 }
 /**/
 
+/* ABOUT.HTML */
+.about-text {
+    text-align: justify;
+    width: 70%; /* Optional: Breite des Containers */
+    margin: 0 auto; /* Zentriert den Container horizontal */
+    line-height: 1.6; /* Optional: Fügt etwas mehr Zeilenabstand hinzu */
+}
+
+.about-links {
+    display:flex;
+    justify-items: auto;
+}
+.about-page {
+    display: flex;
+    min-height: 100vh;         /* Stellt sicher, dass das Div mindestens die Höhe des Bildschirms abdeckt */
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers form elements vertically */
+    justify-content: center;
+    margin-top: 0;
+    padding-top: 0;}
+
 /* Container to stack the groups of radio buttons vertically */
 .column-container {
     display: flex;
