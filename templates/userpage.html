@@ -6,15 +6,15 @@
   <br>
   <div class="naviagation-buttons margin-h2">
     {% if prev_username %}
-      <a class="nes-btn" href="{{ url_for('show_post', username=prev_username) }}"> <-- Rückwärts</a>
+      <a class="paper-btn" href="{{ url_for('show_post', username=prev_username) }}"> <-- Rückwärts</a>
     {% endif %}
     <h2 id="username"><mark>{{ username }}'s Post</mark></h2>
     {% if next_username %}
-      <a class="nes-btn" href="{{ url_for('show_post', username=next_username) }}">Vorwärts --> </a>
+      <a class="paper-btn" href="{{ url_for('show_post', username=next_username) }}">Vorwärts --> </a>
     {% endif %}
   </div>
   <br>
-  <div class="book-open" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
+  <div class="breadcrumb border book-open" style="background-color: {{ post['color'] if post else '#f9f9f9' }};">
     {% if post %}
       <div class="book-left" style="background-color: white;">
         

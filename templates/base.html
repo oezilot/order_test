@@ -12,11 +12,9 @@
     <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}" />
 
     <!--link for the css-framework-->
-    <!-- NES.css CDN -->
-    <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
-    <!-- Optional: Include a font for better text appearance -->
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    
+    <!-- Paper.css CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.3/dist/paper.min.css">
+
   
     <!-- icons -->
     <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
@@ -30,8 +28,7 @@
     <title>Freundschaftsbuch</title>
   </head>
   <body class="{% if request.endpoint in ['edit_post', 'post', 'admin', 'about'] %}scrollable-body{% else %}non-scrollable-body{% endif %}">
-    <div class="navbar">
-            <hr>
+    <div class="navbar breadcrumb border">
 
       <nav class="nav-base">    
         <!--user is logged in-->
@@ -101,8 +98,7 @@
         
   
       </nav>
-
-      <hr>
+    </div>
 
     
       

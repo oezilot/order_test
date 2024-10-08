@@ -10,10 +10,9 @@
     <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}" />
 
     <!-- NES.css CDN -->
-    <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
-    <!-- Optional: Include a font for better text appearance -->
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.8.3/dist/paper.min.css">
+
+
     <meta charset="utf-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <!--ensures that the webpage is rendered correctly on different devices-->
@@ -26,21 +25,21 @@
   
     <div class="willkommen">
       <div class="landing-title">
-        <h1><mark>Let's become Friends!</mark></h1>
+        <h1>Let's become Friends!</h1>
       </div>
       <br>
-      <div class="landing-buttons nes-container">
+      <div class="landing-buttons breadcrumb border">
         <div class="signin">
           <h2>Sign-In</h2>     
-          <a class="nes-btn is-primary" href="{{ url_for('login') }}">log In</a>
+          <a class="paper-btn " href="{{ url_for('login') }}">log In</a>
         </div>
         <div class="about">
           <h2>About</h2>     
-          <a class="nes-btn is-normal" href="{{ url_for('about') }}">About</a>
+          <a class="paper-btn " href="{{ url_for('about') }}">About</a>
         </div>
         <div class="signup">
           <h2>Sign-Up</h2>     
-          <a class="nes-btn is-success" href="{{ url_for('register') }}">Sign Up</a>
+          <a class="paper-btn " href="{{ url_for('register') }}">Sign Up</a>
         </div>
       </div>
     </div>    

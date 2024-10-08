@@ -9,7 +9,7 @@
       <p style="color: red;">{{ error_message }}</p>
     </div>
   {% endif %}
-  <div class="login nes-container">
+  <div class="login breadcrumb border">
     <div class="login-title">
       <h2>Login</h2>
       <br>
@@ -17,11 +17,11 @@
     <form method="post">
       <div>
         <label for="username_or_email">Username or Email:</label><br>
-        <input class="nes-input" type="text" id="username_or_email" name="username_or_email" required><br><br>
+        <input class="paperInputs1" type="text" id="username_or_email" name="username_or_email" required><br><br>
 
         <label for="password">Password:</label><br>
         <div style="position: relative;">
-          <input class="nes-input" type="password" id="password" name="password" required>
+          <input class="paperInputs1" type="password" id="password" name="password" required>
           <!-- NES.css icon for toggling password visibility -->
           <span id="togglePassword" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); padding: 0 0 2px 2px;">
             <i class="nes-icon is-small star" id="eyeIcon"></i>
@@ -30,7 +30,7 @@
         <br>
       </div>
       <div class="login-button">
-        <input class="nes-btn is-primary" type="submit" value="Login">
+        <input class="paper-btn" type="submit" value="Login">
       </div>
     </form>
     <div class="deleted">
