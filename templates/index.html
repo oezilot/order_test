@@ -50,7 +50,7 @@
     </div>
   </div>
 
-  {% if user_posts %}
+  {% if user_posts or admin_posts %}
     <a class="nes-btn" href="{{ url_for('show_post', username=all_posts[0]['username']) }}">View Book</a>
   {% else %}
     <p>No posts available to view.</p>
