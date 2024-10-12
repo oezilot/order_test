@@ -1,0 +1,382 @@
+.non-scrollable-body {
+    height: 100%;              /* Stellt sicher, dass Body die volle Höhe hat */
+    margin: 0;                 /* Entfernt Standard-Margin vom Body */
+    padding: 0;  
+    overflow: hidden;              /* Entfernt Standard-Padding vom Body */
+}
+/* LANDING PAGE */
+.body1 {
+    display: flex;
+    justify-content: center;    /* Centers horizontally */
+    align-items: center;        /* Centers vertically */
+    height: 100vh;              /* Full viewport height */
+    margin: 0;                  /* Remove default body margins */
+}
+.landing-title {
+    text-align: center;
+    margin-bottom: 20px;    /* Adds some space below the title */
+}
+/* Flexbox container for the buttons */
+.landing-buttons {
+    display: flex;
+    justify-content: center;  /* Center the buttons horizontally */
+    align-items: center;      /* Vertically center the button sections */
+    gap: 40px;                /* Space between each button section */
+}
+/* Each button section (SignIn, SignUp, About) */
+.signin, .signup, .about {
+    display: flex;
+    flex-direction: column;   /* Stack the heading and button vertically */
+    align-items: center;      /* Center the content in each section */
+}
+.includes {
+    border: 3px solid black;
+    border-radius: 15px;
+    background-color: yellow;
+    padding: 10px;
+}
+.nes-btn {
+    margin-top: 10px;         /* Add space between the headings and buttons */
+}
+/**/
+
+/* ABOUT.HTML */
+.about-text {
+    text-align: justify;
+    width: 70%; /* Optional: Breite des Containers */
+    margin: 0 auto; /* Zentriert den Container horizontal */
+    line-height: 1.6; /* Optional: Fügt etwas mehr Zeilenabstand hinzu */
+}
+
+.about-links {
+    display:flex;
+    justify-items: auto;
+}
+.about-page {
+    display: flex;
+    min-height: 100vh;         /* Stellt sicher, dass das Div mindestens die Höhe des Bildschirms abdeckt */
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers form elements vertically */
+    justify-content: center;
+    margin-top: 0;
+    padding-top: 0;}
+
+/* Container to stack the groups of radio buttons vertically */
+.column-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between the radio button groups */
+  }
+  
+  /* Radio row container for two options side by side */
+  .radio-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Create two equal columns for the radio buttons */
+    gap: 20px; /* Space between the two radio options */
+  }
+  
+  /* Label styling with spacing between the radio button and the label text */
+  .radio-row label {
+    display: flex;
+    align-items: center; /* Vertically align the label text with the radio button */
+    gap: 10px; /* Add space between the radio button and the label text */
+  }
+  
+  /* Optional: Add some padding and background color to the container */
+  .nes-container {
+    padding: 20px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+  }
+.entweder-oder {
+    margin: 0;
+}  
+
+/*EDIT POST*/
+.update-delete {
+    display: flex;             /* Aktiviert Flexbox */
+    justify-content: center; /* Optional: Behalte die Buttons linksbündig */
+    gap: 10px;                 /* Abstand zwischen den Buttons */
+  }
+.image-upload {
+    background-color: white;
+    padding: 15px;
+    border-style: dotted solid dotted solid;
+}
+
+/* LOGIN PAGE */
+.body2 {
+    display: flex;                /* Enables Flexbox */
+    justify-content: center;       /* Centers the content horizontally */
+    align-items: center;           /* Centers the content vertically */
+    height: 85vh;                 /* Full viewport height to center vertically */
+    border: 3px solid black;       /* Adds a 2px solid black border */
+    padding: 20px;                 /* Optional: Adds padding inside the border */
+    box-sizing: border-box;  
+    margin-top: 15px;      /* Ensures padding is included within the border width */
+    flex-direction: column; /* Ordnet die Child-Elemente vertikal an */
+    gap: 10px; 
+}
+
+
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers form elements vertically */
+    width: 400px;        /* Feste Breite in Pixeln */
+    max-width: 100%;     /* Stellt sicher, dass es auf kleinen Bildschirmen nicht größer als der Bildschirm ist */
+    padding: 20px;       /* Optional: Innenabstand */
+    box-sizing: border-box; /* Bezieht Padding und Border in die Breite ein */
+    margin: 0;
+}
+
+
+/* Login-specific container */
+.inhaltsverzeichnis {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers form elements vertically */
+    justify-content: center;
+    padding: 20px;       /* Padding inside the nes-container */
+    width: 100%;         /* Ensure the login container is responsive */
+}
+.login-button {
+    display: flex;
+    justify-content: center;  /* Centers the button horizontally */
+}
+/* Login title styling */
+.login-title {
+    margin: 16px; /* Add space between the title and the form */
+}
+.nes-container {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+    border-radius: 25px;        /* Optional: Slight rounding of corners */
+    background-color: #FFFF00;  /* Optional: Background color */
+}
+.deleted {
+    margin: 10% 10% 0% 0%;
+}
+/**/
+
+/* INDEX.html */
+.inhalt-titel {
+    margin: 0; 
+}
+.inhalt {
+    height: 65vh;
+    margin: 23px 0 23px 0;
+    overflow:hidden;
+    overflow-y: auto;
+}
+
+/* BASE.html */
+/*center the username of the post*/
+.naviagation-buttons {
+    display: flex;
+    justify-content: space-between;    /* Center the elements in the container */
+    align-items: center;        /* Vertically center the items */
+    width: 95%;                /* Full width of the parent container */
+    margin: 0 auto;  /* die zahl bedeuted das margin des rands oben und unten und das auto stllt sicher dass es horizontal steht */
+    position: relative;         /* Allows absolute positioning for buttons */
+}
+.naviagation-buttons h2 {
+    text-align: center;          /* Center the text */
+    position: absolute;          /* Position the heading absolutely in the center */
+    left: 50%;                  /* Move to the center horizontally */
+    transform: translateX(-50%); /* Adjust for the width of the heading */
+}
+
+.naviagation-buttons a {
+    text-decoration: none;       /* Optional: Remove underline from links */
+    margin: 0 10px;              /* Optional: Add some space around the links */
+}
+
+.naviagation-buttons a:first-child {
+    position: absolute;          /* Position the first button (left side) */
+    left: 0;                     /* Align it to the left */
+}
+
+.naviagation-buttons a:last-child {
+    position: absolute;          /* Position the second button (right side) */
+    right: 0;                    /* Align it to the right */
+}
+
+
+
+
+/* QUESTIONS */
+.question, .interesse, .desinteresse, .red, .green {
+    border: 3px solid #000; /* schwarzer strich des rechtecks */
+    border-radius: 15px;
+    padding: 0;
+    margin: 10px;
+    overflow-wrap: anywhere; /* verhindert dass wörter aus dem div herausgehen oder abgeschnitten werden! diese wörter die zu lang sind für den container werden gebrochen und gehenauf der nächsten zeile weiter */
+}
+
+/* INTERESSE UND FLAG_CONTAINER*/
+.interesse-container, .flag-container {
+    display: flex;              /* Aktiviert Flexbox */
+    justify-content: space-between; /* Optional: Platz zwischen den divs */
+    align-items: stretch;         /* Stellt sicher, dass die Boxen dieselbe Höhe haben */
+    gap: 0px; 
+    max-width: 100%;
+}
+
+.interesse, .desinteresse, .red, .green {
+    flex: 1;                    /* Beide Boxen haben die gleiche Breite */
+    overflow: hidden; /* sorgt in diesem fall dafür dass die interesse und flaggen boxen inerhalb der flaggen und interesse-container blieben und ihre grösse dementsprechend angepasst wird */
+}
+
+
+/* INDEX, navigation bar */
+.navbar {
+    margin: 30px;
+    margin-left: 0;
+    margin-right: 0;
+}
+hr {
+    border: none;
+    height: 3px;
+    background-color: black;
+}
+
+.nav-base {
+    display: flex;                   /* Enables Flexbox layout */
+    align-items: center;             /* Vertically center the items */
+    justify-content: flex-start;
+}
+
+.nav-base a, .nav-base form {
+    margin-right: 20px;              /* Space between links */
+    padding-left: 20px;
+}
+
+.username {
+    margin-left: auto;               /* Pushes the username to the far right */
+    padding-right: 20px;
+}
+
+/* USERPAGE */
+.book-open {
+    display: flex;
+    justify-content: space-between; /* Platz zwischen den beiden Seiten */
+    border: 4px solid #000;      /* Schwarzer Strich des Rechtecks */
+    border-radius: 25px;
+    padding: 20px;               /* Platz innerhalb des Rahmens */
+    margin: 20px auto;           /* Abstand des Rechtecks oben und unten */
+    box-sizing: border-box;    /* Padding und Border in die Größe einberechnen */
+    overflow: hidden;          /* Verhindert, dass Inhalt über den Container hinausläuft */
+    height: 76vh;
+    width: 95%;
+}
+/* The parent div adjusts to the size of the image */
+.image-mom {
+    display: inline-block; /* Make div wrap around the image */
+    border: 2px solid black; /* Add the border */
+    box-sizing: border-box; /* Ensure padding and border are included in the div's size */
+    padding:0;
+}
+
+/* Image takes up 100% of the parent's width and height */
+.image-daughter {
+    border-radius:12px;
+    width: 100%;
+    height: auto; /* Maintain aspect ratio of the image */
+    display: block; /* Ensures the image is treated as a block-level element */
+}
+
+/* Linke und rechte Seite des Buches */
+.book-left, .book-right {
+    flex: 1;                             /* Beide divs haben die gleiche Breite */
+    border: 2px solid #ccc;              /* Heller Rand für die inneren Boxen */
+    border-radius: 15px;                 /* Runde Ecken für die Boxen */
+    background-color: white;              /* Heller Hintergrund für die Boxen */
+    margin: 0 10px;                      /* Abstand zwischen den Boxen */
+    padding: 20px;                       /* Innenabstand in den Boxen */
+    display: flex;
+    flex-direction: column;              /* Inhalt wird vertikal gestapelt */
+    justify-content: space-between;      /* Inhalt wird gleichmäßig verteilt */
+    box-sizing: border-box;              /* Verhindert, dass Padding/Borders die Größe beeinflussen */
+    max-width: 100%; 
+    min-height: 100%;                    /* Sorgt dafür dass links und rechts gleich lang sind */
+    overflow: auto;                    /* Verhindert, dass Inhalte über die Box hinauslaufen */
+}
+/* Der obere Container */
+.upper-container {
+    padding: 10px;
+    border-bottom: 3px solid black;
+    border-radius: 12px 12px 0 0;
+    font-weight: bold;
+    color: black;
+}
+/* Der untere Container */
+.lower-container {
+    padding: 10px;
+    color: black;
+}
+
+
+
+/* Flexbox container to keep both inputs in the same row */
+/* Ensure label stays on its own line */
+.flags-container label {
+    display: block;
+    margin-bottom: 8px; /* Adds a little space between label and inputs */
+  }
+  
+  /* Flexbox container to keep both inputs in the same row */
+  .input-row {
+    display: flex;
+    gap: 10px; /* Space between the two input fields */
+  }
+  
+  /* Set smaller size for the input fields */
+  .small-input {
+    width: 100%; /* Adjust width to fit two fields side by side */
+    max-width: 100%; /* Optional: limit the max width */
+  }
+  
+
+
+  table, th, td {
+    border:1px solid black;
+  }
+
+
+/*ADMIN.HTML (tables etc.)*/
+.admin-table-div {
+    border: 3px solid black;  /* Sichtbarer Rand um den Container */
+    border-radius: 8px;       /* Optional: Abgerundete Ecken */
+    overflow-x: auto;         /* Ermöglicht horizontales Scrollen bei Bedarf */
+    overflow-y: auto;         /* Ermöglicht vertikales Scrollen */
+    padding: 10px;            /* Fügt Abstand zwischen Rand und Tabelle hinzu */
+    max-height: 70vh;         /* Begrenze die Höhe des Containers auf 70% der Viewport-Höhe */
+    width: 100%;              /* Füllt die Breite des Bildschirms aus */
+    box-sizing: border-box;   /* Sorgt dafür, dass Padding und Border in der Breite und Höhe berücksichtigt werden */
+}
+
+.admin-table {
+    border-collapse: collapse; /* Verhindert doppelte Linien */
+    width: 100%;               /* Passt die Tabelle an die Breite des Containers an */
+    table-layout: fixed;       /* Sorgt dafür, dass die Tabelle gleichmäßige Spalten hat */
+    overflow: hidden;          /* Verhindert, dass der Inhalt über die Tabelle hinausläuft */
+    overflow-x: auto;
+}
+
+.admin-buttons {
+    display: flex;             /* Buttons in einer Reihe */
+    justify-content: flex-start; /* Buttons nach links ausrichten */
+    align-items: center;       /* Vertikal in der Mitte ausrichten */
+    gap: 10px;                 /* Abstand zwischen den Buttons */
+    flex-wrap: wrap;           /* Buttons umbrechen, falls der Platz nicht ausreicht */
+}
+
+
+.admin-table th, .admin-table td {
+    border: 1px solid black;   /* Legt eine klare Grenze für die Zellen fest */
+    padding: 8px;              /* Fügt etwas Abstand innerhalb der Zellen hinzu */
+    text-align: left;          /* Richtet den Text innerhalb der Zellen linksbündig aus */
+}

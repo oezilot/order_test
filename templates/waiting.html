@@ -1,0 +1,70 @@
+<!-- Navigation bar with all links: Home, Create/Edit, Logout, and displays the logged-in username -->
+<!-- this is the skeleton of each template! -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon/favicon-48x48.png') }}" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon/favicon.svg') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}" />
+
+    <!--link for the css-framework-->
+    <!-- NES.css CDN -->
+    <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
+    <!-- Optional: Include a font for better text appearance -->
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!--ensures that the webpage is rendered correctly on different devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Freundschaftsbuch</title>
+  </head>
+  <div style="margin:20px;">
+  <body class="{% if request.endpoint in ['edit_post', 'post'] %}scrollable-body{% else %}non-scrollable-body{% endif %}">
+    <div class="navbar">
+      <hr>
+
+      <nav class="nav-base">    
+        <!--user is logged in-->
+        <a href="{{ url_for('index') }}">Home</a>
+
+        <a href="{{ url_for('logout') }}">Logout</a>
+
+        <form action="{{ url_for('delete_account') }}" method="POST" style="display:inline;">
+          <button type="submit" class="float-right" onclick="return confirm('Are you sure you want to delete your account?');" style="background:none;border:none;color:red;cursor:pointer;">Delete Account</button>
+        </form>
+        
+        <span class="username">Logged in as: {{ session['username'] }}</span>
+
+
+      </nav>
+
+      <hr>
+
+
+        <h1>
+            Waiting List...
+        </h1>
+        <p>
+            Bitte warte bis ich dich akzeptiere! Du wirst im Nu Zugriff auf die Page bekommen um deinen eigenen Post zu kreiieren
+        </p>
+        
+
+
+      
+    </div>
+
+  
+
+  </body>
+  </div>
+</html>
+
+       
+
+
+
+

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex;
+flex-direction: column;
+align-items: center; 
+justify-content:center; ">
+  <br>
+  <br>
+  <div class="inhalt-titel" style="text-align:center;">
+    <h1>About</h1>
+    <br>
+  </div>
+  
+    <div class="about-text">
+      <p>
+        <div style="text-align: center;">Willst du in mein Freundebuch schreiben???</div>
+        <br>
+        Diesen Satz hast du bestimmt schon lange nicht mehr gehört, aber es wird nicht das letzte Mal sein, denn genau das frage ich dich jetzt! Ich habe diese Web-App programmiert, um Beiträge von meinen Freunden zu sammeln und ein Stück Kindheit wieder aufleben zu lassen. Du kannst ein paar Fragen beantworten, vielleicht ein kleines Geheimnis teilen und eine Skizze von dir hochladen. Deinen Beitrag kannst du natürlich jederzeit bearbeiten oder löschen.
+        <br><br>
+        <div class="includes">
+          <p>Ein Post enthält:</p>
+          <ul class="nes-list is-circle">
+              <li>Ein selbstgezeichnetes Bild von dir</li>
+              <li>Antworten zu gewöhnlichen Fragen wie Alter, Lieblingsfarbe etc</li>
+              <li>Antworten zu interessanteren Fragen</li>
+          </ul>
+        </div>
+        <br>
+        Zur Erinnerung: Jeder kann jeden Post ansehen und das ohne einen Account zu haben! Mit dem folgenden Link kannst du bereits einige Kollegen kennenlernen! 
+        <br>
+        Preview: <a href="{{url_for('index')}}"> Inhaltsverzeichnis </a>
+      </p>
+    </div>
+      <br>
+      <br>
+      <br>
+
+    
+      <p>Meine Kontankte!</p>
+      <div class="socials">
+        <section class="icon-list">
+          <!-- instagram -->
+          <a href="https://www.instagram.com/zoeflumini/" target="_blank">
+              <i class="nes-icon instagram is-large"></i>
+          </a>
+      
+          <!-- github -->
+          <a href="https://github.com/oezilot" target="_blank">
+              <i class="nes-icon github is-large"></i>
+          </a>
+      
+          <!-- gmail -->
+          <a href="mailto:zoe.flumini@gmail.com">
+              <i class="nes-icon gmail is-large"></i>
+          </a>
+      
+          <!-- whatsapp -->
+          <a href="https://wa.me/+41787680590" target="_blank">
+              <i class="nes-icon whatsapp is-large"></i>
+          </a>
+      </section>
+      
+      
+        
+      </div>
+</div>
+
+
+{% endblock %}

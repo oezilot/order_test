@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="margin:20px;">
+<!-- Display the error message if it's set -->
+{% if error_message %}
+  <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+
+<h2>Reset Password</h2>
+<form method="POST" action="{{ url_for('reset_password') }}">
+    <label for="email">Enter your email to reset password:</label>
+    <input type="email" name="email" required>
+    <input type="submit" value="Reset Password">
+</form>
+</div>
+
+{% endblock %}

@@ -1,9 +1,219 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Create/Edit Post</h2>
-<form method="post">
-  <textarea name="content">{{ post['content'] if post else '' }}</textarea><br><br>
-  <input type="submit" value="Submit">
-</form>
+<div style="margin-left: 10vw; margin-right: 10vw; " class="create-post">
+<br>
+<br>
+<h1>Create a Post</h1>
+<br>
+
+<form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
+
+<section class="showcase" v-for="sample in collection" :key="sample">
+  <section class="nes-container with-title">
+    <h2 class="title">Basic Questions</h2>  
+    <br>
+    <!-- NAME -->
+    <label for="Name">So nennt man mich auch noch:</label><br>
+    <input class="nes-input" type="text" name="name" value="" required>
+    <br><br>
+
+    <!-- BDAY -->
+    <label for="birthday">Mein Geburtstag:</label>
+    <input class="nes-input" type="date" id="birthday" name="bday" required>
+    <br><br>
+
+    <!-- COLOR -->
+    <label for="favcolor">Meine Lieblingsfarbe:</label>
+    <input type="color" id="favcolor" name="favcolor" value="#ff0000" required>
+    <br><br>
+
+    <!-- Personality Type -->
+    <div class="nes-select">
+      <label class="default-select" for="Personnality">Mein Persönlichkeitstyp:</label><br>
+      <select name="personnality" required>
+        <option value="introvert">introvert</option>
+        <option value="extrovert">extrovert</option>
+        <option value="ISTJ">ISTJ</option>
+        <option value="ISTP">ISTP</option>
+        <option value="ISFP">ISFP</option>
+        <option value="ISFJ">ISFJ</option>
+        <option value="INFP">INFP</option>
+        <option value="INFJ">INFJ</option>
+        <option value="INTP">INTP</option>
+        <option value="INTJ">INTJ</option>
+        <option value="ESTJ">ESTJ</option>
+        <option value="ESTP">ESTP</option>
+        <option value="ESFP">ESFP</option>
+        <option value="ESFJ">ESFJ</option>
+        <option value="ENFJ">ENFJ</option>
+        <option value="ENFP">ENFP</option>
+        <option value="ENTP">ENTP</option>
+        <option value="ENTJ">ENTJ</option>
+      </select> 
+        <br>
+        <br>
+        <a target="_blank" href="https://www.16personalities.com/de/personlichkeitstypen">Link zum Test: 16 Personnalities</a> 
+    </div>
+    <br><br>
+
+    <!-- Fun Fact -->
+    <label>Fun Fact: das wissen die wenigsten über mich!:</label><br>
+    <textarea class="nes-textarea" name="content" required></textarea><br><br>
+    
+    <!-- Zoé Connection -->
+    <label>Woher kennst du Zoé und was verbindet euch?:</label><br>
+    <textarea class="nes-textarea" name="zoe" required></textarea><br><br>
+  </section>
+</section>
+<br>
+
+<section class="showcase" v-for="sample in collection" :key="sample">
+  <section class="nes-container with-title">
+    <h2 class="title">Going Deeper</h2>  
+
+    <!-- FOOD -->
+    <label for="food">Das esse ich am liebsten:</label><br>
+    <input class="nes-input" type="text" id="food" name="Food" required>
+    <br><br>
+
+    <!-- Interests and Hobbies -->
+    <div class="flags-container">
+      <label>Das macht mich aus:</label>
+      <div class="input-row">
+        <input class="nes-input small-input" type="text" name="interest" placeholder="Das kann ich gut!" required>
+        <input class="nes-input small-input" type="text" name="desinterest" placeholder="Das kann ich weniger gut!" required>
+      </div>
+    </div>
+    <br><br>
+
+    <!-- Learning -->
+    <label>Das möchte ich irgendwann lernen:</label><br>
+    <input class="nes-input" type="text" name="lernen" required>
+    <br><br>
+
+    <!-- Idol -->
+    <label>Mein Kindheitsidol oder Childhood Crush ist:</label><br>
+    <input class="nes-input" type="text" name="idol" required>
+    <br><br>
+
+    <!-- Series -->
+    <label>Was sind meine Lieblingsserien, -filme, bücher?:</label><br>
+    <input class="nes-input" type="text" name="serie" placeholder="serien, bücher, filme etc." required>
+    <br><br>
+
+    <!-- Music -->
+    <label>Dieses Wort sage ich oft:</label><br>
+    <input class="nes-input" type="text" name="musik" required>
+    <br><br>
+
+    <!-- Fashion Trends -->
+    <label>Welcher Fashion Trend inspiriert dich momentan?:</label><br>
+    <input class="nes-input" type="text" name="fashion" required>
+    <br><br>
+
+    <!-- Future -->
+    <label>Wie malst du dir deine Traumzukunft aus?:</label><br>
+    <input class="nes-input" type="text" name="zukunft" placeholder="haus, job, haustiere, familie, etc." required>
+    <br><br>
+
+    <!-- Flags -->
+    <div class="flags-container">
+      <label>Welche Flags fallen dir bei anderen besonders gut auf?</label>
+      <div class="input-row">
+        <input class="nes-input small-input" type="text" name="rFlag" placeholder="meine red flags" required>
+        <input class="nes-input small-input" type="text" name="gFlag" placeholder="meine green flags" required>
+      </div>
+    </div>
+    <br><br>
+
+    <!-- Love Language -->
+    <label>Meine Love language:</label><br>
+    <input class="nes-input" type="text" name="love" placeholder="presents, attention" required>
+    <br><br>
+
+    <!-- Perfect Date -->
+    <label>Wie sähe ein perfektes Date für dich aus?:</label><br>
+    <textarea class="nes-textarea" type="text" name="date" required></textarea>
+    <br><br>
+
+    <!-- Guilty Pleasure -->
+    <label>Was ist dein Guilty Pleasure?:</label><br>
+    <input class="nes-input" type="text" name="pleasure" required>
+    <br><br>
+
+    <!-- Regret -->
+    <label>Was ist Etwas, das du bereust?:</label><br>
+    <textarea class="nes-textarea" type="text" name="regret" required></textarea>
+  </section>
+</section>
+<br>
+
+<section class="showcase" v-for="sample in collection" :key="sample">
+  <section class="nes-container with-title">
+    <h2 class="title">Entweder Oder</h2>
+    <div class="column-container entweder-oder">
+      <div class="radio-row">
+        <label><input class="nes-checkbox" type="radio" name="party_movie" value="party" checked required /> <span>Party</span></label>
+        <label><input class="nes-checkbox" type="radio" name="party_movie" value="movienight" required /> <span>Movie Night</span></label>
+      </div>
+
+      <div class="radio-row">
+        <label><input class="nes-checkbox" type="radio" name="ski_snowboard" value="ski" required /> <span>Ski</span></label>
+        <label><input class="nes-checkbox" type="radio" name="ski_snowboard" value="snowboard" required /> <span>Snowboard</span></label>
+      </div>
+
+      <div class="radio-row">
+        <label><input class="nes-checkbox" type="radio" name="wg_alleine" value="wg" required /> <span>WG</span></label>
+        <label><input class="nes-checkbox" type="radio" name="wg_alleine" value="alleine" required /> <span>Alleine leben</span></label>
+      </div>
+
+      <div class="radio-row">
+        <label><input class="nes-checkbox" type="radio" name="hund_katze" value="hund" required /> <span>Hund</span></label>
+        <label><input class="nes-checkbox" type="radio" name="hund_katze" value="katze" required /> <span>Katze</span></label>
+      </div>
+
+      <div class="radio-row">
+        <label><input class="nes-checkbox" type="radio" name="regen_sonne" value="regen" required /> <span>Regen</span></label>
+        <label><input class="nes-checkbox" type="radio" name="regen_sonne" value="sonne" required /> <span>Sonne</span></label>
+      </div>
+    </div>
+  </section>
+</section>
+
+<br>
+
+<section class="showcase" v-for="sample in collection" :key="sample">
+  <section class="nes-container with-title">
+    <h2 class="title">Uploads</h2>
+    <!-- Add file input for image upload -->
+    <label for="image">Lade hier ein gezeichnetes Bild von dir hoch (PNG only!):</label>
+    <input type="file" id="image" name="image" accept="image/png" required>
+    
+    <br><br>
+
+    <!-- Spotify Playlist -->
+    <label>Mein Spotify-playlist (Link):</label>
+    <input class="nes-input" type="url" name="spotify">
+    <br><br>
+
+    <!-- Pinterest Link -->
+    <label>Mein Pinterest-board (Link):</label>
+    <input class="nes-input" type="url" name="Pinterest">
+  </section>
+</section>
+
+<br>
+<div class="update-delete">
+  <!-- Action buttons -->
+  <input class="nes-btn" type="submit" value="Submit">
+
+  </form>
+
+  <form action="{{url_for('post')}}" method="post" enctype="multipart/form-data">
+    <button class="nes-btn is-error" type="submit" name="abbrechen" value="Abbrechen">Abbrechen</button>
+  </form>
+</div>
+
+</div>
 {% endblock %}

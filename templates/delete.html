@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="margin-left: 20px; margin-right: 10vw; " class="create-post">
+    <div class="delete">
+        <br>
+        <h2 class="title">Delete Account</h2>
+        <br>
+        <p>Bist du sicher dass du dein Account löschen willst?</p>
+        <p>Du hast 2 Optionen:</p>
+        <ul>
+            <li>Deactivate: Deine Daten werden unsichtbar und du kannst dich jederzeit wieder aktivieren.</li>
+            <li>Delete: Alle deine Daten weden gelöscht.</li>
+        </ul>
+        <form method="POST">
+            <button type="submit" class="nes-btn is-primary" name="action1" value="deactivate">Deactivate</button>
+            <button type="submit" class="nes-btn is-error" name="action1" value="delete">Delete</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

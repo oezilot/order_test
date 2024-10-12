@@ -1,14 +1,60 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Posts</h2>
-{% if posts %}
-  <ul>
-    {% for post in posts %}
-      <li>{{ post['content'] }} (Posted by User {{ post['user_id'] }})</li>
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No posts available</p>
-{% endif %}
+
+<br>
+<div class="inhaltsverzeichnis">
+  <div class="inhalt-titel">
+    <h2>Inhaltsverzeichnis</h2>
+  </div>
+
+  <!-- User Posts Section -->
+  <div class="nes-container inhalt ">
+    <div class="scrollable-content">
+    <h3>Admin Posts</h3>
+    <ul class="nes-list is-circle">
+      {% for admin_post in admin_posts %}
+        <li>
+          <a href="{{ url_for('show_post', username=admin_post['username']) }}">
+            {{ admin_post['username'] }}'s Post
+          </a>
+
+          {% if admin_post['content'] %}
+            (posted on: {{ admin_post['created_at'] }})
+          {% else %}
+            - No post yet
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    <br>
+
+
+
+    <h3>User Posts</h3>
+    <ul class="nes-list is-circle">
+      {% for user_post in user_posts %}
+        <li>
+          <a href="{{ url_for('show_post', username=user_post['username']) }}">
+            {{ user_post['username'] }}'s Post
+          </a>
+
+          {% if user_post['content'] %}
+            (posted on: {{ user_post['created_at'] }})
+          {% else %}
+            - No post yet
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    </div>
+  </div>
+
+  {% if user_posts or admin_posts %}
+    <a class="nes-btn" href="{{ url_for('show_post', username=all_posts[0]['username']) }}">View Book</a>
+  {% else %}
+    <p>No posts available to view.</p>
+  {% endif %}
+</div>
+
 {% endblock %}

@@ -1,12 +1,70 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Register</h2>
-<form method="post">
-  <label for="username">Username:</label>
-  <input type="text" id="username" name="username"><br><br>
-  <label for="password">Password:</label>
-  <input type="password" id="password" name="password"><br><br>
-  <input type="submit" value="Register">
-</form>
+
+<div class="body2">
+  <!-- Display the error message if it's set -->
+  {% if error_message %}
+    <div class="error-message nes-balloon from-right">
+      <p style="color: red;">{{ error_message }}</p>
+    </div>
+  {% endif %}
+  <div class="login nes-container">
+    
+    <div class="login-title">
+      <h2>Register</h2>
+      <br>
+    </div>
+    <form method="post">
+      <div>
+        <label for="email">Email:</label><br>
+        <input class="nes-input" type="text" id="email" name="email" required><br><br>
+
+        <label for="username">Username:</label><br>
+        <input class="nes-input" type="text" id="username" name="username" required><br><br>
+        
+        <label for="password">Password:</label><br>
+        <div style="position: relative;">
+          <input class="nes-input" type="password" id="password" name="password" required>
+          <!-- NES.css icon for toggling password visibility -->
+          <span id="togglePassword" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); padding: 0 0 2px 2px;">
+            <i class="nes-icon is-small star" id="eyeIcon"></i>
+          </span>
+        </div>
+        <br>
+      </div>
+      <div class="login-button">
+        <input class="nes-btn is-success" type="submit" value="Register">
+      </div>
+    </form>
+
+    <div class="deleted">
+      <!--link to reactivate a previously deleted account-->
+      <p>Deleted your account? <br><a href="{{ url_for('reactivate_account') }}">Reactivate your account here!</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- Add JavaScript for toggling password visibility -->
+<script>
+  const togglePassword = document.getElementById('togglePassword');
+  const passwordField = document.getElementById('password');
+  const eyeIcon = document.getElementById('eyeIcon');
+
+  togglePassword.addEventListener('click', function () {
+    // Toggle the type attribute between 'password' and 'text'
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+
+    // Change the NES.css icon (if you want to switch between two different NES.css icons)
+    if (eyeIcon.classList.contains('star')) {
+        eyeIcon.classList.remove('star');
+        eyeIcon.classList.add('close');  // NES.css also provides a "close" icon
+    } else {
+        eyeIcon.classList.remove('close');
+        eyeIcon.classList.add('star');
+    }
+  });
+</script>
+
 {% endblock %}

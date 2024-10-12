@@ -1,0 +1,166 @@
+<!--ADD-ONS: noch einen timestamp hinzufügen und den admin account aus der tabelle entfernen-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="margin:20px;">
+<br>
+<h1>Admin</h1>
+<br>
+
+<div class="admin-table-div">
+  <h2 class="title">Admin-Account</h2>
+  <div class="admin-table">
+  <table>
+      <th>Id</th>
+      <td>Datum</td>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Action</th>
+      {% for user in admin_accounts %}
+        <tr>
+          <td>{{ user['id'] }}</td> <!-- Display the id -->
+          <td>{{ user['time'] }}</td>
+          <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+          <td>{{ user['email'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+          <td class="admin-buttons">
+              <!--the form will submit this t the /admin-route!-->
+              <form action="{{ url_for('admin') }}" method="POST">
+                  <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                  <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                  <button class="nes-btn" name="action" value="delete" type="submit">Delete</button>
+              </form>
+              <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
+                  <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                  <button class="nes-btn" name="action" value="depromote" type="submit">Remove as Admin</button>
+              </form>
+          </td>
+        </tr>
+      {% endfor %}
+  </table>
+  </div>
+</div>
+
+
+<br>
+<br>
+
+  <div class="admin-table-div">
+    <h2 class="title">Active Users (is_active = 1)</h2>
+      <div class="admin-table">
+      <table>
+        <th>Id</th>
+        <td>Date</td>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Actions</th>
+        {% for user in active_users %}
+          <tr>
+            <td>{{ user['id'] }}</td>
+            <td>{{ user['time'] }}</td>
+            <td>{{ user['username'] }}</td>
+            <td>{{ user['email'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+            <td class="admin-buttons">
+                <!-- Form for Deactivate -->
+                <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                    <button class="nes-btn" name="action" value="deactivate" type="submit">Deactivate</button>
+                </form>
+    
+                <!-- Form for Delete -->
+                <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                    <button class="nes-btn" name="action" value="delete" type="submit">Delete</button>
+                </form>
+    
+                <!-- Form for Promote to Admin -->
+                <form action="{{ url_for('admin') }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                    <button class="nes-btn" name="action" value="promote" type="submit">Promote to Admin</button>
+                </form>
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+    </div>
+  </div>
+
+<br>
+<br>
+
+  <div class="admin-table-div">
+    <h2 class="title">Inactive Users (is_active = 0)</h2>
+    <div class="admin-table">
+      <table>
+        <th>Id</th>
+        <td>Date</td>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Action</th>
+        {% for user in inactive_users %}
+        <tr>
+          <td>{{ user['id'] }}</td> <!-- Display the id -->
+          <td>{{ user['time'] }}</td>
+          <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+          <td>{{ user['email'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+          <td class="admin-buttons">
+              <!--the form will submit this t the /admin-route!-->
+              <form action="{{ url_for('admin') }}" method="POST">
+                  <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                  <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                  <!--with buttons the value often stands for the function behind the button and the name is for grouping multiple buttons!-->
+                  <button class="nes-btn" name="action" value="activate" type="submit">Activate</button>
+              </form>
+              <form action="{{ url_for('admin') }}" method="POST">
+                  <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                  <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                  <button class="nes-btn" name="action" value="delete" type="submit">Delete</button>
+              </form>
+          </td>
+        </tr>
+        {% endfor %}
+</table>
+  </div>
+  </div>
+
+<br>
+<br>
+
+  <div class="admin-table-div">
+      <h2 class="title">Waiting Users (is_active = -1)</h2>
+      <div class="admin-table">
+      <table>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Approve</th>
+        {% for user in waiting_users %}
+          <tr>
+            <td>{{ user['id'] }}</td> <!-- Display the id -->
+            <td>{{ user['time'] }}</td>
+            <td>{{ user['username'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+            <td>{{ user['email'] }}</td> <!-- bei 'username' und den anderen kolonnennamen hat es gänsefüsschen weil man damit nur die werte der kolonne von einem einzigen user bekommen möchte! sonst würde es alle werte der kolonne username ansprechen! 'username' ist eine liste mit allen usernamen der kolonne username! -->
+            <td class="admin-buttons">
+                <!--the form will submit this t the /admin-route!-->
+                <form action="{{ url_for('admin') }}" method="POST">
+                    <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                    <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                    <!--with buttons the value often stands for the function behind the button and the name is for grouping multiple buttons!-->
+                    <button class="nes-btn" name="action" value="activate" type="submit">Approve</button>
+                </form>
+                <form action="{{ url_for('admin') }}" method="POST">
+                    <!--diese linie reicht die id welche veränder wurde an den server weiter damit die python-function dann auch am richtigen user durchgeführt wird!-->
+                    <input type="hidden" name="user_id" value="{{ user['id'] }}">
+                    <button class="nes-btn" name="action" value="delete" type="submit">Deny</button>
+                </form>
+            </td>
+          </tr>
+        {% endfor %}
+    </table>
+  </div>
+  </div>
+</div>
+
+
+{% endblock %}

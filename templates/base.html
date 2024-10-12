@@ -1,21 +1,115 @@
+<!-- Navigation bar with all links: Home, Create/Edit, Logout, and displays the logged-in username -->
+<!-- this is the skeleton of each template! -->
 <!doctype html>
 <html lang="en">
   <head>
+    <!--faviconss-->
+    <!-- Favicon links -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon/favicon-48x48.png') }}" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon/favicon.svg') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='favicon/apple-touch-icon.png') }}" />
+    <link rel="manifest" href="{{ url_for('static', filename='favicon/site.webmanifest') }}" />
+
+    <!--link for the css-framework-->
+    <!-- NES.css CDN -->
+    <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
+    <!-- Optional: Include a font for better text appearance -->
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    
+  
+    <!-- icons -->
+    <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+  
+
     <meta charset="utf-8">
-    <title>Flask App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!--ensures that the webpage is rendered correctly on different devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Freundschaftsbuch</title>
   </head>
-  <body>
-    <nav>
-      <a href="{{ url_for('index') }}">Home</a>
-      {% if 'username' in session %}
-        <a href="{{ url_for('post') }}">Create/Edit Post</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
-      {% else %}
-        <a href="{{ url_for('login') }}">Login</a>
-        <a href="{{ url_for('register') }}">Register</a>
-      {% endif %}
-    </nav>
-    <hr>
-    {% block content %}{% endblock %}
+  <body class="{% if request.endpoint in ['edit_post', 'post', 'admin', 'about'] %}scrollable-body{% else %}non-scrollable-body{% endif %}">
+    <div class="navbar">
+            <hr>
+
+      <nav class="nav-base">    
+        <!--user is logged in-->
+        {% if 'username' in session %}
+
+          {% if request.endpoint != 'index' %}
+            <a href="{{ url_for('index') }}">Home</a>
+          {% endif %}
+
+           <!-- Only show Edit/Create Post links if not on edit_post or post page -->
+          {% if request.endpoint not in ['edit_post', 'post'] %}
+          <a href="{{ has_post and url_for('edit_post') or url_for('post') }}">
+            {{ has_post and 'Edit Post' or 'Create Post' }}
+          </a>
+          {% endif %}
+
+          <a href="{{ url_for('logout') }}">Logout</a>
+
+          {% if not session.get('is_admin', False) and request.endpoint != 'delete_account' %}
+            <a href="{{ url_for('delete_account') }}" class="float-right" style="background:none;border:none;color:red;cursor:pointer;">Delete Account</a>
+          {% elif session.get('is_admin', False) and request.endpoint != 'admin' %}
+            <a href="{{ url_for('admin') }}">Admin</a>
+          {% endif %}
+
+
+
+          
+          <!-- Display the logged-in user's username -->
+          <span class="username">Logged in as: {{ session['username'] }}</span>
+
+
+
+        <!--navigation-bar wenn der user nicht eingeloggt ist-->
+        <!--request.endpoint == 'functionName'-->
+        {% else %}
+
+          {% if request.endpoint == 'reset_password' %}
+          <a href="{{ url_for('login') }}">Go Back</a>
+
+          {% elif request.endpoint == 'reactivate_account' %}
+          <a href="{{ url_for('register') }}">Go Back</a>
+  
+          {% elif request.endpoint == 'index' %}
+          <a href="{{ url_for('about') }}">Go Back</a>
+
+          {% elif request.endpoint == 'show_post' %}
+            <a href="{{ url_for('index') }}">Home</a>
+
+
+
+          {% elif request.endpoint == 'about' %}
+          <a href="{{ url_for('landing') }}">Go Back</a>
+  
+          {% elif request.endpoint == 'login' %}
+            <a href="{{ url_for('landing') }}">Go Back</a>
+            <a href="{{ url_for('register') }}">Register</a>
+
+          {% elif request.endpoint == 'register' %}
+            <a href="{{ url_for('landing') }}">Go Back</a>
+            <a href="{{ url_for('login') }}">Login</a>
+          {% endif %}
+
+        {% endif %}
+      
+      
+        
+        
+  
+      </nav>
+
+      <hr>
+
+    
+      
+      {% block content %}{% endblock %}
+    </div>
+
+  
+
   </body>
 </html>
