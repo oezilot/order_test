@@ -1,2 +1,3 @@
 # Ignore the database file
 database.db
+venv/
